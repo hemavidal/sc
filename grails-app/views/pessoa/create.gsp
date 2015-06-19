@@ -26,7 +26,7 @@
 			</ul>
 			</g:hasErrors>
 			<g:form url="[resource:pessoaInstance, action:'save']" >
-				<fieldset class="form">
+				<fieldset class="form form-horizontal">
 					<g:render template="form"/>
 				</fieldset>
 				<fieldset class="buttons">

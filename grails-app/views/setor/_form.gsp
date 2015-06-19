@@ -34,7 +34,7 @@
 					<g:each in="${setorInstance.gruposCaseiros}" status="i" var="grupoCaseiroInstance">
 						<tr class="${(i % 2) == 0 ? 'even' : 'odd'}">
 						
-							<td><g:link action="show" id="${grupoCaseiroInstance.id}">${fieldValue(bean: grupoCaseiroInstance, field: "nome")}</g:link></td>
+							<td><g:link controller="grupoCaseiro" action="show" id="${grupoCaseiroInstance.id}">${fieldValue(bean: grupoCaseiroInstance, field: "nome")}</g:link></td>
 						
 						</tr>
 					</g:each>

@@ -41,7 +41,7 @@
 		      <ul class="nav navbar-nav">
 		        <li class="active"><a href="/sc/igreja">Igrejas<span class="sr-only">(current)</span></a></li>
 		        <li><a href="/sc/setor">Setores</a></li>
-		        <li><a href="/sc/grupocaseiro">Grupos Caseiros</a></li>
+		        <li><a href="/sc/grupoCaseiro">Grupos Caseiros</a></li>
 		        <li><a href="/sc/pessoas">Pessoas</a></li>
 		        <li class="dropdown">
 		          <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">Dropdown <span class="caret"></span></a>
