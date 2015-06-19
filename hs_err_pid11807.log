@@ -1,0 +1,789 @@
+#
+# A fatal error has been detected by the Java Runtime Environment:
+#
+#  SIGSEGV (0xb) at pc=0xb6945c83, pid=11807, tid=1947204416
+#
+# JRE version: Java(TM) SE Runtime Environment (8.0_11-b12) (build 1.8.0_11-b12)
+# Java VM: Java HotSpot(TM) Server VM (25.11-b03 mixed mode linux-x86 )
+# Problematic frame:
+# V  [libjvm.so+0x1d1c83]  OopFlow::build_oop_map(Node*, int, PhaseRegAlloc*, int*)+0x143
+#
+# Failed to write core dump. Core dumps have been disabled. To enable core dumping, try "ulimit -c unlimited" before starting Java again
+#
+# If you would like to submit a bug report, please visit:
+#   http://bugreport.sun.com/bugreport/crash.jsp
+#
+
+---------------  T H R E A D  ---------------
+
+Current thread (0x747f4400):  JavaThread "C2 CompilerThread0" daemon [_thread_in_native, id=11817, stack(0x7407f000,0x74100000)]
+
+siginfo:si_signo=SIGSEGV: si_errno=0, si_code=1 (SEGV_MAPERR), si_addr=0x00000000
+
+Registers:
+EAX=0x099b4e24, EBX=0xb70c9900, ECX=0x099b5028, EDX=0x00000062
+ESP=0x740fd964, EBP=0x740fd9c8, ESI=0x00000000, EDI=0x00000068
+EIP=0xb6945c83, EFLAGS=0x00010212, CR2=0x00000000
+
+Top of Stack: (sp=0x740fd964)
+0x740fd964:   0000007f b70d7cc0 b70d7cc0 b70c9900
+0x740fd974:   b6502fb0 08e742b8 b6f90309 b70e3be0
+0x740fd984:   00000000 00001800 0000001c 099b5040
+0x740fd994:   0924cf88 095d43b0 00000062 740fd9cb
+0x740fd9a4:   00000006 740fd9d8 b6b2ebf6 0924cf88
+0x740fd9b4:   0924cf88 08ea34a0 b70c9900 0924cf88
+0x740fd9c4:   00000009 740fda18 b6946272 099b5028
+0x740fd9d4:   0924cf88 00000080 740fe274 09a85978 
+
+Instructions: (pc=0xb6945c83)
+0xb6945c63:   39 f8 0f 8e a5 00 00 00 8b 83 c4 d0 ff ff 8b 04
+0xb6945c73:   b8 89 45 d4 8b 4d 08 83 ec 0c 8b 41 04 8b 34 b8
+0xb6945c83:   8b 06 56 ff 50 14 8b 8b a4 db ff ff 89 45 b0 83
+0xb6945c93:   c4 10 8b 50 08 8d 04 52 80 7c c1 0c 00 0f 85 3a 
+
+Register to memory mapping:
+
+EAX=0x099b4e24 is an unknown value
+EBX=0xb70c9900: <offset 0x955900> in /usr/lib/jvm/jdk1.8.0_11/jre/lib/i386/server/libjvm.so at 0xb6774000
+ECX=0x099b5028 is an unknown value
+EDX=0x00000062 is an unknown value
+ESP=0x740fd964 is pointing into the stack for thread: 0x747f4400
+EBP=0x740fd9c8 is pointing into the stack for thread: 0x747f4400
+ESI=0x00000000 is an unknown value
+EDI=0x00000068 is an unknown value
+
+
+Stack: [0x7407f000,0x74100000],  sp=0x740fd964,  free space=506k
+Native frames: (J=compiled Java code, j=interpreted, Vv=VM code, C=native code)
+V  [libjvm.so+0x1d1c83]  OopFlow::build_oop_map(Node*, int, PhaseRegAlloc*, int*)+0x143
+V  [libjvm.so+0x1d2272]  OopFlow::compute_reach(PhaseRegAlloc*, int, Dict*)+0x222
+V  [libjvm.so+0x1d2fe4]  Compile::BuildOopMaps()+0xc14
+V  [libjvm.so+0x708fa7]  Compile::Output()+0x3e7
+V  [libjvm.so+0x30c942]  Compile::Code_Gen()+0x322
+V  [libjvm.so+0x311111]  Compile::Compile(ciEnv*, C2Compiler*, ciMethod*, int, bool, bool, bool)+0x1261
+V  [libjvm.so+0x26e314]  C2Compiler::compile_method(ciEnv*, ciMethod*, int)+0x1b4
+V  [libjvm.so+0x31a1f9]  CompileBroker::invoke_compiler_on_method(CompileTask*)+0xd19
+V  [libjvm.so+0x31af9d]  CompileBroker::compiler_thread_loop()+0x5ad
+V  [libjvm.so+0x811568]  compiler_thread_entry(JavaThread*, Thread*)+0x18
+V  [libjvm.so+0x81b569]  JavaThread::thread_main_inner()+0x109
+V  [libjvm.so+0x81b75e]  JavaThread::run()+0x1be
+V  [libjvm.so+0x6f4249]  java_start(Thread*)+0x119
+C  [libpthread.so.0+0x6f70]  start_thread+0xd0
+
+
+Current CompileTask:
+C2:  46453 5438       4       groovy.lang.MetaClassImpl::findPropertyMethod (356 bytes)
+
+
+---------------  P R O C E S S  ---------------
+
+Java Threads: ( => current thread )
+  0x76c9c000 JavaThread "Thread-10" daemon [_thread_in_native, id=11883, stack(0x6fc5e000,0x6fcaf000)]
+  0x6fb5f800 JavaThread "http-bio-8080-exec-3" daemon [_thread_in_native, id=11882, stack(0x6fcaf000,0x6fd00000)]
+  0xb6509800 JavaThread "DestroyJavaVM" [_thread_blocked, id=11808, stack(0xb66dd000,0xb672e000)]
+  0x7291a400 JavaThread "Thread-8" [_thread_blocked, id=11880, stack(0x7015e000,0x701af000)]
+  0x76c22400 JavaThread "http-bio-8080-exec-2" daemon [_thread_blocked, id=11879, stack(0x7115e000,0x711af000)]
+  0x76c21400 JavaThread "http-bio-8080-exec-1" daemon [_thread_in_native, id=11878, stack(0x711af000,0x71200000)]
+  0x7224dc00 JavaThread "http-bio-8080-AsyncTimeout" daemon [_thread_blocked, id=11877, stack(0x701af000,0x70200000)]
+  0x7224d800 JavaThread "http-bio-8080-Acceptor-0" daemon [_thread_in_native, id=11876, stack(0x7180d000,0x7185e000)]
+  0x7224d000 JavaThread "ContainerBackgroundProcessor[StandardEngine[Tomcat]]" daemon [_thread_blocked, id=11875, stack(0x7240d000,0x7245e000)]
+  0x70c83c00 JavaThread "net.sf.ehcache.CacheManager@13814f1" daemon [_thread_blocked, id=11873, stack(0x7245e000,0x724af000)]
+  0x7178cc00 JavaThread "PoolCleaner[28126743:1425309962793]" daemon [_thread_blocked, id=11872, stack(0x7185e000,0x718af000)]
+  0x72366400 JavaThread "FileSystemWatcher: files=#120 cl=groovy.lang.GroovyClassLoader@1ad2e17" daemon [_thread_blocked, id=11871, stack(0x71faf000,0x72000000)]
+  0x095f9400 JavaThread "localhost-startStop-1" daemon [_thread_blocked, id=11869, stack(0x724af000,0x72500000)]
+  0x722bdc00 JavaThread "Tomcat-startStop-1" daemon [_thread_blocked, id=11868, stack(0x72a67000,0x72ab8000)]
+  0x7226ac00 JavaThread "Thread-3" [_thread_in_native, id=11866, stack(0x72eaf000,0x72f00000)]
+  0x73773c00 JavaThread "Thread-2" [_thread_blocked, id=11854, stack(0x7300f000,0x73060000)]
+  0x73d76000 JavaThread "NonBlockingInputStreamThread" daemon [_thread_blocked, id=11841, stack(0x73f10000,0x73f61000)]
+  0x73d59000 JavaThread "process reaper" daemon [_thread_blocked, id=11830, stack(0x76b02000,0x76b1b000)]
+  0x7410c400 JavaThread "Service Thread" daemon [_thread_blocked, id=11819, stack(0x7420b000,0x7425c000)]
+  0x747ed000 JavaThread "C1 CompilerThread1" daemon [_thread_blocked, id=11818, stack(0x73ffe000,0x7407f000)]
+=>0x747f4400 JavaThread "C2 CompilerThread0" daemon [_thread_in_native, id=11817, stack(0x7407f000,0x74100000)]
+  0x74734800 JavaThread "Signal Dispatcher" daemon [_thread_blocked, id=11816, stack(0x7433f000,0x74390000)]
+  0x74716800 JavaThread "Finalizer" daemon [_thread_blocked, id=11815, stack(0x7483e000,0x7488f000)]
+  0x74714000 JavaThread "Reference Handler" daemon [_thread_blocked, id=11814, stack(0x7488f000,0x748e0000)]
+
+Other Threads:
+  0x74711000 VMThread [stack: 0x76b30000,0x76bb1000] [id=11813]
+  0x7410e000 WatcherThread [stack: 0x73f7d000,0x73ffe000] [id=11820]
+
+VM state:not at safepoint (normal execution)
+
+VM Mutex/Monitor currently owned by a thread: None
+
+Heap:
+ PSYoungGen      total 236288K, used 124386K [0x97000000, 0xa7000000, 0xa7000000)
+  eden space 212224K, 56% used [0x97000000,0x9e53ee10,0xa3f40000)
+  from space 24064K, 17% used [0xa3f40000,0xa4379a50,0xa56c0000)
+  to   space 23552K, 0% used [0xa5900000,0xa5900000,0xa7000000)
+ ParOldGen       total 166912K, used 99352K [0x77000000, 0x81300000, 0x97000000)
+  object space 166912K, 59% used [0x77000000,0x7d106328,0x81300000)
+ Metaspace       used 42509K, capacity 43252K, committed 43264K, reserved 43312K
+
+Card table byte_map: [0x76e7f000,0x77000000] byte_map_base: 0x76ac7000
+
+Marking Bits: (ParMarkBitMap*) 0xb70f3d80
+ Begin Bits: [0x75200000, 0x75e00000)
+ End Bits:   [0x75e00000, 0x76a00000)
+
+Polling page: 0xb76fb000
+
+CodeCache: size=245760Kb used=16512Kb max_used=16512Kb free=229247Kb
+ bounds [0xa7500000, 0xa8528000, 0xb6500000]
+ total_blobs=6434 nmethods=5964 adapters=382
+ compilation: enabled
+
+Compilation events (10 events):
+Event: 46,363 Thread 0x747ed000 6100       2       java.nio.charset.CharsetDecoder::<init> (108 bytes)
+Event: 46,364 Thread 0x747ed000 nmethod 6100 0xa8513748 code [0xa85138c0, 0xa8513bdc]
+Event: 46,367 Thread 0x747ed000 6101       2       sun.nio.fs.NativeBuffer::setOwner (6 bytes)
+Event: 46,367 Thread 0x747ed000 nmethod 6101 0xa8513d88 code [0xa8513e80, 0xa8513f60]
+Event: 46,368 Thread 0x747ed000 6102       2       sun.nio.fs.UnixPath::toString (30 bytes)
+Event: 46,368 Thread 0x747ed000 nmethod 6102 0xa8513fc8 code [0xa85140e0, 0xa851426c]
+Event: 46,369 Thread 0x747ed000 6103       2       sun.nio.fs.UnixPath::resolve (48 bytes)
+Event: 46,370 Thread 0x747ed000 nmethod 6103 0xa85143c8 code [0xa8514520, 0xa8514804]
+Event: 46,372 Thread 0x747ed000 6104       1       org.codehaus.groovy.grails.plugins.support.WatchPattern::getExtension (5 bytes)
+Event: 46,372 Thread 0x747ed000 nmethod 6104 0xa8514a88 code [0xa8514b80, 0xa8514c20]
+
+GC Heap History (10 events):
+Event: 41,242 GC heap before
+{Heap before GC invocations=31 (full 3):
+ PSYoungGen      total 246016K, used 246005K [0x97000000, 0xa7000000, 0xa7000000)
+  eden space 229888K, 100% used [0x97000000,0xa5080000,0xa5080000)
+  from space 16128K, 99% used [0xa5080000,0xa603d6b8,0xa6040000)
+  to   space 16128K, 0% used [0xa6040000,0xa6040000,0xa7000000)
+ ParOldGen       total 109824K, used 73252K [0x77000000, 0x7db40000, 0x97000000)
+  object space 109824K, 66% used [0x77000000,0x7b789278,0x7db40000)
+ Metaspace       used 38382K, capacity 39008K, committed 39040K, reserved 39216K
+Event: 41,308 GC heap after
+Heap after GC invocations=31 (full 3):
+ PSYoungGen      total 228096K, used 16126K [0x97000000, 0xa7000000, 0xa7000000)
+  eden space 211968K, 0% used [0x97000000,0x97000000,0xa3f00000)
+  from space 16128K, 99% used [0xa6040000,0xa6fff890,0xa7000000)
+  to   space 25088K, 0% used [0xa3f00000,0xa3f00000,0xa5780000)
+ ParOldGen       total 109824K, used 79813K [0x77000000, 0x7db40000, 0x97000000)
+  object space 109824K, 72% used [0x77000000,0x7bdf1478,0x7db40000)
+ Metaspace       used 38382K, capacity 39008K, committed 39040K, reserved 39216K
+}
+Event: 42,434 GC heap before
+{Heap before GC invocations=32 (full 3):
+ PSYoungGen      total 228096K, used 228094K [0x97000000, 0xa7000000, 0xa7000000)
+  eden space 211968K, 100% used [0x97000000,0xa3f00000,0xa3f00000)
+  from space 16128K, 99% used [0xa6040000,0xa6fff890,0xa7000000)
+  to   space 25088K, 0% used [0xa3f00000,0xa3f00000,0xa5780000)
+ ParOldGen       total 109824K, used 79813K [0x77000000, 0x7db40000, 0x97000000)
+  object space 109824K, 72% used [0x77000000,0x7bdf1478,0x7db40000)
+ Metaspace       used 39301K, capacity 39950K, committed 40064K, reserved 40240K
+Event: 42,544 GC heap after
+Heap after GC invocations=32 (full 3):
+ PSYoungGen      total 237056K, used 13795K [0x97000000, 0xa7000000, 0xa7000000)
+  eden space 211968K, 0% used [0x97000000,0x97000000,0xa3f00000)
+  from space 25088K, 54% used [0xa3f00000,0xa4c78f48,0xa5780000)
+  to   space 24832K, 0% used [0xa57c0000,0xa57c0000,0xa7000000)
+ ParOldGen       total 109824K, used 85969K [0x77000000, 0x7db40000, 0x97000000)
+  object space 109824K, 78% used [0x77000000,0x7c3f4530,0x7db40000)
+ Metaspace       used 39301K, capacity 39950K, committed 40064K, reserved 40240K
+}
+Event: 43,932 GC heap before
+{Heap before GC invocations=33 (full 3):
+ PSYoungGen      total 237056K, used 225763K [0x97000000, 0xa7000000, 0xa7000000)
+  eden space 211968K, 100% used [0x97000000,0xa3f00000,0xa3f00000)
+  from space 25088K, 54% used [0xa3f00000,0xa4c78f48,0xa5780000)
+  to   space 24832K, 0% used [0xa57c0000,0xa57c0000,0xa7000000)
+ ParOldGen       total 109824K, used 85969K [0x77000000, 0x7db40000, 0x97000000)
+  object space 109824K, 78% used [0x77000000,0x7c3f4530,0x7db40000)
+ Metaspace       used 40987K, capacity 41682K, committed 41728K, reserved 42288K
+Event: 44,025 GC heap after
+Heap after GC invocations=33 (full 3):
+ PSYoungGen      total 235264K, used 7951K [0x97000000, 0xa6e40000, 0xa7000000)
+  eden space 212224K, 0% used [0x97000000,0x97000000,0xa3f40000)
+  from space 23040K, 34% used [0xa57c0000,0xa5f83ea8,0xa6e40000)
+  to   space 24064K, 0% used [0xa3f40000,0xa3f40000,0xa56c0000)
+ ParOldGen       total 109824K, used 96050K [0x77000000, 0x7db40000, 0x97000000)
+  object space 109824K, 87% used [0x77000000,0x7cdcc930,0x7db40000)
+ Metaspace       used 40987K, capacity 41682K, committed 41728K, reserved 42288K
+}
+Event: 44,025 GC heap before
+{Heap before GC invocations=34 (full 4):
+ PSYoungGen      total 235264K, used 7951K [0x97000000, 0xa6e40000, 0xa7000000)
+  eden space 212224K, 0% used [0x97000000,0x97000000,0xa3f40000)
+  from space 23040K, 34% used [0xa57c0000,0xa5f83ea8,0xa6e40000)
+  to   space 24064K, 0% used [0xa3f40000,0xa3f40000,0xa56c0000)
+ ParOldGen       total 109824K, used 96050K [0x77000000, 0x7db40000, 0x97000000)
+  object space 109824K, 87% used [0x77000000,0x7cdcc930,0x7db40000)
+ Metaspace       used 40987K, capacity 41682K, committed 41728K, reserved 42288K
+Event: 44,697 GC heap after
+Heap after GC invocations=34 (full 4):
+ PSYoungGen      total 235264K, used 0K [0x97000000, 0xa6e40000, 0xa7000000)
+  eden space 212224K, 0% used [0x97000000,0x97000000,0xa3f40000)
+  from space 23040K, 0% used [0xa57c0000,0xa57c0000,0xa6e40000)
+  to   space 24064K, 0% used [0xa3f40000,0xa3f40000,0xa56c0000)
+ ParOldGen       total 166912K, used 99348K [0x77000000, 0x81300000, 0x97000000)
+  object space 166912K, 59% used [0x77000000,0x7d105328,0x81300000)
+ Metaspace       used 40987K, capacity 41682K, committed 41728K, reserved 42288K
+}
+Event: 45,781 GC heap before
+{Heap before GC invocations=35 (full 4):
+ PSYoungGen      total 235264K, used 205038K [0x97000000, 0xa6e40000, 0xa7000000)
+  eden space 212224K, 96% used [0x97000000,0xa383b980,0xa3f40000)
+  from space 23040K, 0% used [0xa57c0000,0xa57c0000,0xa6e40000)
+  to   space 24064K, 0% used [0xa3f40000,0xa3f40000,0xa56c0000)
+ ParOldGen       total 166912K, used 99348K [0x77000000, 0x81300000, 0x97000000)
+  object space 166912K, 59% used [0x77000000,0x7d105328,0x81300000)
+ Metaspace       used 42215K, capacity 42933K, committed 43008K, reserved 43312K
+Event: 45,800 GC heap after
+Heap after GC invocations=35 (full 4):
+ PSYoungGen      total 236288K, used 4326K [0x97000000, 0xa7000000, 0xa7000000)
+  eden space 212224K, 0% used [0x97000000,0x97000000,0xa3f40000)
+  from space 24064K, 17% used [0xa3f40000,0xa4379a50,0xa56c0000)
+  to   space 23552K, 0% used [0xa5900000,0xa5900000,0xa7000000)
+ ParOldGen       total 166912K, used 99352K [0x77000000, 0x81300000, 0x97000000)
+  object space 166912K, 59% used [0x77000000,0x7d106328,0x81300000)
+ Metaspace       used 42215K, capacity 42933K, committed 43008K, reserved 43312K
+}
+
+Deoptimization events (10 events):
+Event: 41,070 Thread 0x095f9400 Uncommon trap: reason=class_check action=maybe_recompile pc=0xa83cc170 method=groovy.lang.MetaClassImpl.checkIfStdMethod(Lgroovy/lang/MetaMethod;)V @ 123
+Event: 41,070 Thread 0x095f9400 Uncommon trap: reason=class_check action=maybe_recompile pc=0xa83cc118 method=groovy.lang.MetaClassImpl.checkIfStdMethod(Lgroovy/lang/MetaMethod;)V @ 60
+Event: 41,070 Thread 0x095f9400 Uncommon trap: reason=class_check action=maybe_recompile pc=0xa83cc118 method=groovy.lang.MetaClassImpl.checkIfStdMethod(Lgroovy/lang/MetaMethod;)V @ 60
+Event: 41,149 Thread 0x095f9400 Uncommon trap: reason=class_check action=maybe_recompile pc=0xa83cc0c4 method=groovy.lang.MetaClassImpl.isGenericGetMethod(Lgroovy/lang/MetaMethod;)Z @ 14
+Event: 41,149 Thread 0x095f9400 Uncommon trap: reason=class_check action=maybe_recompile pc=0xa83cc170 method=groovy.lang.MetaClassImpl.checkIfStdMethod(Lgroovy/lang/MetaMethod;)V @ 123
+Event: 45,144 Thread 0x7291a400 Uncommon trap: reason=bimorphic action=maybe_recompile pc=0xa8475b44 method=org.codehaus.groovy.runtime.metaclass.MetaMethodIndex.addMethodToList(Ljava/lang/Object;Lgroovy/lang/MetaMethod;)Ljava/lang/Object; @ 91
+Event: 45,144 Thread 0x7291a400 Uncommon trap: reason=bimorphic action=maybe_recompile pc=0xa8475b44 method=org.codehaus.groovy.runtime.metaclass.MetaMethodIndex.addMethodToList(Ljava/lang/Object;Lgroovy/lang/MetaMethod;)Ljava/lang/Object; @ 91
+Event: 45,144 Thread 0x7291a400 Uncommon trap: reason=bimorphic action=maybe_recompile pc=0xa8475b44 method=org.codehaus.groovy.runtime.metaclass.MetaMethodIndex.addMethodToList(Ljava/lang/Object;Lgroovy/lang/MetaMethod;)Ljava/lang/Object; @ 91
+Event: 45,144 Thread 0x7291a400 Uncommon trap: reason=bimorphic action=maybe_recompile pc=0xa8475b44 method=org.codehaus.groovy.runtime.metaclass.MetaMethodIndex.addMethodToList(Ljava/lang/Object;Lgroovy/lang/MetaMethod;)Ljava/lang/Object; @ 91
+Event: 46,168 Thread 0x7291a400 Uncommon trap: reason=class_check action=maybe_recompile pc=0xa7d70fa4 method=java.lang.AbstractStringBuilder.append(Ljava/lang/CharSequence;II)Ljava/lang/AbstractStringBuilder; @ 18
+
+Internal exceptions (10 events):
+Event: 46,365 Thread 0x76c9c000 Exception <a 'sun/nio/fs/UnixException'> (0x9e3d9e00) thrown at [/HUDSON/workspace/8-2-build-linux-i586/jdk8u11/648/hotspot/src/share/vm/prims/jni.cpp, line 716]
+Event: 46,366 Thread 0x76c9c000 Exception <a 'sun/nio/fs/UnixException'> (0x9e3da0e8) thrown at [/HUDSON/workspace/8-2-build-linux-i586/jdk8u11/648/hotspot/src/share/vm/prims/jni.cpp, line 716]
+Event: 46,367 Thread 0x76c9c000 Exception <a 'sun/nio/fs/UnixException'> (0x9e3da3d0) thrown at [/HUDSON/workspace/8-2-build-linux-i586/jdk8u11/648/hotspot/src/share/vm/prims/jni.cpp, line 716]
+Event: 46,367 Thread 0x76c9c000 Exception <a 'sun/nio/fs/UnixException'> (0x9e3da638) thrown at [/HUDSON/workspace/8-2-build-linux-i586/jdk8u11/648/hotspot/src/share/vm/prims/jni.cpp, line 716]
+Event: 46,369 Thread 0x76c9c000 Exception <a 'sun/nio/fs/UnixException'> (0x9e3da8a0) thrown at [/HUDSON/workspace/8-2-build-linux-i586/jdk8u11/648/hotspot/src/share/vm/prims/jni.cpp, line 716]
+Event: 46,369 Thread 0x76c9c000 Exception <a 'sun/nio/fs/UnixException'> (0x9e3dab08) thrown at [/HUDSON/workspace/8-2-build-linux-i586/jdk8u11/648/hotspot/src/share/vm/prims/jni.cpp, line 716]
+Event: 46,371 Thread 0x76c9c000 Exception <a 'sun/nio/fs/UnixException'> (0x9e3dad70) thrown at [/HUDSON/workspace/8-2-build-linux-i586/jdk8u11/648/hotspot/src/share/vm/prims/jni.cpp, line 716]
+Event: 46,371 Thread 0x76c9c000 Exception <a 'sun/nio/fs/UnixException'> (0x9e3dafd8) thrown at [/HUDSON/workspace/8-2-build-linux-i586/jdk8u11/648/hotspot/src/share/vm/prims/jni.cpp, line 716]
+Event: 46,371 Thread 0x76c9c000 Exception <a 'sun/nio/fs/UnixException'> (0x9e3db240) thrown at [/HUDSON/workspace/8-2-build-linux-i586/jdk8u11/648/hotspot/src/share/vm/prims/jni.cpp, line 716]
+Event: 46,372 Thread 0x76c9c000 Exception <a 'sun/nio/fs/UnixException'> (0x9e3db4a8) thrown at [/HUDSON/workspace/8-2-build-linux-i586/jdk8u11/648/hotspot/src/share/vm/prims/jni.cpp, line 716]
+
+Events (10 events):
+Event: 46,221 loading class java/nio/file/FileVisitResult
+Event: 46,222 loading class java/nio/file/FileVisitResult done
+Event: 46,222 loading class sun/nio/fs/BasicFileAttributesHolder
+Event: 46,222 loading class sun/nio/fs/BasicFileAttributesHolder done
+Event: 46,234 Executing VM operation: BulkRevokeBias
+Event: 46,235 Executing VM operation: BulkRevokeBias done
+Event: 46,249 Executing VM operation: BulkRevokeBias
+Event: 46,250 Executing VM operation: BulkRevokeBias done
+Event: 46,308 loading class org/codehaus/groovy/grails/project/compiler/GrailsProjectWatcher$1
+Event: 46,308 loading class org/codehaus/groovy/grails/project/compiler/GrailsProjectWatcher$1 done
+
+
+Dynamic libraries:
+08048000-08049000 r-xp 00000000 08:15 3154870    /usr/lib/jvm/jdk1.8.0_11/bin/java
+08049000-0804a000 rw-p 00000000 08:15 3154870    /usr/lib/jvm/jdk1.8.0_11/bin/java
+08e68000-09c74000 rw-p 00000000 00:00 0          [heap]
+6f500000-6f54e000 rw-p 00000000 00:00 0 
+6f54e000-6f600000 ---p 00000000 00:00 0 
+6f600000-6fa00000 rw-p 00000000 00:00 0 
+6fa00000-6fb00000 rw-p 00000000 00:00 0 
+6fb00000-6fbfd000 rw-p 00000000 00:00 0 
+6fbfd000-6fc00000 ---p 00000000 00:00 0 
+6fc5e000-6fc61000 ---p 00000000 00:00 0 
+6fc61000-6fcaf000 rw-p 00000000 00:00 0          [stack:11883]
+6fcaf000-6fcb2000 ---p 00000000 00:00 0 
+6fcb2000-6fe00000 rw-p 00000000 00:00 0          [stack:11882]
+6fe00000-6ff00000 rw-p 00000000 00:00 0 
+6ff00000-6fffe000 rw-p 00000000 00:00 0 
+6fffe000-70000000 ---p 00000000 00:00 0 
+70035000-70135000 rw-p 00000000 00:00 0 
+7015e000-70161000 ---p 00000000 00:00 0 
+70161000-701af000 rw-p 00000000 00:00 0          [stack:11880]
+701af000-701b2000 ---p 00000000 00:00 0 
+701b2000-70300000 rw-p 00000000 00:00 0          [stack:11877]
+70300000-70400000 rw-p 00000000 00:00 0 
+70400000-704fb000 rw-p 00000000 00:00 0 
+704fb000-70500000 ---p 00000000 00:00 0 
+70500000-70600000 rw-p 00000000 00:00 0 
+70600000-70700000 rw-p 00000000 00:00 0 
+70700000-70800000 rw-p 00000000 00:00 0 
+70800000-708fe000 rw-p 00000000 00:00 0 
+708fe000-70900000 ---p 00000000 00:00 0 
+70900000-709fd000 rw-p 00000000 00:00 0 
+709fd000-70a00000 ---p 00000000 00:00 0 
+70a00000-70b00000 rw-p 00000000 00:00 0 
+70b00000-70c00000 rw-p 00000000 00:00 0 
+70c00000-70d00000 rw-p 00000000 00:00 0 
+70d26000-70e26000 rw-p 00000000 00:00 0 
+70e26000-70f26000 rw-p 00000000 00:00 0 
+70f26000-71026000 rw-p 00000000 00:00 0 
+71037000-71137000 rw-p 00000000 00:00 0 
+7115e000-71161000 ---p 00000000 00:00 0 
+71161000-711af000 rw-p 00000000 00:00 0          [stack:11879]
+711af000-711b2000 ---p 00000000 00:00 0 
+711b2000-71300000 rw-p 00000000 00:00 0          [stack:11878]
+71300000-71400000 rw-p 00000000 00:00 0 
+71400000-71500000 rw-p 00000000 00:00 0 
+71500000-715fc000 rw-p 00000000 00:00 0 
+715fc000-71600000 ---p 00000000 00:00 0 
+71600000-716f9000 rw-p 00000000 00:00 0 
+716f9000-71700000 ---p 00000000 00:00 0 
+71700000-717fe000 rw-p 00000000 00:00 0 
+717fe000-71800000 ---p 00000000 00:00 0 
+7180d000-71810000 ---p 00000000 00:00 0 
+71810000-7185e000 rw-p 00000000 00:00 0          [stack:11876]
+7185e000-71861000 ---p 00000000 00:00 0 
+71861000-719af000 rw-p 00000000 00:00 0          [stack:11872]
+719af000-71aaf000 rw-p 00000000 00:00 0 
+71aaf000-71baf000 rw-p 00000000 00:00 0 
+71baf000-71caf000 rw-p 00000000 00:00 0 
+71caf000-71daf000 rw-p 00000000 00:00 0 
+71daf000-71eaf000 rw-p 00000000 00:00 0 
+71eaf000-71faf000 rw-p 00000000 00:00 0 
+71faf000-71fb2000 ---p 00000000 00:00 0 
+71fb2000-720fa000 rw-p 00000000 00:00 0          [stack:11871]
+720fa000-72100000 ---p 00000000 00:00 0 
+72100000-72200000 rw-p 00000000 00:00 0 
+72200000-722c3000 rw-p 00000000 00:00 0 
+722c3000-72300000 ---p 00000000 00:00 0 
+72300000-72400000 rw-p 00000000 00:00 0 
+7240d000-72410000 ---p 00000000 00:00 0 
+72410000-7245e000 rw-p 00000000 00:00 0          [stack:11875]
+7245e000-72461000 ---p 00000000 00:00 0 
+72461000-724af000 rw-p 00000000 00:00 0          [stack:11873]
+724af000-724b2000 ---p 00000000 00:00 0 
+724b2000-72600000 rw-p 00000000 00:00 0          [stack:11869]
+72600000-72700000 rw-p 00000000 00:00 0 
+72700000-727fd000 rw-p 00000000 00:00 0 
+727fd000-72800000 ---p 00000000 00:00 0 
+72800000-72900000 rw-p 00000000 00:00 0 
+72900000-729fa000 rw-p 00000000 00:00 0 
+729fa000-72a00000 ---p 00000000 00:00 0 
+72a0a000-72a1d000 r--s 00346000 08:15 538898     /usr/lib/jvm/jdk1.8.0_11/jre/lib/resources.jar
+72a67000-72a6a000 ---p 00000000 00:00 0 
+72a6a000-72ab8000 rw-p 00000000 00:00 0          [stack:11868]
+72ab8000-72abb000 r--s 00012000 08:15 2495696    /home/hema/Programas/ggts-bundle/grails-2.4.3/lib/javax.servlet/javax.servlet-api/jars/javax.servlet-api-3.0.1.jar
+72abb000-72ac0000 r--s 00040000 08:15 2495188    /home/hema/Programas/ggts-bundle/grails-2.4.3/dist/grails-project-api-2.4.3.jar
+72ac0000-72ad1000 r--s 000d2000 08:15 1710601    /home/hema/.m2/repository/org/liquibase/liquibase-core/2.0.5/liquibase-core-2.0.5.jar
+72ad1000-72ad5000 r--s 0000c000 08:15 1583475    /home/hema/.m2/repository/javax/validation/validation-api/1.1.0.Final/validation-api-1.1.0.Final.jar
+72ad5000-72adb000 r--s 0004c000 08:15 2495968    /home/hema/Programas/ggts-bundle/grails-2.4.3/lib/org.grails/grails-datastore-simple/jars/grails-datastore-simple-3.1.2.RELEASE.jar
+72adb000-72ae0000 r--s 00048000 08:15 1583460    /home/hema/.m2/repository/dom4j/dom4j/1.6.1/dom4j-1.6.1.jar
+72ae0000-72ae1000 r--s 00002000 08:15 1710597    /home/hema/.m2/repository/org/jboss/logging/jboss-logging-annotations/1.2.0.Beta1/jboss-logging-annotations-1.2.0.Beta1.jar
+72ae1000-72ae4000 r--s 00010000 08:15 1583473    /home/hema/.m2/repository/org/hibernate/common/hibernate-commons-annotations/4.0.4.Final/hibernate-commons-annotations-4.0.4.Final.jar
+72ae4000-72ae6000 r--s 0000a000 08:15 1714554    /home/hema/.m2/repository/org/grails/grails-datastore-gorm-plugin-support/3.1.2.RELEASE/grails-datastore-gorm-plugin-support-3.1.2.RELEASE.jar
+72ae6000-72aee000 r--s 00052000 08:15 1579639    /home/hema/.m2/repository/org/springframework/spring-orm/4.0.6.RELEASE/spring-orm-4.0.6.RELEASE.jar
+72aee000-72af6000 r--s 00062000 08:15 1714550    /home/hema/.m2/repository/org/grails/grails-datastore-gorm-hibernate4/3.1.2.RELEASE/grails-datastore-gorm-hibernate4-3.1.2.RELEASE.jar
+72af6000-72b00000 r--s 00081000 08:15 2495965    /home/hema/Programas/ggts-bundle/grails-2.4.3/lib/org.grails/grails-datastore-gorm/jars/grails-datastore-gorm-3.1.2.RELEASE.jar
+72b00000-72bf9000 rw-p 00000000 00:00 0 
+72bf9000-72c00000 ---p 00000000 00:00 0 
+72c00000-72c06000 r--s 00041000 08:15 1714552    /home/hema/.m2/repository/org/grails/grails-datastore-gorm-hibernate-core/3.1.2.RELEASE/grails-datastore-gorm-hibernate-core-3.1.2.RELEASE.jar
+72c06000-72c11000 r--s 00053000 08:15 2495962    /home/hema/Programas/ggts-bundle/grails-2.4.3/lib/org.grails/grails-datastore-core/jars/grails-datastore-core-3.1.2.RELEASE.jar
+72c11000-72c13000 r--s 0000d000 08:15 1583466    /home/hema/.m2/repository/org/jboss/logging/jboss-logging/3.1.0.GA/jboss-logging-3.1.0.GA.jar
+72c13000-72c29000 r--s 000e6000 08:15 1320121    /home/hema/.m2/repository/net/sf/ehcache/ehcache-core/2.4.8/ehcache-core-2.4.8.jar
+72c29000-72c2b000 r--s 00011000 08:15 1583458    /home/hema/.m2/repository/org/jboss/jandex/1.1.0.Final/jandex-1.1.0.Final.jar
+72c2b000-72c30000 r--s 00068000 08:15 1583465    /home/hema/.m2/repository/antlr/antlr/2.7.7/antlr-2.7.7.jar
+72c30000-72c8d000 r--s 004a0000 08:15 1583457    /home/hema/.m2/repository/org/hibernate/hibernate-core/4.3.5.Final/hibernate-core-4.3.5.Final.jar
+72c8d000-72c91000 r--s 0001e000 08:15 1583463    /home/hema/.m2/repository/org/hibernate/hibernate-ehcache/4.3.5.Final/hibernate-ehcache-4.3.5.Final.jar
+72c91000-72c93000 r--s 0000d000 08:15 1583453    /home/hema/.m2/repository/com/fasterxml/classmate/1.0.0/classmate-1.0.0.jar
+72c93000-72ca0000 r--s 00080000 08:15 1583451    /home/hema/.m2/repository/org/hibernate/hibernate-validator/5.0.3.Final/hibernate-validator-5.0.3.Final.jar
+72ca0000-72ca4000 r--s 00027000 08:15 2495651    /home/hema/Programas/ggts-bundle/grails-2.4.3/lib/commons-io/commons-io/jars/commons-io-2.2.jar
+72ca4000-72cb1000 r--s 00109000 08:15 1583446    /home/hema/.m2/repository/org/mozilla/rhino/1.7R4/rhino-1.7R4.jar
+72cb1000-72cba000 r--s 000a5000 08:15 1583449    /home/hema/.m2/repository/org/javassist/javassist/3.17.1-GA/javassist-3.17.1-GA.jar
+72cba000-72cbd000 r--s 00083000 08:15 2495209    /home/hema/Programas/ggts-bundle/grails-2.4.3/dist/grails-resources-2.4.3.jar
+72cbd000-72cca000 r--s 00189000 08:15 2495618    /home/hema/Programas/ggts-bundle/grails-2.4.3/lib/com.h2database/h2/jars/h2-1.3.176.jar
+72cca000-72dca000 rw-p 00000000 00:00 0 
+72dca000-72dcb000 r--s 00006000 08:15 1583469    /home/hema/.m2/repository/org/jboss/spec/javax/transaction/jboss-transaction-api_1.2_spec/1.0.0.Final/jboss-transaction-api_1.2_spec-1.0.0.Final.jar
+72dcb000-72dcd000 r--s 0000e000 08:15 2495041    /home/hema/Programas/ggts-bundle/grails-2.4.3/dist/grails-plugin-mimetypes-2.4.3.jar
+72dcd000-72dd1000 r--s 00021000 08:15 2494873    /home/hema/Programas/ggts-bundle/grails-2.4.3/dist/grails-plugin-converters-2.4.3.jar
+72dd1000-72dd4000 r--s 00018000 08:15 2494936    /home/hema/Programas/ggts-bundle/grails-2.4.3/dist/grails-plugin-domain-class-2.4.3.jar
+72dd4000-72dd5000 r--s 0000e000 08:15 2495866    /home/hema/Programas/ggts-bundle/grails-2.4.3/lib/org.codehaus.jsr166-mirror/jsr166y/jars/jsr166y-1.7.0.jar
+72dd5000-72df1000 r--s 00136000 08:15 2495853    /home/hema/Programas/ggts-bundle/grails-2.4.3/lib/org.codehaus.gpars/gpars/jars/gpars-1.2.1.jar
+72df1000-72df3000 r--s 00011000 08:15 2492318    /home/hema/Programas/ggts-bundle/grails-2.4.3/dist/grails-async-2.4.3.jar
+72df3000-72df5000 r--s 0000e000 08:15 2494810    /home/hema/Programas/ggts-bundle/grails-2.4.3/dist/grails-plugin-async-2.4.3.jar
+72df5000-72df9000 r--s 00028000 08:15 2495662    /home/hema/Programas/ggts-bundle/grails-2.4.3/lib/commons-validator/commons-validator/jars/commons-validator-1.4.0.jar
+72df9000-72dfc000 r--s 00012000 08:15 2495293    /home/hema/Programas/ggts-bundle/grails-2.4.3/dist/grails-validation-2.4.3.jar
+72dfc000-72e00000 r--s 00019000 08:15 2495605    /home/hema/Programas/ggts-bundle/grails-2.4.3/lib/com.googlecode.concurrentlinkedhashmap/concurrentlinkedhashmap-lru/jars/concurrentlinkedhashmap-lru-1.4.jar
+72e00000-72e02000 r--s 0000e000 08:15 2495146    /home/hema/Programas/ggts-bundle/grails-2.4.3/dist/grails-plugin-url-mappings-2.4.3.jar
+72e02000-72e03000 r--s 00006000 08:15 2495104    /home/hema/Programas/ggts-bundle/grails-2.4.3/dist/grails-plugin-servlets-2.4.3.jar
+72e03000-72e0a000 r--s 00036000 08:15 2496105    /home/hema/Programas/ggts-bundle/grails-2.4.3/lib/org.springframework/spring-tx/jars/spring-tx-4.0.6.RELEASE.jar
+72e0a000-72e19000 r--s 00096000 08:15 2496111    /home/hema/Programas/ggts-bundle/grails-2.4.3/lib/org.springframework/spring-web/jars/spring-web-4.0.6.RELEASE.jar
+72e19000-72e1e000 r--s 0002e000 08:15 2494768    /home/hema/Programas/ggts-bundle/grails-2.4.3/dist/grails-encoder-2.4.3.jar
+72e1e000-72e24000 r--s 00033000 08:15 2495636    /home/hema/Programas/ggts-bundle/grails-2.4.3/lib/commons-codec/commons-codec/jars/commons-codec-1.6.jar
+72e24000-72e38000 r--s 000db000 08:15 2496081    /home/hema/Programas/ggts-bundle/grails-2.4.3/lib/org.springframework/spring-core/jars/spring-core-4.0.6.RELEASE.jar
+72e79000-72e7b000 rw-p 00000000 00:00 0 
+72e7b000-72e81000 r--s 002f7000 08:15 538935     /usr/lib/jvm/jdk1.8.0_11/jre/lib/charsets.jar
+72e81000-72e90000 r-xp 00000000 08:15 1059225    /usr/lib/jvm/jdk1.8.0_11/jre/lib/i386/libnio.so
+72e90000-72e91000 rw-p 0000e000 08:15 1059225    /usr/lib/jvm/jdk1.8.0_11/jre/lib/i386/libnio.so
+72e91000-72e99000 r-xp 00000000 08:15 1059202    /usr/lib/jvm/jdk1.8.0_11/jre/lib/i386/libmanagement.so
+72e99000-72e9a000 rw-p 00007000 08:15 1059202    /usr/lib/jvm/jdk1.8.0_11/jre/lib/i386/libmanagement.so
+72e9a000-72eae000 r-xp 00000000 08:15 1059220    /usr/lib/jvm/jdk1.8.0_11/jre/lib/i386/libnet.so
+72eae000-72eaf000 rw-p 00014000 08:15 1059220    /usr/lib/jvm/jdk1.8.0_11/jre/lib/i386/libnet.so
+72eaf000-72eb2000 ---p 00000000 00:00 0 
+72eb2000-72f00000 rw-p 00000000 00:00 0          [stack:11866]
+72f00000-72ffb000 rw-p 00000000 00:00 0 
+72ffb000-73000000 ---p 00000000 00:00 0 
+73000000-73002000 r--s 00009000 08:15 2495083    /home/hema/Programas/ggts-bundle/grails-2.4.3/dist/grails-plugin-services-2.4.3.jar
+73002000-73003000 r--s 00001000 08:15 2496011    /home/hema/Programas/ggts-bundle/grails-2.4.3/lib/org.slf4j/jul-to-slf4j/jars/jul-to-slf4j-1.7.5.jar
+73003000-73005000 r--s 00012000 08:15 2494831    /home/hema/Programas/ggts-bundle/grails-2.4.3/dist/grails-plugin-codecs-2.4.3.jar
+73005000-73007000 r--s 0000c000 08:15 2495440    /home/hema/Programas/ggts-bundle/grails-2.4.3/dist/grails-web-gsp-taglib-2.4.3.jar
+73007000-7300d000 r--s 00058000 08:15 2494978    /home/hema/Programas/ggts-bundle/grails-2.4.3/dist/grails-plugin-gsp-2.4.3.jar
+7300d000-7300f000 r--s 0000b000 08:15 2494957    /home/hema/Programas/ggts-bundle/grails-2.4.3/dist/grails-plugin-filters-2.4.3.jar
+7300f000-73012000 ---p 00000000 00:00 0 
+73012000-73060000 rw-p 00000000 00:00 0          [stack:11854]
+73060000-73061000 r--s 00000000 08:15 2494789    /home/hema/Programas/ggts-bundle/grails-2.4.3/dist/grails-logging-2.4.3.jar
+73061000-73066000 r--s 00041000 08:15 2495658    /home/hema/Programas/ggts-bundle/grails-2.4.3/lib/commons-lang/commons-lang/jars/commons-lang-2.6.jar
+73066000-73067000 r--s 00005000 08:15 2494999    /home/hema/Programas/ggts-bundle/grails-2.4.3/dist/grails-plugin-i18n-2.4.3.jar
+73067000-7306c000 r--s 00017000 08:15 2495988    /home/hema/Programas/ggts-bundle/grails-2.4.3/lib/org.hibernate.javax.persistence/hibernate-jpa-2.1-api/jars/hibernate-jpa-2.1-api-1.0.0.Final.jar
+7306c000-7306e000 r--s 00009000 08:15 2495251    /home/hema/Programas/ggts-bundle/grails-2.4.3/dist/grails-spring-2.4.3.jar
+7306e000-73070000 r--s 00000000 08:15 2495566    /home/hema/Programas/ggts-bundle/grails-2.4.3/lib/aopalliance/aopalliance/jars/aopalliance-1.0.jar
+73070000-73073000 r--s 00041000 08:15 2496144    /home/hema/Programas/ggts-bundle/grails-2.4.3/lib/xalan/serializer/jars/serializer-2.7.1.jar
+73073000-7307f000 r--s 00098000 08:15 2496066    /home/hema/Programas/ggts-bundle/grails-2.4.3/lib/org.springframework/spring-beans/jars/spring-beans-4.0.6.RELEASE.jar
+7307f000-7308d000 r--s 000a8000 08:15 2494705    /home/hema/Programas/ggts-bundle/grails-2.4.3/dist/grails-core-2.4.3.jar
+7308d000-7308f000 r--s 00008000 08:15 2495167    /home/hema/Programas/ggts-bundle/grails-2.4.3/dist/grails-plugin-validation-2.4.3.jar
+7308f000-73093000 r--s 00020000 08:15 2494852    /home/hema/Programas/ggts-bundle/grails-2.4.3/dist/grails-plugin-controllers-2.4.3.jar
+73093000-73097000 r--s 00019000 08:15 2495826    /home/hema/Programas/ggts-bundle/grails-2.4.3/lib/org.aspectj/aspectjrt/jars/aspectjrt-1.8.1.jar
+73097000-7309e000 r--s 0004f000 08:15 2495419    /home/hema/Programas/ggts-bundle/grails-2.4.3/dist/grails-web-gsp-2.4.3.jar
+7309e000-730b7000 r--s 001ae000 08:15 2495829    /home/hema/Programas/ggts-bundle/grails-2.4.3/lib/org.aspectj/aspectjweaver/jars/aspectjweaver-1.8.1.jar
+730b7000-730bb000 r--s 00023000 08:15 2495524    /home/hema/Programas/ggts-bundle/grails-2.4.3/dist/grails-web-url-mappings-2.4.3.jar
+730bb000-730bf000 r--s 00024000 08:15 2495461    /home/hema/Programas/ggts-bundle/grails-2.4.3/dist/grails-web-jsp-2.4.3.jar
+730bf000-730c1000 r--s 0000f000 08:15 2495647    /home/hema/Programas/ggts-bundle/grails-2.4.3/lib/commons-fileupload/commons-fileupload/jars/commons-fileupload-1.3.1.jar
+730c1000-730c3000 r--s 0000b000 08:15 2496061    /home/hema/Programas/ggts-bundle/grails-2.4.3/lib/org.springframework/spring-aspects/jars/spring-aspects-4.0.6.RELEASE.jar
+730c3000-730cf000 r--s 00096000 08:15 2496115    /home/hema/Programas/ggts-bundle/grails-2.4.3/lib/org.springframework/spring-webmvc/jars/spring-webmvc-4.0.6.RELEASE.jar
+730cf000-730d3000 r--s 0001e000 08:15 2496076    /home/hema/Programas/ggts-bundle/grails-2.4.3/lib/org.springframework/spring-context-support/jars/spring-context-support-4.0.6.RELEASE.jar
+730d3000-730d8000 r--s 00030000 08:15 2495335    /home/hema/Programas/ggts-bundle/grails-2.4.3/dist/grails-web-common-2.4.3.jar
+730d8000-730da000 r--s 00009000 08:15 2495482    /home/hema/Programas/ggts-bundle/grails-2.4.3/dist/grails-web-mvc-2.4.3.jar
+730da000-730dc000 r--s 00013000 08:15 2494726    /home/hema/Programas/ggts-bundle/grails-2.4.3/dist/grails-databinding-2.4.3.jar
+730dc000-730de000 r--s 0001d000 08:15 2495356    /home/hema/Programas/ggts-bundle/grails-2.4.3/dist/grails-web-databinding-2.4.3.jar
+730de000-730e4000 r--s 00027000 08:15 2495735    /home/hema/Programas/ggts-bundle/grails-2.4.3/lib/opensymphony/sitemesh/jars/sitemesh-2.4.jar
+730e4000-730e9000 r--s 0002a000 08:15 2495584    /home/hema/Programas/ggts-bundle/grails-2.4.3/lib/com.google.code.gson/gson/jars/gson-2.2.4.jar
+730e9000-73100000 r--s 000d8000 08:15 2496072    /home/hema/Programas/ggts-bundle/grails-2.4.3/lib/org.springframework/spring-context/jars/spring-context-4.0.6.RELEASE.jar
+73100000-73200000 rw-p 00000000 00:00 0 
+73200000-732ff000 rw-p 00000000 00:00 0 
+732ff000-73300000 ---p 00000000 00:00 0 
+73300000-73400000 rw-p 00000000 00:00 0 
+73400000-734f9000 rw-p 00000000 00:00 0 
+734f9000-73500000 ---p 00000000 00:00 0 
+73500000-73600000 rw-p 00000000 00:00 0 
+73600000-737ff000 rw-p 00000000 00:00 0 
+737ff000-73800000 ---p 00000000 00:00 0 
+73800000-73900000 rw-p 00000000 00:00 0 
+73900000-73a00000 rw-p 00000000 00:00 0 
+73a00000-73b00000 rw-p 00000000 00:00 0 
+73b00000-73c00000 rw-p 00000000 00:00 0 
+73c00000-73cfa000 rw-p 00000000 00:00 0 
+73cfa000-73d00000 ---p 00000000 00:00 0 
+73d00000-73e00000 rw-p 00000000 00:00 0 
+73e00000-73ef8000 rw-p 00000000 00:00 0 
+73ef8000-73f00000 ---p 00000000 00:00 0 
+73f00000-73f02000 r--s 0000b000 08:15 2495503    /home/hema/Programas/ggts-bundle/grails-2.4.3/dist/grails-web-sitemesh-2.4.3.jar
+73f02000-73f07000 r--s 0002e000 08:15 2496087    /home/hema/Programas/ggts-bundle/grails-2.4.3/lib/org.springframework/spring-expression/jars/spring-expression-4.0.6.RELEASE.jar
+73f07000-73f10000 r--s 0004e000 08:15 2496057    /home/hema/Programas/ggts-bundle/grails-2.4.3/lib/org.springframework/spring-aop/jars/spring-aop-4.0.6.RELEASE.jar
+73f10000-73f13000 ---p 00000000 00:00 0 
+73f13000-73f61000 rw-p 00000000 00:00 0          [stack:11841]
+73f61000-73f7d000 r--s 00393000 08:15 667940     /usr/lib/jvm/jdk1.8.0_11/jre/lib/ext/cldrdata.jar
+73f7d000-73f7e000 ---p 00000000 00:00 0 
+73f7e000-73ffe000 rw-p 00000000 00:00 0          [stack:11820]
+73ffe000-74001000 ---p 00000000 00:00 0 
+74001000-7407f000 rw-p 00000000 00:00 0          [stack:11818]
+7407f000-74082000 ---p 00000000 00:00 0 
+74082000-74100000 rw-p 00000000 00:00 0          [stack:11817]
+74100000-741ff000 rw-p 00000000 00:00 0 
+741ff000-74200000 ---p 00000000 00:00 0 
+74200000-74201000 r--s 00005000 08:15 2494894    /home/hema/Programas/ggts-bundle/grails-2.4.3/dist/grails-plugin-databinding-2.4.3.jar
+74201000-7420b000 r--s 0005e000 08:15 2496093    /home/hema/Programas/ggts-bundle/grails-2.4.3/lib/org.springframework/spring-jdbc/jars/spring-jdbc-4.0.6.RELEASE.jar
+7420b000-7420e000 ---p 00000000 00:00 0 
+7420e000-7425c000 rw-p 00000000 00:00 0          [stack:11819]
+7425c000-742c7000 r--s 00685000 08:15 2495860    /home/hema/Programas/ggts-bundle/grails-2.4.3/lib/org.codehaus.groovy/groovy-all/jars/groovy-all-2.3.6.jar
+742c7000-7433f000 r--s 010c6000 08:15 3028335    /usr/lib/jvm/jdk1.8.0_11/lib/tools.jar
+7433f000-74342000 ---p 00000000 00:00 0 
+74342000-74390000 rw-p 00000000 00:00 0          [stack:11816]
+74390000-74500000 r--p 002ca000 08:15 2617143    /usr/lib/locale/locale-archive
+74500000-74700000 r--p 00000000 08:15 2617143    /usr/lib/locale/locale-archive
+74700000-747fb000 rw-p 00000000 00:00 0 
+747fb000-74800000 ---p 00000000 00:00 0 
+74800000-74802000 r--s 00009000 08:15 2495314    /home/hema/Programas/ggts-bundle/grails-2.4.3/dist/grails-web-2.4.3.jar
+74802000-74804000 r--s 00008000 08:15 2495812    /home/hema/Programas/ggts-bundle/grails-2.4.3/lib/org.apache.tomcat/tomcat-juli/jars/tomcat-juli-7.0.50.jar
+74804000-74806000 r--s 0001d000 08:15 2495807    /home/hema/Programas/ggts-bundle/grails-2.4.3/lib/org.apache.tomcat/tomcat-jdbc/jars/tomcat-jdbc-7.0.50.jar
+74806000-74808000 r--s 0000d000 08:15 2494915    /home/hema/Programas/ggts-bundle/grails-2.4.3/dist/grails-plugin-datasource-2.4.3.jar
+74808000-7480b000 r--s 00038000 08:15 2495062    /home/hema/Programas/ggts-bundle/grails-2.4.3/dist/grails-plugin-rest-2.4.3.jar
+7480b000-74815000 r--s 0021b000 08:15 667932     /usr/lib/jvm/jdk1.8.0_11/jre/lib/ext/localedata.jar
+74815000-7481c000 r--s 00000000 08:15 2648808    /usr/lib/i386-linux-gnu/gconv/gconv-modules.cache
+7481c000-7483e000 r--p 00000000 08:15 3013619    /usr/share/locale-langpack/pt_BR/LC_MESSAGES/libc.mo
+7483e000-74841000 ---p 00000000 00:00 0 
+74841000-7488f000 rw-p 00000000 00:00 0          [stack:11815]
+7488f000-74892000 ---p 00000000 00:00 0 
+74892000-748e0000 rw-p 00000000 00:00 0          [stack:11814]
+748e0000-74ab4000 r--s 03c50000 08:15 538944     /usr/lib/jvm/jdk1.8.0_11/jre/lib/rt.jar
+74ab4000-74efa000 rw-p 00000000 00:00 0 
+74efa000-74f00000 ---p 00000000 00:00 0 
+74f00000-76a00000 rw-p 00000000 00:00 0 
+76a00000-76afa000 rw-p 00000000 00:00 0 
+76afa000-76b00000 ---p 00000000 00:00 0 
+76b00000-76b02000 r--s 00001000 08:15 667933     /usr/lib/jvm/jdk1.8.0_11/jre/lib/ext/dnsns.jar
+76b02000-76b05000 ---p 00000000 00:00 0 
+76b05000-76b1b000 rw-p 00000000 00:00 0          [stack:11830]
+76b1b000-76b20000 r--s 00092000 08:15 538895     /usr/lib/jvm/jdk1.8.0_11/jre/lib/jsse.jar
+76b20000-76b30000 r--s 0019c000 08:15 1583134    /home/hema/.m2/repository/org/eclipse/jdt/core/compiler/ecj/3.7.2/ecj-3.7.2.jar
+76b30000-76b31000 ---p 00000000 00:00 0 
+76b31000-76c00000 rw-p 00000000 00:00 0          [stack:11813]
+76c00000-76cdd000 rw-p 00000000 00:00 0 
+76cdd000-76d00000 ---p 00000000 00:00 0 
+76d00000-76d22000 r--s 0026b000 08:15 1577557    /home/hema/.m2/repository/org/apache/tomcat/embed/tomcat-embed-core/7.0.55/tomcat-embed-core-7.0.55.jar
+76d22000-76d7d000 rw-p 00000000 00:00 0 
+76d7d000-76d7e000 ---p 00000000 00:00 0 
+76d7e000-76dfe000 rw-p 00000000 00:00 0          [stack:11812]
+76dfe000-76dff000 ---p 00000000 00:00 0 
+76dff000-76ed1000 rw-p 00000000 00:00 0          [stack:11811]
+76ed1000-76f7f000 ---p 00000000 00:00 0 
+76f7f000-76fff000 rw-p 00000000 00:00 0 
+76fff000-81300000 rw-p 00000000 00:00 0 
+81300000-97000000 ---p 00000000 00:00 0 
+97000000-a7000000 rw-p 00000000 00:00 0 
+a7000000-a7001000 r-xp 00000000 08:15 1439248    /tmp/libjansi-32-6069949608777847775.so
+a7001000-a7002000 rw-p 00000000 08:15 1439248    /tmp/libjansi-32-6069949608777847775.so
+a7002000-a7008000 r--s 0005f000 08:15 2496120    /home/hema/Programas/ggts-bundle/grails-2.4.3/lib/org.springframework/springloaded/jars/springloaded-1.2.0.RELEASE.jar
+a7008000-a700d000 r--s 0002f000 08:15 1577554    /home/hema/.m2/repository/org/apache/tomcat/embed/tomcat-embed-websocket/7.0.55/tomcat-embed-websocket-7.0.55.jar
+a700d000-a7022000 r--s 00116000 08:15 2495765    /home/hema/Programas/ggts-bundle/grails-2.4.3/lib/org.apache.ivy/ivy/jars/ivy-2.3.0.jar
+a7022000-a7040000 r--s 001bd000 08:15 2495739    /home/hema/Programas/ggts-bundle/grails-2.4.3/lib/org.apache.ant/ant/jars/ant-1.8.4.jar
+a7040000-a7092000 rw-p 00000000 00:00 0 
+a7092000-a7140000 ---p 00000000 00:00 0 
+a7140000-a7181000 rw-p 00000000 00:00 0 
+a7181000-a7500000 ---p 00000000 00:00 0 
+a7500000-a8528000 rwxp 00000000 00:00 0 
+a8528000-b6500000 ---p 00000000 00:00 0 
+b6500000-b65f8000 rw-p 00000000 00:00 0 
+b65f8000-b6600000 ---p 00000000 00:00 0 
+b6600000-b6601000 r--s 00000000 08:15 2495398    /home/hema/Programas/ggts-bundle/grails-2.4.3/dist/grails-web-fileupload-2.4.3.jar
+b6601000-b6602000 r--s 00013000 08:15 2673557    /home/hema/git/sc/target/work/plugins/tomcat-7.0.55/grails-plugin-tomcat-7.0.55.jar
+b6602000-b6604000 r--s 00013000 08:15 1577549    /home/hema/.m2/repository/org/apache/tomcat/embed/tomcat-embed-logging-log4j/7.0.55/tomcat-embed-logging-log4j-7.0.55.jar
+b6604000-b6607000 r--s 00028000 08:15 1577550    /home/hema/.m2/repository/org/apache/tomcat/embed/tomcat-embed-el/7.0.55/tomcat-embed-el-7.0.55.jar
+b6607000-b6610000 r--s 0009f000 08:15 1577543    /home/hema/.m2/repository/org/apache/tomcat/embed/tomcat-embed-jasper/7.0.55/tomcat-embed-jasper-7.0.55.jar
+b6610000-b6612000 r--s 0000c000 08:15 1577540    /home/hema/.m2/repository/org/apache/tomcat/tomcat-catalina-ant/7.0.55/tomcat-catalina-ant-7.0.55.jar
+b6612000-b6614000 r--s 0001a000 08:15 2495958    /home/hema/Programas/ggts-bundle/grails-2.4.3/lib/org.fusesource.jansi/jansi/jars/jansi-1.11.jar
+b6614000-b6617000 r--s 00018000 08:15 2495742    /home/hema/Programas/ggts-bundle/grails-2.4.3/lib/org.apache.ant/ant-junit/jars/ant-junit-1.8.4.jar
+b6617000-b6618000 r--s 00001000 08:15 2495748    /home/hema/Programas/ggts-bundle/grails-2.4.3/lib/org.apache.ant/ant-trax/jars/ant-trax-1.7.1.jar
+b6618000-b6619000 r--s 00004000 08:15 2495745    /home/hema/Programas/ggts-bundle/grails-2.4.3/lib/org.apache.ant/ant-launcher/jars/ant-launcher-1.8.4.jar
+b6619000-b661d000 r--s 00031000 08:15 2495713    /home/hema/Programas/ggts-bundle/grails-2.4.3/lib/jline/jline/jars/jline-2.12.jar
+b661d000-b661f000 r--s 00005000 08:15 2496017    /home/hema/Programas/ggts-bundle/grails-2.4.3/lib/org.slf4j/slf4j-api/jars/slf4j-api-1.7.5.jar
+b661f000-b662d000 r--s 000db000 08:15 2494684    /home/hema/Programas/ggts-bundle/grails-2.4.3/dist/grails-bootstrap-2.4.3.jar
+b662d000-b6636000 r--s 0006f000 08:15 2495726    /home/hema/Programas/ggts-bundle/grails-2.4.3/lib/log4j/log4j/jars/log4j-1.2.17.jar
+b6636000-b6639000 r--s 0000d000 08:15 2495020    /home/hema/Programas/ggts-bundle/grails-2.4.3/dist/grails-plugin-log4j-2.4.3.jar
+b6639000-b663b000 r--s 00013000 08:15 2495818    /home/hema/Programas/ggts-bundle/grails-2.4.3/lib/org.apache.tomcat.embed/tomcat-embed-logging-log4j/jars/tomcat-embed-logging-log4j-7.0.50.jar
+b663b000-b6640000 r--s 00050000 08:15 2495846    /home/hema/Programas/ggts-bundle/grails-2.4.3/lib/org.codehaus.gant/gant_groovy1.8/jars/gant_groovy1.8-1.9.6.jar
+b6640000-b6659000 r-xp 00000000 08:15 1059238    /usr/lib/jvm/jdk1.8.0_11/jre/lib/i386/libzip.so
+b6659000-b665a000 rw-p 00018000 08:15 1059238    /usr/lib/jvm/jdk1.8.0_11/jre/lib/i386/libzip.so
+b665a000-b6665000 r-xp 00000000 08:15 531726     /lib/i386-linux-gnu/libnss_files-2.19.so
+b6665000-b6666000 r--p 0000a000 08:15 531726     /lib/i386-linux-gnu/libnss_files-2.19.so
+b6666000-b6667000 rw-p 0000b000 08:15 531726     /lib/i386-linux-gnu/libnss_files-2.19.so
+b6667000-b6671000 r-xp 00000000 08:15 531730     /lib/i386-linux-gnu/libnss_nis-2.19.so
+b6671000-b6672000 r--p 00009000 08:15 531730     /lib/i386-linux-gnu/libnss_nis-2.19.so
+b6672000-b6673000 rw-p 0000a000 08:15 531730     /lib/i386-linux-gnu/libnss_nis-2.19.so
+b6673000-b6688000 r-xp 00000000 08:15 531746     /lib/i386-linux-gnu/libnsl-2.19.so
+b6688000-b6689000 r--p 00015000 08:15 531746     /lib/i386-linux-gnu/libnsl-2.19.so
+b6689000-b668a000 rw-p 00016000 08:15 531746     /lib/i386-linux-gnu/libnsl-2.19.so
+b668a000-b668c000 rw-p 00000000 00:00 0 
+b668c000-b6693000 r-xp 00000000 08:15 531725     /lib/i386-linux-gnu/libnss_compat-2.19.so
+b6693000-b6694000 r--p 00006000 08:15 531725     /lib/i386-linux-gnu/libnss_compat-2.19.so
+b6694000-b6695000 rw-p 00007000 08:15 531725     /lib/i386-linux-gnu/libnss_compat-2.19.so
+b6695000-b66a7000 rw-p 00000000 00:00 0 
+b66a7000-b66af000 rw-s 00000000 08:15 1591056    /tmp/hsperfdata_hema/11807
+b66af000-b66d3000 r-xp 00000000 08:15 1059208    /usr/lib/jvm/jdk1.8.0_11/jre/lib/i386/libjava.so
+b66d3000-b66d4000 rw-p 00023000 08:15 1059208    /usr/lib/jvm/jdk1.8.0_11/jre/lib/i386/libjava.so
+b66d4000-b66db000 r-xp 00000000 08:15 524074     /lib/i386-linux-gnu/librt-2.19.so
+b66db000-b66dc000 r--p 00006000 08:15 524074     /lib/i386-linux-gnu/librt-2.19.so
+b66dc000-b66dd000 rw-p 00007000 08:15 524074     /lib/i386-linux-gnu/librt-2.19.so
+b66dd000-b66e0000 ---p 00000000 00:00 0 
+b66e0000-b672e000 rw-p 00000000 00:00 0          [stack:11808]
+b672e000-b6772000 r-xp 00000000 08:15 531748     /lib/i386-linux-gnu/libm-2.19.so
+b6772000-b6773000 r--p 00043000 08:15 531748     /lib/i386-linux-gnu/libm-2.19.so
+b6773000-b6774000 rw-p 00044000 08:15 531748     /lib/i386-linux-gnu/libm-2.19.so
+b6774000-b707c000 r-xp 00000000 08:15 1710873    /usr/lib/jvm/jdk1.8.0_11/jre/lib/i386/server/libjvm.so
+b707c000-b70e4000 rw-p 00908000 08:15 1710873    /usr/lib/jvm/jdk1.8.0_11/jre/lib/i386/server/libjvm.so
+b70e4000-b7508000 rw-p 00000000 00:00 0 
+b7508000-b76b1000 r-xp 00000000 08:15 531727     /lib/i386-linux-gnu/libc-2.19.so
+b76b1000-b76b3000 r--p 001a9000 08:15 531727     /lib/i386-linux-gnu/libc-2.19.so
+b76b3000-b76b4000 rw-p 001ab000 08:15 531727     /lib/i386-linux-gnu/libc-2.19.so
+b76b4000-b76b7000 rw-p 00000000 00:00 0 
+b76b7000-b76ba000 r-xp 00000000 08:15 531734     /lib/i386-linux-gnu/libdl-2.19.so
+b76ba000-b76bb000 r--p 00002000 08:15 531734     /lib/i386-linux-gnu/libdl-2.19.so
+b76bb000-b76bc000 rw-p 00003000 08:15 531734     /lib/i386-linux-gnu/libdl-2.19.so
+b76bc000-b76bd000 rw-p 00000000 00:00 0 
+b76bd000-b76d1000 r-xp 00000000 08:15 3028334    /usr/lib/jvm/jdk1.8.0_11/lib/i386/jli/libjli.so
+b76d1000-b76d2000 rw-p 00013000 08:15 3028334    /usr/lib/jvm/jdk1.8.0_11/lib/i386/jli/libjli.so
+b76d2000-b76ea000 r-xp 00000000 08:15 531729     /lib/i386-linux-gnu/libpthread-2.19.so
+b76ea000-b76eb000 r--p 00018000 08:15 531729     /lib/i386-linux-gnu/libpthread-2.19.so
+b76eb000-b76ec000 rw-p 00019000 08:15 531729     /lib/i386-linux-gnu/libpthread-2.19.so
+b76ec000-b76ee000 rw-p 00000000 00:00 0 
+b76ee000-b76f0000 r--s 00003000 08:15 2496005    /home/hema/Programas/ggts-bundle/grails-2.4.3/lib/org.slf4j/jcl-over-slf4j/jars/jcl-over-slf4j-1.7.5.jar
+b76f0000-b76f9000 r-xp 00000000 08:15 1059228    /usr/lib/jvm/jdk1.8.0_11/jre/lib/i386/libinstrument.so
+b76f9000-b76fa000 rw-p 00008000 08:15 1059228    /usr/lib/jvm/jdk1.8.0_11/jre/lib/i386/libinstrument.so
+b76fa000-b76fb000 rw-p 00000000 00:00 0 
+b76fb000-b76fc000 r--p 00000000 00:00 0 
+b76fc000-b7707000 r-xp 00000000 08:15 1059227    /usr/lib/jvm/jdk1.8.0_11/jre/lib/i386/libverify.so
+b7707000-b7708000 rw-p 0000b000 08:15 1059227    /usr/lib/jvm/jdk1.8.0_11/jre/lib/i386/libverify.so
+b7708000-b770a000 rw-p 00000000 00:00 0 
+b770a000-b770b000 r-xp 00000000 00:00 0          [vdso]
+b770b000-b772b000 r-xp 00000000 08:15 531752     /lib/i386-linux-gnu/ld-2.19.so
+b772b000-b772c000 r--p 0001f000 08:15 531752     /lib/i386-linux-gnu/ld-2.19.so
+b772c000-b772d000 rw-p 00020000 08:15 531752     /lib/i386-linux-gnu/ld-2.19.so
+bfd9c000-bfd9d000 rwxp 00000000 00:00 0 
+bfdce000-bfdf0000 rw-p 00000000 00:00 0          [stack]
+
+VM Arguments:
+jvm_args: -Dfile.encoding=UTF-8 -Xmx768M -Xms64M -Dgrails.fork.parent.process.port=55932 -Dgrails.fork.active=true -Dgrails.build.execution.context=/tmp/scec4559171086492052883grails-execution-context -Dgrails.home=/home/hema/Programas/ggts-bundle/grails-2.4.3 -javaagent:/home/hema/Programas/ggts-bundle/grails-2.4.3/lib/org.springframework/springloaded/jars/springloaded-1.2.0.RELEASE.jar -Xverify:none -Dspringloaded.synchronize=true -Djdk.reflect.allowGetCallerClass=true -Dspringloaded=profile=grails;cacheDir=/home/hema/.grails/2.4.3 
+java_command: org.grails.plugins.tomcat.fork.ForkedTomcatServer
+java_class_path (initial): /usr/lib/jvm/jdk1.8.0_11/lib/tools.jar:/home/hema/Programas/ggts-bundle/grails-2.4.3/lib/org.codehaus.groovy/groovy-all/jars/groovy-all-2.3.6.jar:/home/hema/Programas/ggts-bundle/grails-2.4.3/lib/org.slf4j/jcl-over-slf4j/jars/jcl-over-slf4j-1.7.5.jar:/home/hema/Programas/ggts-bundle/grails-2.4.3/lib/org.codehaus.gant/gant_groovy1.8/jars/gant_groovy1.8-1.9.6.jar:/home/hema/Programas/ggts-bundle/grails-2.4.3/lib/org.apache.tomcat.embed/tomcat-embed-logging-log4j/jars/tomcat-embed-logging-log4j-7.0.50.jar:/home/hema/Programas/ggts-bundle/grails-2.4.3/dist/grails-plugin-log4j-2.4.3.jar:/home/hema/Programas/ggts-bundle/grails-2.4.3/lib/log4j/log4j/jars/log4j-1.2.17.jar:/home/hema/Programas/ggts-bundle/grails-2.4.3/dist/grails-bootstrap-2.4.3.jar:/home/hema/Programas/ggts-bundle/grails-2.4.3/lib/org.slf4j/slf4j-api/jars/slf4j-api-1.7.5.jar:/home/hema/Programas/ggts-bundle/grails-2.4.3/lib/jline/jline/jars/jline-2.12.jar:/home/hema/Programas/ggts-bundle/grails-2.4.3/lib/org.apache.ant/ant/jars/ant-1.8.4.jar:/home/hema/Programas/ggts-bundle/grails-2.4.3/lib/org.apache.ant/ant-launcher/jars/ant-launcher-1.8.4.jar:/home/hema/Programas/ggts-bundle/grails-2.4.3/lib/org.apache.ant/ant-trax/jars/ant-trax-1.7.1.jar:/home/hema/Programas/ggts-bundle/grails-2.4.3/lib/org.apache.ant/ant-junit/jars/ant-junit-1.8.4.jar:/home/hema/Programas/ggts-bundle/grails-2.4.3/lib/org.apache.ivy/ivy/jars/ivy-2.3.0.jar:/home/hema/Programas/ggts-bundle/grails-2.4.3/lib/org.fusesource.jansi/jansi/jars/jansi-1.11.jar:/home/hema/.m2/repository/org/apache/tomcat/tomcat-catalina-ant/7.0.55/tomcat-catalina-ant-7.0.55.jar:/home/hema/.m2/repository/org/apache/tomcat/embed/tomcat-embed-jasper/7.0.55/tomcat-embed-jasper-7.0.55.jar:/home/hema/.m2/repository/org/apache/tomcat/embed/tomcat-embed-el/7.0.55/tomcat-embed-el-7.0.55.jar:/home/hema/.m2/repository/org/apache/tomcat/embed/tomcat-embed-logging-log4j/7.0.55/tomcat-embed-logging-log4j-7.0.55.jar:/home/hema/.m2/repository/org/apac
+Launcher Type: SUN_STANDARD
+
+Environment Variables:
+JAVA_HOME=/usr/lib/jvm/jdk1.8.0_11
+PATH=:/home/hema/Programas/ggts-bundle/grails-2.4.3/bin:/usr/local/heroku/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games:/usr/local/games:/home/hema/.rvm/bin:/home/hema/.rvm/bin
+SHELL=/bin/bash
+DISPLAY=:0
+
+Signal Handlers:
+SIGSEGV: [libjvm.so+0x863250], sa_mask[0]=0x7ffbfeff, sa_flags=0x10000004
+SIGBUS: [libjvm.so+0x863250], sa_mask[0]=0x7ffbfeff, sa_flags=0x10000004
+SIGFPE: [libjvm.so+0x6ef2b0], sa_mask[0]=0x7ffbfeff, sa_flags=0x10000004
+SIGPIPE: [libjvm.so+0x6ef2b0], sa_mask[0]=0x7ffbfeff, sa_flags=0x10000004
+SIGXFSZ: [libjvm.so+0x6ef2b0], sa_mask[0]=0x7ffbfeff, sa_flags=0x10000004
+SIGILL: [libjvm.so+0x6ef2b0], sa_mask[0]=0x7ffbfeff, sa_flags=0x10000004
+SIGUSR1: SIG_DFL, sa_mask[0]=0x00000000, sa_flags=0x00000000
+SIGUSR2: [libjvm.so+0x6f09c0], sa_mask[0]=0x00000004, sa_flags=0x10000004
+SIGHUP: [libjvm.so+0x6f1dd0], sa_mask[0]=0x7ffbfeff, sa_flags=0x10000004
+SIGINT: [libjvm.so+0x6f1dd0], sa_mask[0]=0x7ffbfeff, sa_flags=0x10000004
+SIGTERM: [libjvm.so+0x6f1dd0], sa_mask[0]=0x7ffbfeff, sa_flags=0x10000004
+SIGQUIT: [libjvm.so+0x6f1dd0], sa_mask[0]=0x7ffbfeff, sa_flags=0x10000004
+
+
+---------------  S Y S T E M  ---------------
+
+OS:DISTRIB_ID=Ubuntu
+DISTRIB_RELEASE=14.04
+DISTRIB_CODENAME=trusty
+DISTRIB_DESCRIPTION="Ubuntu 14.04.1 LTS"
+
+uname:Linux 3.13.0-45-generic #74-Ubuntu SMP Tue Jan 13 19:37:48 UTC 2015 i686
+libc:glibc 2.19 NPTL 2.19 
+rlimit: STACK 8192k, CORE 0k, NPROC 31883, NOFILE 4096, AS infinity
+load average:3,14 1,70 1,17
+
+/proc/meminfo:
+MemTotal:        4100308 kB
+MemFree:          707508 kB
+Buffers:           65156 kB
+Cached:           943396 kB
+SwapCached:         3236 kB
+Active:          2124852 kB
+Inactive:        1060436 kB
+Active(anon):    1841664 kB
+Inactive(anon):   691416 kB
+Active(file):     283188 kB
+Inactive(file):   369020 kB
+Unevictable:          16 kB
+Mlocked:              16 kB
+HighTotal:       3245512 kB
+HighFree:         498992 kB
+LowTotal:         854796 kB
+LowFree:          208516 kB
+SwapTotal:       4157436 kB
+SwapFree:        4127848 kB
+Dirty:               320 kB
+Writeback:             0 kB
+AnonPages:       2173476 kB
+Mapped:           196232 kB
+Shmem:            356344 kB
+Slab:             161208 kB
+SReclaimable:     136276 kB
+SUnreclaim:        24932 kB
+KernelStack:        5320 kB
+PageTables:        19564 kB
+NFS_Unstable:          0 kB
+Bounce:                0 kB
+WritebackTmp:          0 kB
+CommitLimit:     6207588 kB
+Committed_AS:    9031504 kB
+VmallocTotal:     122880 kB
+VmallocUsed:       15644 kB
+VmallocChunk:     100916 kB
+HardwareCorrupted:     0 kB
+AnonHugePages:   1103872 kB
+HugePages_Total:       0
+HugePages_Free:        0
+HugePages_Rsvd:        0
+HugePages_Surp:        0
+Hugepagesize:       2048 kB
+DirectMap4k:       55288 kB
+DirectMap2M:      858112 kB
+
+
+CPU:total 2 (2 cores per cpu, 1 threads per core) family 6 model 15 stepping 13, cmov, cx8, fxsr, mmx, sse, sse2, sse3, ssse3, tsc
+
+/proc/cpuinfo:
+processor	: 0
+vendor_id	: GenuineIntel
+cpu family	: 6
+model		: 15
+model name	: Intel(R) Pentium(R) Dual  CPU  E2180  @ 2.00GHz
+stepping	: 13
+microcode	: 0xa3
+cpu MHz		: 2003.000
+cache size	: 1024 KB
+physical id	: 0
+siblings	: 2
+core id		: 0
+cpu cores	: 2
+apicid		: 0
+initial apicid	: 0
+fdiv_bug	: no
+f00f_bug	: no
+coma_bug	: no
+fpu		: yes
+fpu_exception	: yes
+cpuid level	: 10
+wp		: yes
+flags		: fpu vme de pse tsc msr pae mce cx8 apic sep mtrr pge mca cmov pat pse36 clflush dts acpi mmx fxsr sse sse2 ss ht tm pbe nx lm constant_tsc arch_perfmon pebs bts aperfmperf pni dtes64 monitor ds_cpl est tm2 ssse3 cx16 xtpr pdcm lahf_lm dtherm
+bogomips	: 4017.96
+clflush size	: 64
+cache_alignment	: 64
+address sizes	: 36 bits physical, 48 bits virtual
+power management:
+
+processor	: 1
+vendor_id	: GenuineIntel
+cpu family	: 6
+model		: 15
+model name	: Intel(R) Pentium(R) Dual  CPU  E2180  @ 2.00GHz
+stepping	: 13
+microcode	: 0xa3
+cpu MHz		: 2003.000
+cache size	: 1024 KB
+physical id	: 0
+siblings	: 2
+core id		: 1
+cpu cores	: 2
+apicid		: 1
+initial apicid	: 1
+fdiv_bug	: no
+f00f_bug	: no
+coma_bug	: no
+fpu		: yes
+fpu_exception	: yes
+cpuid level	: 10
+wp		: yes
+flags		: fpu vme de pse tsc msr pae mce cx8 apic sep mtrr pge mca cmov pat pse36 clflush dts acpi mmx fxsr sse sse2 ss ht tm pbe nx lm constant_tsc arch_perfmon pebs bts aperfmperf pni dtes64 monitor ds_cpl est tm2 ssse3 cx16 xtpr pdcm lahf_lm dtherm
+bogomips	: 4017.96
+clflush size	: 64
+cache_alignment	: 64
+address sizes	: 36 bits physical, 48 bits virtual
+power management:
+
+
+
+Memory: 4k page, physical 4100308k(707508k free), swap 4157436k(4127848k free)
+
+vm_info: Java HotSpot(TM) Server VM (25.11-b03) for linux-x86 JRE (1.8.0_11-b12), built on Jun 16 2014 17:46:35 by "java_re" with gcc 4.3.0 20080428 (Red Hat 4.3.0-8)
+
+time: Mon Mar  2 12:26:20 2015
+elapsed time: 46 seconds
+

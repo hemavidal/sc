@@ -1,0 +1,8 @@
+package sc;
+
+public enum Procedencia {
+	CONVERTEU_SE_EM_NOSSO_MEIO,
+	ENVOLVIMENTO_EVANGELICO_ANTES,
+	VEIO_A_NOS_CONVERTIDO,
+	OUTRO;
+}
