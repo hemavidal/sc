@@ -4,7 +4,7 @@ class BootStrap {
 
     def init = { servletContext ->
 
-    	new Usuario(login: "admin", senha: "126366").save(flush:true)
+    	new Usuario(login: "admin", senha: "126366", tipo:"Admin").save(flush:true)
     }
     def destroy = {
     }

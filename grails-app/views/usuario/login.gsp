@@ -65,10 +65,10 @@
 			<div class="container">
 
 				<g:form class="form-signin" role="form"
-					url="[controller:'usuario', action:'authenticate']">
-					<h2 class="form-signin-heading">Acesso ao Sistema de Eventos</h2>
-					<input type="email" class="form-control" name="login"
-						placeholder="Email address" required autofocus>
+					url="[controller:'usuario', action:'autenticar']">
+					<h2 class="form-signin-heading">Acesso ao Sistema de Cadastro</h2>
+					<input class="form-control" name="login"
+						placeholder="Email" required autofocus>
 					<input type="password" class="form-control" name="senha" placeholder="Senha" 
 						required>
 					<button class="btn btn-lg btn-primary btn-block" type="submit">Entrar</button>

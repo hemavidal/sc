@@ -68,7 +68,16 @@
 
 		
 			<div class="col-sm-10">
-				<g:select class="form-control" id="igreja" name="igreja.id" from="${sc.model.Igreja.list()}" optionKey="id" required="" value="${setorInstance?.igreja?.id}" class="many-to-one"/>
+				<g:if test="${'show'.equals(actionName)}">
+					<select class="form-control" id="igreja" name="igreja.id" disabled>
+				</g:if>
+				<g:else>
+					<select class="many-to-one form-control" id="igreja" name="igreja.id">
+				</g:else>			
+					<g:each in="${sc.model.Igreja.list()}">
+						<option value="${it.id}">${it.cidade}</option>
+					</g:each>
+				</select>
 			</div>
 
 	</div>

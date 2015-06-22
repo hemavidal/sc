@@ -24,6 +24,7 @@
 				</fieldset>
 				<fieldset class="buttons">
 					<g:submitButton name="create" class="btn btn-success save" value="${message(code: 'default.button.create.label', default: 'Create')}" />
+					<g:link class="btn btn-default" action="index" >${message(code: 'default.button.cancel.label', default: 'Cancel')}</g:link>
 				</fieldset>
 			</g:form>
 		</div>
