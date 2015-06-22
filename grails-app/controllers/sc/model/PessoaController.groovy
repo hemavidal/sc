@@ -55,7 +55,6 @@ class PessoaController {
 
     @Transactional
     def update(Pessoa pessoaInstance) {
-        println pessoaInstance.properties
         if (pessoaInstance == null) {
             notFound()
             return
@@ -66,8 +65,6 @@ class PessoaController {
             return
         }
 
-        pessoaInstance.grupoCaseiro.addToPessoas(pessoaInstance)
-        grupoCaseiro.save flush:true
         pessoaInstance.save flush:true
 
         request.withFormat {

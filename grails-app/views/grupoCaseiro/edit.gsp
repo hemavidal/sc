@@ -26,6 +26,7 @@
 				</fieldset>
 				<fieldset class="buttons">
 					<g:actionSubmit class="save btn btn-success" action="update" value="${message(code: 'default.button.update.label', default: 'Update')}" />
+					<g:link class="btn btn-default" action="show" id="${grupoCaseiroInstance.id}">${message(code: 'default.button.cancel.label', default: 'Cancel')}</g:link>
 				</fieldset>
 			</g:form>
 		</div>
