@@ -14,9 +14,22 @@ class UsuarioController {
         render view:"login"
     }
 
-    def autenticar() {
+    def autenticar = {
         Usuario usuario = Usuario.findByLoginAndSenha(params["login"], params["senha"])
+        if (usuario) {
+            session.user = usuario
+            redirect (uri: "/")
+        } else {
+            flash.message = "Usuário ou senha inválidos!"
+            flash.type = "alert-danger"
+            redirect(action:"login")
+        }
 
+    }
+
+    def logout = {
+        session.user = null 
+        redirect (action:"login")
     }
 
     def index(Integer max) {
