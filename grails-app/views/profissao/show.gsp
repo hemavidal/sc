@@ -24,9 +24,9 @@
 			<ol class="property-list profissao">
 			
 			</ol>
-			<g:form url="[resource:profissaoInstance, action:'delete']" method="DELETE">
+			<g:form url="[resource:profissao, action:'delete']" method="DELETE">
 				<fieldset class="buttons">
-					<g:link class="edit" action="edit" resource="${profissaoInstance}"><g:message code="default.button.edit.label" default="Edit" /></g:link>
+					<g:link class="edit" action="edit" resource="${profissao}"><g:message code="default.button.edit.label" default="Edit" /></g:link>
 					<g:actionSubmit class="delete" action="delete" value="${message(code: 'default.button.delete.label', default: 'Delete')}" onclick="return confirm('${message(code: 'default.button.delete.confirm.message', default: 'Are you sure?')}');" />
 				</fieldset>
 			</g:form>

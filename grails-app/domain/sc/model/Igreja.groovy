@@ -12,6 +12,7 @@ class Igreja {
 		cidade(nullable:false, blank: false)
 		estado(nullable:false, blank: false)
 		pais(nullable:false, blank: false)
+		setores(nullable:true)
 		
     }
 

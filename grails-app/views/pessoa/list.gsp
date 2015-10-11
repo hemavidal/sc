@@ -60,30 +60,30 @@
 						</tr>
 					</thead>
 					<tbody>
-					<g:each in="${pessoaInstanceList}" var="pessoaInstance">
+					<g:each in="${pessoaList}" var="pessoa">
 						<tr>
 						
-							<td>${fieldValue(bean: pessoaInstance, field: "nome")}</td>
+							<td>${fieldValue(bean: pessoa, field: "nome")}</td>
 						
-							<td>${fieldValue(bean: pessoaInstance, field: "apelido")}</td>
+							<td>${fieldValue(bean: pessoa, field: "apelido")}</td>
 						
-							<td>${fieldValue(bean: pessoaInstance, field: "nivelDeCrescimento")}</td>
+							<td>${fieldValue(bean: pessoa, field: "nivelDeCrescimento")}</td>
 						
-							<td>${fieldValue(bean: pessoaInstance, field: "estadoCivil")}</td>
+							<td>${fieldValue(bean: pessoa, field: "estadoCivil")}</td>
 						
-							<td>${fieldValue(bean: pessoaInstance, field: "sexo")}</td>
+							<td>${fieldValue(bean: pessoa, field: "sexo")}</td>
 						
-							<td>${fieldValue(bean: pessoaInstance, field: "procedencia")}</td>
+							<td>${fieldValue(bean: pessoa, field: "procedencia")}</td>
 						
 							<td class="link">
-								<g:link action="show" id="${pessoaInstance.id}" class="btn btn-small">Show &raquo;</g:link>
+								<g:link action="show" id="${pessoa.id}" class="btn btn-small">Show &raquo;</g:link>
 							</td>
 						</tr>
 					</g:each>
 					</tbody>
 				</table>
 				<div class="pagination">
-					<bootstrap:paginate total="${pessoaInstanceTotal}" />
+					<bootstrap:paginate total="${pessoaTotal}" />
 				</div>
 			</div>
 

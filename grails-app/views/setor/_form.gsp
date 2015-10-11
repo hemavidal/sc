@@ -2,19 +2,19 @@
 
 
 
-<div class="form-group fieldcontain ${hasErrors(bean: setorInstance, field: 'nome', 'error')} required">
+<div class="form-group fieldcontain ${hasErrors(bean: setor, field: 'nome', 'error')} required">
 	<label for="nome" class="col-sm-2 control-label">
 		<g:message code="setor.nome.label" default="Nome" />
 		<span class="required-indicator">*</span>
 	</label>
 	<div class="col-sm-10">
-		<g:textField class="form-control" name="nome" required="" value="${setorInstance?.nome}" disabled="${'show'.equals(actionName)}"/>
+		<g:textField class="form-control" name="nome" required="" value="${setor?.nome}" disabled="${'show'.equals(actionName)}"/>
 	</div>
 
 </div>
 
 <g:if test="${!'create'.equals(actionName)}">
-	<div class="form-group fieldcontain ${hasErrors(bean: setorInstance, field: 'gruposCaseiros', 'error')} ">
+	<div class="form-group fieldcontain ${hasErrors(bean: setor, field: 'gruposCaseiros', 'error')} ">
 		<label for="gruposCaseiros" class="col-sm-2 control-label">
 			<g:message code="setor.gruposCaseiros.label" default="Grupos Caseiros" />
 			
@@ -31,24 +31,24 @@
 						</tr>
 					</thead>
 					<tbody>
-					<g:each in="${setorInstance.gruposCaseiros}" status="i" var="grupoCaseiroInstance">
+					<g:each in="${setor.gruposCaseiros}" status="i" var="grupoCaseiro">
 						<tr class="${(i % 2) == 0 ? 'even' : 'odd'}">
 						
-							<td><g:link controller="grupoCaseiro" action="show" id="${grupoCaseiroInstance.id}">${fieldValue(bean: grupoCaseiroInstance, field: "nome")}</g:link></td>
+							<td><g:link controller="grupoCaseiro" action="show" id="${grupoCaseiro.id}">${fieldValue(bean: grupoCaseiro, field: "nome")}</g:link></td>
 						
 						</tr>
 					</g:each>
 					</tbody>
 				</table>
 				<div class="pagination">
-					<g:paginate total="${setorInstance.gruposCaseiros?.size() ?: 0}" />
+					<g:paginate total="${setor.gruposCaseiros?.size() ?: 0}" />
 				</div>
 
 				
 				<g:if test="${!'show'.equals(actionName)}">
 					<div class="col-sm-10">
 						<li class="add">
-							<g:link class="btn btn-default" controller="grupoCaseiro" action="create" params="['setor.id': setorInstance?.id]">${message(code: 'default.add.label', args: [message(code: 'grupocaseiro.label', default: 'Grupo Caseiro')])}
+							<g:link class="btn btn-default" controller="grupoCaseiro" action="create" params="['setor.id': setor?.id]">${message(code: 'default.add.label', args: [message(code: 'grupocaseiro.label', default: 'Grupo Caseiro')])}
 							</g:link>
 						</li>
 					</div>
@@ -60,7 +60,7 @@
 </g:if>
 
 <g:if test="${actionName in ['create', 'edit']}">
-	<div class="form-group fieldcontain ${hasErrors(bean: setorInstance, field: 'igreja', 'error')} required">
+	<div class="form-group fieldcontain ${hasErrors(bean: setor, field: 'igreja', 'error')} required">
 		<label for="igreja" class="col-sm-2 control-label">
 			<g:message code="setor.igreja.label" default="Igreja" />
 			<span class="required-indicator">*</span>

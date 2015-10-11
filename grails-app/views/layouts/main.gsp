@@ -13,8 +13,8 @@
 		<link rel="shortcut icon" href="${assetPath(src: 'contacts.ico')}" type="image/x-icon">
 		<link rel="apple-touch-icon" href="${assetPath(src: 'contacts.ico')}">
 		<link rel="apple-touch-icon" sizes="114x114" href="${assetPath(src: 'contacts.ico')}">
-  		
   		<asset:stylesheet src="application.css"/>
+  		
 		
 		<g:layoutHead/>
 	</head>

@@ -52,22 +52,22 @@
 						</tr>
 					</thead>
 					<tbody>
-					<g:each in="${setorInstanceList}" var="setorInstance">
+					<g:each in="${setorList}" var="setor">
 						<tr>
 						
-							<td>${fieldValue(bean: setorInstance, field: "nome")}</td>
+							<td>${fieldValue(bean: setor, field: "nome")}</td>
 						
-							<td>${fieldValue(bean: setorInstance, field: "igreja")}</td>
+							<td>${fieldValue(bean: setor, field: "igreja")}</td>
 						
 							<td class="link">
-								<g:link action="show" id="${setorInstance.id}" class="btn btn-small">Show &raquo;</g:link>
+								<g:link action="show" id="${setor.id}" class="btn btn-small">Show &raquo;</g:link>
 							</td>
 						</tr>
 					</g:each>
 					</tbody>
 				</table>
 				<div class="pagination">
-					<bootstrap:paginate total="${setorInstanceTotal}" />
+					<bootstrap:paginate total="${setorTotal}" />
 				</div>
 			</div>
 

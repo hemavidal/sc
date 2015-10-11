@@ -48,18 +48,18 @@
 						</tr>
 					</thead>
 					<tbody>
-					<g:each in="${profissaoInstanceList}" var="profissaoInstance">
+					<g:each in="${profissaoList}" var="profissao">
 						<tr>
 						
 							<td class="link">
-								<g:link action="show" id="${profissaoInstance.id}" class="btn btn-small">Show &raquo;</g:link>
+								<g:link action="show" id="${profissao.id}" class="btn btn-small">Show &raquo;</g:link>
 							</td>
 						</tr>
 					</g:each>
 					</tbody>
 				</table>
 				<div class="pagination">
-					<bootstrap:paginate total="${profissaoInstanceTotal}" />
+					<bootstrap:paginate total="${profissaoTotal}" />
 				</div>
 			</div>
 

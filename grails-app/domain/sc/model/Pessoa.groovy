@@ -26,7 +26,7 @@ class Pessoa {
 	Profissao profissao
 	Sangue sangue
 	Endereco endereco
-	List<String> telefones
+	//List telefones
 	String email
 	GrupoCaseiro grupoCaseiro
 	Usuario usuario

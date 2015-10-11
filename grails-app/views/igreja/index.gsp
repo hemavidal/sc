@@ -26,21 +26,21 @@
 					</tr>
 				</thead>
 				<tbody>
-				<g:each in="${igrejaInstanceList}" status="i" var="igrejaInstance">
+				<g:each in="${igrejaList}" status="i" var="igreja">
 					<tr class="${(i % 2) == 0 ? 'even' : 'odd'}">
 					
-						<td><g:link action="show" id="${igrejaInstance.id}">${fieldValue(bean: igrejaInstance, field: "cidade")}</g:link></td>
+						<td><g:link action="show" id="${igreja.id}">${fieldValue(bean: igreja, field: "cidade")}</g:link></td>
 					
-						<td>${fieldValue(bean: igrejaInstance, field: "estado")}</td>
+						<td>${fieldValue(bean: igreja, field: "estado")}</td>
 					
-						<td>${fieldValue(bean: igrejaInstance, field: "pais")}</td>
+						<td>${fieldValue(bean: igreja, field: "pais")}</td>
 					
 					</tr>
 				</g:each>
 				</tbody>
 			</table>
 			<div class="pagination">
-				<g:paginate total="${igrejaInstanceCount ?: 0}" />
+				<g:paginate total="${igrejaCount ?: 0}" />
 			</div>
 			
 			<g:link class="btn btn-success new" action="create" >${message(code: 'default.button.create.label', default: 'Create')}</g:link>

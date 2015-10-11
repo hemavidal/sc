@@ -24,19 +24,19 @@
 					</tr>
 				</thead>
 				<tbody>
-				<g:each in="${setorInstanceList}" status="i" var="setorInstance">
+				<g:each in="${setorList}" status="i" var="setor">
 					<tr class="${(i % 2) == 0 ? 'even' : 'odd'}">
 					
-						<td><g:link action="show" id="${setorInstance.id}">${fieldValue(bean: setorInstance, field: "nome")}</g:link></td>
+						<td><g:link action="show" id="${setor.id}">${fieldValue(bean: setor, field: "nome")}</g:link></td>
 					
-						<td><g:link controller="igreja" action="show" id="${setorInstance.igreja.id}">${fieldValue(bean: setorInstance, field: "igreja")}</g:link></td>
+						<td><g:link controller="igreja" action="show" id="${setor.igreja.id}">${fieldValue(bean: setor, field: "igreja")}</g:link></td>
 					
 					</tr>
 				</g:each>
 				</tbody>
 			</table>
 			<div class="pagination">
-				<g:paginate total="${setorInstanceCount ?: 0}" />
+				<g:paginate total="${setorCount ?: 0}" />
 			</div>
 
 			<g:link class="btn btn-success new" action="create" >${message(code: 'default.button.create.label', default: 'Create')}</g:link>

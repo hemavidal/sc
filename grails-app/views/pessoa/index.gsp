@@ -32,27 +32,27 @@
 					</tr>
 				</thead>
 				<tbody>
-				<g:each in="${pessoaInstanceList}" status="i" var="pessoaInstance">
+				<g:each in="${pessoaList}" status="i" var="pessoa">
 					<tr class="${(i % 2) == 0 ? 'even' : 'odd'}">
 					
-						<td><g:link action="show" id="${pessoaInstance.id}">${fieldValue(bean: pessoaInstance, field: "nome")}</g:link></td>
+						<td><g:link action="show" id="${pessoa.id}">${fieldValue(bean: pessoa, field: "nome")}</g:link></td>
 					
-						<td>${fieldValue(bean: pessoaInstance, field: "apelido")}</td>
+						<td>${fieldValue(bean: pessoa, field: "apelido")}</td>
 					
-						<td>${fieldValue(bean: pessoaInstance, field: "nivelDeCrescimento")}</td>
+						<td>${fieldValue(bean: pessoa, field: "nivelDeCrescimento")}</td>
 					
-						<td>${fieldValue(bean: pessoaInstance, field: "estadoCivil")}</td>
+						<td>${fieldValue(bean: pessoa, field: "estadoCivil")}</td>
 					
-						<td>${fieldValue(bean: pessoaInstance, field: "sexo")}</td>
+						<td>${fieldValue(bean: pessoa, field: "sexo")}</td>
 					
-						<td>${fieldValue(bean: pessoaInstance, field: "procedencia")}</td>
+						<td>${fieldValue(bean: pessoa, field: "procedencia")}</td>
 					
 					</tr>
 				</g:each>
 				</tbody>
 			</table>
 			<div class="pagination">
-				<g:paginate total="${pessoaInstanceCount ?: 0}" />
+				<g:paginate total="${pessoaCount ?: 0}" />
 			</div>
 		</div>
 	</body>

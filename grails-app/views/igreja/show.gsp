@@ -17,12 +17,12 @@
 			
 
 
-			<g:form url="[resource:igrejaInstance, action:'delete']" method="DELETE">
+			<g:form url="[resource:igreja, action:'delete']" method="DELETE">
 				<fieldset class="form form-horizontal">
 					<g:render template="form"/>
 				</fieldset>
 				<fieldset class="buttons">
-					<g:link class="edit btn btn-warning glyphicon" action="edit" resource="${igrejaInstance}">${message(code: 'default.button.edit.label', default: 'Edit')}</g:link>
+					<g:link class="edit btn btn-warning glyphicon" action="edit" resource="${igreja}">${message(code: 'default.button.edit.label', default: 'Edit')}</g:link>
 					<g:submitButton name="delete" class="delete btn btn-danger glyphicon glyphicon-remove-circle" action="delete" value="${message(code: 'default.button.delete.label', default: 'Delete')}" onclick="return confirm('${message(code: 'default.button.delete.confirm.message', default: 'Are you sure?')}');" />
 				</fieldset>
 			</g:form>
