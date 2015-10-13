@@ -64,9 +64,11 @@
 
 			<div class="container">
 
+
 				<g:form class="form-signin" role="form"
 					url="[controller:'usuario', action:'autenticar']">
-					<h2 class="form-signin-heading">Acesso ao Sistema de Cadastro</h2>
+					<img src="${assetPath(src: 'fav-icon-2.png')}">
+          <h2 class="form-signin-heading" style="text-align: center;">Acesso ao Sistema de Cadastro</h2>
 					<input class="form-control" name="login"
 						placeholder="Email" required autofocus>
 					<input type="password" class="form-control" name="senha" placeholder="Senha" 

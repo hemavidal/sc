@@ -15,17 +15,29 @@
 				<div class="${flash.type} message" role="status">${flash.message}</div>
 			</g:if>
 			
-
-
-			<g:form url="[resource:igreja, action:'delete']" method="DELETE">
-				<fieldset class="form form-horizontal">
-					<g:render template="form"/>
-				</fieldset>
-				<fieldset class="buttons">
-					<g:link class="edit btn btn-warning glyphicon" action="edit" resource="${igreja}">${message(code: 'default.button.edit.label', default: 'Edit')}</g:link>
-					<g:submitButton name="delete" class="delete btn btn-danger glyphicon glyphicon-remove-circle" action="delete" value="${message(code: 'default.button.delete.label', default: 'Delete')}" onclick="return confirm('${message(code: 'default.button.delete.confirm.message', default: 'Are you sure?')}');" />
-				</fieldset>
-			</g:form>
+			<div class="panel-body">
+                <div class="dataTable_wrapper">
+                    <table class="table table-striped table-bordered table-hover" id="dataTables-example">
+                        <thead>
+                            <tr>
+                                <th>${message(code: 'setor.nome.label', default: 'Nome')}</th>
+                                
+                            </tr>
+                        </thead>
+                        <tbody>
+                            
+                            <g:each in="${igreja.setores}" status="i" var="setor">
+                                <tr class="odd gradeX  ${(i % 2) == 0 ? 'even' : 'odd'}">
+                                
+                                    <td><g:link controller="setor" action="show" id="${setor.id}">${fieldValue(bean: setor, field: "nome")}</g:link></td>
+                                
+                                </tr>
+                            </g:each>
+                        </tbody>
+                    </table>
+                </div>
+                <!-- /.table-responsive -->
+            </div>
 		</div>
 	</body>
 </html>

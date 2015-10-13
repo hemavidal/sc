@@ -10,6 +10,8 @@
 //= require_self
 //= require bootstrap-all
 
+
+
 if (typeof jQuery !== 'undefined') {
     (function($) {
         $('#spinner').ajaxStart(function() {

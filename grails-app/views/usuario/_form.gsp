@@ -1,32 +1,30 @@
 <%@ page import="sc.acesso.Usuario" %>
 
-
-
-<div class="form-group fieldcontain ${hasErrors(bean: usuarioInstance, field: 'login', 'error')} required">
+<div class="form-group fieldcontain ${hasErrors(bean: usuario, field: 'login', 'error')} required">
 	<label for="login" class="col-sm-2 control-label">
 		<g:message code="usuario.login.label" default="Login" />
 		<span class="required-indicator">*</span>
 	</label>
 	<div class="col-sm-10">
-		<g:textField class="form-control" name="login" required="" value="${usuarioInstance?.login}" disabled="${'show'.equals(actionName)}"/>
+		<g:textField class="form-control" name="login" required="" value="${usuario?.login}" disabled="${'show'.equals(actionName)}"/>
 	</div>
 
 </div>
 
 <g:if test="${actionName in ['create', 'edit']}">
-	<div class="form-group fieldcontain ${hasErrors(bean: usuarioInstance, field: 'senha', 'error')} required">
+	<div class="form-group fieldcontain ${hasErrors(bean: usuario, field: 'senha', 'error')} required">
 		<label for="senha" class="col-sm-2 control-label">
 			<g:message code="usuario.senha.label" default="Senha" />
 			<span class="required-indicator">*</span>
 		</label>
 		<div class="col-sm-10">
-			<g:passwordField class="form-control" name="senha" required="" value="${usuarioInstance?.senha}" disabled="${'show'.equals(actionName)}"/>
+			<g:passwordField class="form-control" name="senha" required="" value="${usuario?.senha}" disabled="${'show'.equals(actionName)}"/>
 		</div>
 
 	</div>
 </g:if>
 
-<div class="form-group fieldcontain ${hasErrors(bean: pessoaInstance, field: 'sangue', 'error')} required">
+<div class="form-group fieldcontain ${hasErrors(bean: usuario, field: 'tipo', 'error')} required">
 	<label for="tipo" class="col-sm-2 control-label">
 		<g:message code="pessoa.tipo.label" default="Tipo" />
 		<span class="required-indicator">*</span>
@@ -37,16 +35,15 @@
 		</g:if>
 		<g:else>
 			<select class="form-control" id="tipo" name="tipo">
-		</g:else>			
-			<g:each in="${usuarioInstance.constraints.tipo.inList}">
+		</g:else>
+			<g:each in="${["admin", "igreja", "setor", "grupoCaseiro", "pessoa"]}">
 				<option value="${it}">${it.capitalize()}</option>
 			</g:each>
 		</select>
 	</div>
-
 </div>
 
-<div class="form-group fieldcontain ${hasErrors(bean: usuarioInstance, field: 'pessoa', 'error')} ">
+<div class="form-group fieldcontain ${hasErrors(bean: usuario, field: 'pessoa', 'error')} ">
 	<label for="pessoa" class="col-sm-2 control-label">
 		<g:message code="usuario.pessoa.label" default="Pessoa" />
 		
@@ -67,5 +64,4 @@
 	</div>
 
 </div>
-
 

@@ -13,35 +13,29 @@
 			<g:if test="${flash.message}">
 				<div class="message" role="status">${flash.message}</div>
 			</g:if>
-			<table class="table">
-			<thead>
-					<tr>
-					
-						<g:sortableColumn property="cidade" title="${message(code: 'igreja.cidade.label', default: 'Cidade')}" />
-					
-						<g:sortableColumn property="estado" title="${message(code: 'igreja.estado.label', default: 'Estado')}" />
-					
-						<g:sortableColumn property="pais" title="${message(code: 'igreja.pais.label', default: 'Pais')}" />
-					
-					</tr>
-				</thead>
-				<tbody>
-				<g:each in="${igrejaList}" status="i" var="igreja">
-					<tr class="${(i % 2) == 0 ? 'even' : 'odd'}">
-					
-						<td><g:link action="show" id="${igreja.id}">${fieldValue(bean: igreja, field: "cidade")}</g:link></td>
-					
-						<td>${fieldValue(bean: igreja, field: "estado")}</td>
-					
-						<td>${fieldValue(bean: igreja, field: "pais")}</td>
-					
-					</tr>
-				</g:each>
-				</tbody>
-			</table>
-			<div class="pagination">
-				<g:paginate total="${igrejaCount ?: 0}" />
-			</div>
+			<div class="panel-body">
+                <div class="dataTable_wrapper">
+                    <table class="table table-striped table-bordered table-hover" id="dataTables-example">
+                        <thead>
+                            <tr>
+                                <th>${message(code: 'igreja.cidade.label', default: 'Cidade')}</th>
+                                
+                            </tr>
+                        </thead>
+                        <tbody>
+                            
+                            <g:each in="${igrejaList}" status="i" var="igreja">
+                                <tr class="odd gradeX  ${(i % 2) == 0 ? 'even' : 'odd'}">
+                                
+                                    <td><g:link action="show" id="${igreja.id}">${fieldValue(bean: igreja, field: "cidade")}</g:link></td>
+                                
+                                </tr>
+                            </g:each>
+                        </tbody>
+                    </table>
+                </div>
+                <!-- /.table-responsive -->
+            </div>
 			
 			<g:link class="btn btn-success new" action="create" >${message(code: 'default.button.create.label', default: 'Create')}</g:link>
 			

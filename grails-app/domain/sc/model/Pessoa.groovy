@@ -19,8 +19,6 @@ class Pessoa {
 	Date nascimento
 	Date integracao
 	EstadoCivil estadoCivil
-	String estado
-	String cidade
 	Sexo sexo
 	Procedencia procedencia
 	Profissao profissao

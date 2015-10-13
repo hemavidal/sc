@@ -13,47 +13,44 @@
 			<g:if test="${flash.message}">
 				<div class="message" role="status">${flash.message}</div>
 			</g:if>
-			<table class="table">
-			<thead>
-					<tr>
-					
-						<g:sortableColumn property="nome" title="${message(code: 'pessoa.nome.label', default: 'Nome')}" />
-					
-						<g:sortableColumn property="apelido" title="${message(code: 'pessoa.apelido.label', default: 'Apelido')}" />
-					
-						<g:sortableColumn property="nivelDeCrescimento" title="${message(code: 'pessoa.nivelDeCrescimento.label', default: 'Nivel De Crescimento')}" />
-					
-						<g:sortableColumn property="estadoCivil" title="${message(code: 'pessoa.estadoCivil.label', default: 'Estado Civil')}" />
-					
-						<g:sortableColumn property="sexo" title="${message(code: 'pessoa.sexo.label', default: 'Sexo')}" />
-					
-						<g:sortableColumn property="procedencia" title="${message(code: 'pessoa.procedencia.label', default: 'Procedencia')}" />
-					
-					</tr>
-				</thead>
-				<tbody>
-				<g:each in="${pessoaList}" status="i" var="pessoa">
-					<tr class="${(i % 2) == 0 ? 'even' : 'odd'}">
-					
-						<td><g:link action="show" id="${pessoa.id}">${fieldValue(bean: pessoa, field: "nome")}</g:link></td>
-					
-						<td>${fieldValue(bean: pessoa, field: "apelido")}</td>
-					
-						<td>${fieldValue(bean: pessoa, field: "nivelDeCrescimento")}</td>
-					
-						<td>${fieldValue(bean: pessoa, field: "estadoCivil")}</td>
-					
-						<td>${fieldValue(bean: pessoa, field: "sexo")}</td>
-					
-						<td>${fieldValue(bean: pessoa, field: "procedencia")}</td>
-					
-					</tr>
-				</g:each>
-				</tbody>
-			</table>
-			<div class="pagination">
-				<g:paginate total="${pessoaCount ?: 0}" />
-			</div>
+
+			<div class="panel-body">
+                <div class="dataTable_wrapper">
+                    <table class="table table-striped table-bordered table-hover" id="dataTables-example">
+                        <thead>
+                            <tr>
+                                <th>${message(code: 'pessoa.nome.label', default: 'Nome')}</th>
+                                <th>${message(code: 'pessoa.apelido.label', default: 'Apelido')}</th>
+                                <th>${message(code: 'pessoa.nivelDeCrescimento.label', default: 'Nivel De Crescimento')}</th>
+                                <th>${message(code: 'pessoa.estadoCivil.label', default: 'Estado Civil')}</th>
+                                <th>${message(code: 'pessoa.sexo.label', default: 'Sexo')}</th>
+                                <th>${message(code: 'pessoa.procedencia.label', default: 'Procedencia')}</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            
+                            <g:each in="${pessoaList}" status="i" var="pessoa">
+                                <tr class="odd gradeX  ${(i % 2) == 0 ? 'even' : 'odd'}">
+                                
+                                    <td><g:link action="show" id="${pessoa.id}">${fieldValue(bean: pessoa, field: "nome")}</g:link></td>
+                                
+                                    <td>${fieldValue(bean: pessoa, field: "apelido")}</td>
+                                
+                                    <td>${fieldValue(bean: pessoa, field: "nivelDeCrescimento")}</td>
+                                
+                                    <td>${fieldValue(bean: pessoa, field: "estadoCivil")}</td>
+                                
+                                    <td>${fieldValue(bean: pessoa, field: "sexo")}</td>
+                                
+                                    <td>${fieldValue(bean: pessoa, field: "procedencia")}</td>
+                                
+                                </tr>
+                            </g:each>
+                        </tbody>
+                    </table>
+                </div>
+                <!-- /.table-responsive -->
+            </div>
 		</div>
-	</body>
+    </body>
 </html>

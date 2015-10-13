@@ -13,35 +13,32 @@
 			<g:if test="${flash.message}">
 				<div class="message" role="status">${flash.message}</div>
 			</g:if>
-			<table class="table">
-			<thead>
-					<tr>
-					
-						<g:sortableColumn property="login" title="${message(code: 'usuario.login.label', default: 'Login')}" />
-					
-						<g:sortableColumn property="tipo" title="${message(code: 'usuario.tipo.label', default: 'Tipo')}" />
-					
-						<th><g:message code="usuario.pessoa.label" default="Pessoa" /></th>
-					
-					</tr>
-				</thead>
-				<tbody>
-				<g:each in="${usuarioInstanceList}" status="i" var="usuarioInstance">
-					<tr class="${(i % 2) == 0 ? 'even' : 'odd'}">
-					
-						<td><g:link action="show" id="${usuarioInstance.id}">${fieldValue(bean: usuarioInstance, field: "login")}</g:link></td>
-					
-						<td>${fieldValue(bean: usuarioInstance, field: "tipo")}</td>
-					
-						<td>${fieldValue(bean: usuarioInstance, field: "pessoa")}</td>
-					
-					</tr>
-				</g:each>
-				</tbody>
-			</table>
-			<div class="pagination">
-				<g:paginate total="${usuarioInstanceCount ?: 0}" />
-			</div>
+			
+			<div class="panel-body">
+                <div class="dataTable_wrapper">
+                    <table class="table table-striped table-bordered table-hover" id="dataTables-example">
+                        <thead>
+                            <tr>
+                                <th>${message(code: 'usuario.login.label', default: 'Login')}</th>
+                                <th>${message(code: 'usuario.tipo.label', default: 'Tipo')}</th>
+                                
+                            </tr>
+                        </thead>
+                        <tbody>
+                            
+                            <g:each in="${usuarioList}" status="i" var="usuario">
+                                <tr class="odd gradeX  ${(i % 2) == 0 ? 'even' : 'odd'}">
+                                
+                                    <td><g:link action="show" id="${usuario.id}">${fieldValue(bean: usuario, field: "login")}</g:link></td>
+                                    <td><g:link action="show" id="${usuario.id}">${fieldValue(bean: usuario, field: "tipo")}</g:link></td>
+                                
+                                </tr>
+                            </g:each>
+                        </tbody>
+                    </table>
+                </div>
+                <!-- /.table-responsive -->
+            </div>
 			<g:link class="btn btn-success new" action="create" >${message(code: 'default.button.create.label', default: 'Create')}</g:link>
 		</div>
 	</body>
