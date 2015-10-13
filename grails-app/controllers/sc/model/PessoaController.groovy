@@ -20,19 +20,23 @@ class PessoaController {
     }
 
     def create() {
-        def grupoCaseiro = GrupoCaseiro.findById(params.grupoCaseiroId)
         Pessoa pessoaInstance = new Pessoa(params)
-        pessoaInstance.grupoCaseiro = grupoCaseiro
+        if (params.grupoCaseiroId) {
+            def grupoCaseiro = GrupoCaseiro.findById(params.grupoCaseiroId)
+            pessoaInstance.grupoCaseiro = grupoCaseiro
+        }
         respond pessoaInstance
     }
 
     @Transactional
     def save(Pessoa pessoaInstance) {
+    
         if (pessoaInstance == null) {
             notFound()
             return
         }
 
+        pessoaInstance.usuario = session.user
         if (pessoaInstance.hasErrors()) {
             respond pessoaInstance.errors, view:'create'
             return

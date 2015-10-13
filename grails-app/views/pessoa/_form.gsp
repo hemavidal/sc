@@ -12,13 +12,12 @@
 	</div>
 </div>
 
-<div class="form-group fieldcontain ${hasErrors(bean: pessoa, field: 'apelido', 'error')} required">
+<div class="form-group fieldcontain ${hasErrors(bean: pessoa, field: 'apelido', 'error')} ">
 	<label for="apelido" class="col-sm-2 control-label">
 		<g:message code="pessoa.apelido.label" default="Apelido" />
-		<span class="required-indicator">*</span>
 	</label>
 	<div class="col-sm-10">
-		<g:textField class="form-control" name="apelido" required="" value="${pessoa?.apelido}" disabled="${'show'.equals(actionName)}"/>
+		<g:textField class="form-control" name="apelido" value="${pessoa?.apelido}" disabled="${'show'.equals(actionName)}"/>
 	</div>
 </div>
 
@@ -120,23 +119,21 @@
 
 <fieldset class="embedded"><legend><g:message code="pessoa.endereco.label" default="Endereco" /></legend>
 
-<div class="form-group fieldcontain ${hasErrors(bean: pessoa, field: 'endereco.estado', 'error')} required">
+<div class="form-group fieldcontain ${hasErrors(bean: pessoa, field: 'endereco.estado', 'error')}">
 	<label for="endereco.estado" class="col-sm-2 control-label">
 		<g:message code="pessoa.estado.label" default="Estado" />
-		<span class="required-indicator">*</span>
 	</label>
 	<div class="col-sm-10">
-		<g:textField class="form-control" name="endereco.estado" required="" value="${pessoa?.endereco?.estado}" disabled="${'show'.equals(actionName)}"/>
+		<g:textField class="form-control" name="endereco.estado" value="${pessoa?.endereco?.estado}" disabled="${'show'.equals(actionName)}"/>
 	</div>
 </div>
 
-<div class="form-group fieldcontain ${hasErrors(bean: pessoa, field: 'endereco.cidade', 'error')} required">
-	<label for="cidade" class="col-sm-2 control-label">
+<div class="form-group fieldcontain ${hasErrors(bean: pessoa, field: 'endereco.cidade', 'error')}">
+	<label for="endereco.cidade" class="col-sm-2 control-label">
 		<g:message code="pessoa.cidade.label" default="Cidade" />
-		<span class="required-indicator">*</span>
 	</label>
 	<div class="col-sm-10">
-		<g:textField class="form-control" name="cidade" required="" value="${pessoa?.endereco?.cidade}" disabled="${'show'.equals(actionName)}"/>
+		<g:textField class="form-control" name="endereco.cidade" value="${pessoa?.endereco?.cidade}" disabled="${'show'.equals(actionName)}"/>
 	</div>
 </div>
 
@@ -145,16 +142,16 @@
 		<g:message code="pessoa.endereco.bairro.label" default="Bairro" />
 	</label>
 	<div class="col-sm-10">
-		<g:textField class="form-control" name="bairro" value="${pessoa?.endereco?.bairro}" disabled="${'show'.equals(actionName)}"/>
+		<g:textField class="form-control" name="endereco.bairro" value="${pessoa?.endereco?.bairro}" disabled="${'show'.equals(actionName)}"/>
 	</div>
 </div>
 
-<div class="form-group fieldcontain ${hasErrors(bean: pessoa, field: 'endereco.complemento', 'error')}">
-	<label for="endereco.complemento" class="col-sm-2 control-label">
-		<g:message code="pessoa.endereco.complemento.label" default="Complemento" />
+<div class="form-group fieldcontain ${hasErrors(bean: pessoa, field: 'endereco.rua', 'error')}">
+	<label for="endereco.rua" class="col-sm-2 control-label">
+		<g:message code="pessoa.endereco.rua.label" default="Rua" />
 	</label>
 	<div class="col-sm-10">
-		<g:textField class="form-control" name="complemento" value="${pessoa?.endereco?.complemeto}" disabled="${'show'.equals(actionName)}"/>
+		<g:textField class="form-control" name="endereco.rua" value="${pessoa?.endereco?.rua}" disabled="${'show'.equals(actionName)}"/>
 	</div>
 </div>
 
@@ -163,17 +160,17 @@
 		<g:message code="pessoa.endereco.numero.label" default="Numero" />
 	</label>
 	<div class="col-sm-10">
-		<g:field class="form-control" name="numero" type="number" value="${pessoa?.endereco?.numero}"  disabled="${'show'.equals(actionName)}"/>
+		<g:field class="form-control" name="endereco.numero" type="number" value="${pessoa?.endereco?.numero}"  disabled="${'show'.equals(actionName)}"/>
 	</div>
 
 </div>
 
-<div class="form-group fieldcontain ${hasErrors(bean: pessoa, field: 'endereco.rua', 'error')}">
-	<label for="endereco.rua" class="col-sm-2 control-label">
-		<g:message code="pessoa.endereco.rua.label" default="Rua" />
+<div class="form-group fieldcontain ${hasErrors(bean: pessoa, field: 'endereco.complemento', 'error')}">
+	<label for="endereco.complemento" class="col-sm-2 control-label">
+		<g:message code="pessoa.endereco.complemento.label" default="Complemento" />
 	</label>
 	<div class="col-sm-10">
-		<g:textField class="form-control" name="rua" value="${pessoa?.endereco?.rua}" disabled="${'show'.equals(actionName)}"/>
+		<g:textField class="form-control" name="endereco.complemento" value="${pessoa?.endereco?.complemento}" disabled="${'show'.equals(actionName)}"/>
 	</div>
 </div>
 </fieldset>
@@ -210,10 +207,9 @@
 
 </div>
 
-<div class="form-group fieldcontain ${hasErrors(bean: pessoa, field: 'sangue', 'error')} required">
+<div class="form-group fieldcontain ${hasErrors(bean: pessoa, field: 'sangue', 'error')}">
 	<label for="sangue" class="col-sm-2 control-label">
 		<g:message code="pessoa.sangue.label" default="Sangue" />
-		<span class="required-indicator">*</span>
 	</label>
 	<div class="col-sm-10">
 		<g:if test="${'show'.equals(actionName)}">
@@ -222,6 +218,7 @@
 		<g:else>
 			<select class="form-control" id="sangue" name="sangue">
 		</g:else>
+			<option value=""></option>
 			<g:each in="${sc.Sangue?.values()}">
 				<option value="${it.name()}">${it.getNome()}</option>
 			</g:each>

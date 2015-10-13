@@ -1,6 +1,5 @@
 package sc.model
 
-import sc.Endereco
 import sc.EstadoCivil
 import sc.NivelDeCrescimento
 import sc.Procedencia
@@ -23,25 +22,27 @@ class Pessoa {
 	Procedencia procedencia
 	Profissao profissao
 	Sangue sangue
-	Endereco endereco
 	//List telefones
 	String email
 	GrupoCaseiro grupoCaseiro
-	Usuario usuario
+	Usuario usuario 
+
+	Endereco endereco
 
 	static embedded = ['endereco']
     
     static constraints = {
 		nome nullable:false, blank:false
-		apelido nullable:false, blank:false
 		nivelDeCrescimento nullable:false, blank:false 
 		estadoCivil nullable:false, blank:false
 		sexo nullable:false, blank:false
 		procedencia nullable:false, blank:false
-		endereco nullable:true
-		profissao nullable:true
-		grupoCaseiro nullable:true
-		usuario nullable:true
+		apelido nullable:true, blank:true
+		email nullable:true, blank:true
+		profissao nullable:true, blank:true
+		sangue nullable:true, blank:true
+		usuario nullable:true, blank:true
+		endereco nullable:true, blank:true
     }
 
     public String toString() {
