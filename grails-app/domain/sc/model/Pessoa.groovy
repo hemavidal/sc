@@ -14,6 +14,7 @@ class Pessoa {
 	String apelido
 	Pessoa discipulador
 	Pessoa companheiro
+	Pessoa conjuge
 	NivelDeCrescimento nivelDeCrescimento
 	Date nascimento
 	Date integracao

@@ -300,7 +300,7 @@
                             <ul class="nav nav-second-level">
                                 <g:each in="${Igreja.list()}" status="i" var="igreja">
                                     <li>
-                                        <a class="igrejaSelect" data-igreja-id="${igreja.id}">${igreja.cidade}</a>
+                                        <g:link controller="igreja" action="show" id="${igreja.id}">${igreja.cidade}</g:link>
                                     </li>
                                 </g:each>
                                 <li>
