@@ -23,15 +23,16 @@ class LoggingFilters {
                            ]
 */
     def filters = {
-        habilitarAcessoSomenteParaSessaoAberta(controller:'assets', action:'*', invert:true) {
+        habilitarAcessoSomenteParaSessaoAberta(controller:'*', action:'*') {
             before = {
-                if (!session.user && !(actionName in ["login", "autenticar"])) {
-                    redirect (controller: "usuario", action: "login")
-                    return false
-                } else {
-                    return true
+                if (controllerName != "assets") {
+                  if (!session.user && !(actionName in ["login", "autenticar"])) {
+                      redirect (controller: "usuario", action: "login")
+                      return false
+                  }
                 }
             }
         }
+
     }
 }
