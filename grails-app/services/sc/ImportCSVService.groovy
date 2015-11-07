@@ -90,7 +90,7 @@ class ImportCSVService {
 					}
 
 					def nome = lineArray[1].trim()
-					def sexo = lineArray[14] == 0 ? Sexo.MASCULINO : Sexo.FEMININO
+					def sexo = lineArray[14].trim() == '0' ? Sexo.MASCULINO : Sexo.FEMININO
 					
 				    DateFormat df = new SimpleDateFormat("dd/MM/yyyy");
 					Date nascimento = null

@@ -210,7 +210,7 @@
 		</g:else>
 			<option value="" >Desempregado</option>
 			<g:each in="${sc.model.Profissao?.list()}">
-				<option value="${it.id}" >${it.nome}</option>
+				<option value="${it.id}" ${pessoa.profissao?.id == it?.id ? 'selected' : ''}>${it.nome}</option>
 			</g:each>
 
 		</select>
@@ -252,7 +252,7 @@
 			<select class="one-to-one form-control" id="grupoCaseiro" name="grupoCaseiro.id">
 		</g:else>
 			<g:each in="${sc.model.GrupoCaseiro?.list()}">
-				<option value="${it.id}" >${it.nome}</option>
+				<option value="${it.id}" ${pessoa.grupoCaseiro.id == it?.id ? 'selected' : ''}>${it.nome}</option>
 			</g:each>
 
 		</select>

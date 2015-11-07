@@ -11,7 +11,6 @@ class PessoaController {
     static allowedMethods = [save: "POST", update: "PUT", delete: "DELETE"]
 
     def index(Integer max) {
-        params.max = Math.min(max ?: 10, 100)
         respond Pessoa.list(params), model:[pessoaCount: Pessoa.count()]
     }
 
@@ -30,7 +29,7 @@ class PessoaController {
 
     @Transactional
     def save(Pessoa pessoa) {
-        log.info params
+        println params
         if (pessoa == null) {
             notFound()
             return
