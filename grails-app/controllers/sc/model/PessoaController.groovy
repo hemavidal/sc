@@ -12,87 +12,87 @@ class PessoaController {
 
     def index(Integer max) {
         params.max = Math.min(max ?: 10, 100)
-        respond Pessoa.list(params), model:[pessoaInstanceCount: Pessoa.count()]
+        respond Pessoa.list(params), model:[pessoaCount: Pessoa.count()]
     }
 
-    def show(Pessoa pessoaInstance) {
-        respond pessoaInstance
+    def show(Pessoa pessoa) {
+        respond pessoa
     }
 
     def create() {
-        Pessoa pessoaInstance = new Pessoa(params)
+        Pessoa pessoa = new Pessoa(params)
         if (params.grupoCaseiroId) {
             def grupoCaseiro = GrupoCaseiro.findById(params.grupoCaseiroId)
-            pessoaInstance.grupoCaseiro = grupoCaseiro
+            pessoa.grupoCaseiro = grupoCaseiro
         }
-        respond pessoaInstance
+        respond pessoa
     }
 
     @Transactional
-    def save(Pessoa pessoaInstance) {
-    
-        if (pessoaInstance == null) {
+    def save(Pessoa pessoa) {
+        log.info params
+        if (pessoa == null) {
             notFound()
             return
         }
 
-        pessoaInstance.usuario = session.user
-        if (pessoaInstance.hasErrors()) {
-            respond pessoaInstance.errors, view:'create'
+        pessoa.usuario = session.user
+        if (pessoa.hasErrors()) {
+            respond pessoa.errors, view:'create'
             return
         }
         
-        pessoaInstance.save flush:true
+        pessoa.save flush:true
 
         request.withFormat {
             form multipartForm {
-                flash.message = message(code: 'default.created.message', args: [message(code: 'pessoa.label', default: 'Pessoa'), pessoaInstance.id])
-                redirect pessoaInstance
+                flash.message = message(code: 'default.created.message', args: [message(code: 'pessoa.label', default: 'Pessoa'), pessoa.id])
+                redirect pessoa
             }
-            '*' { respond pessoaInstance, [status: CREATED] }
+            '*' { respond pessoa, [status: CREATED] }
         }
     }
 
-    def edit(Pessoa pessoaInstance) {
-        respond pessoaInstance
+    def edit(Pessoa pessoa) {
+        respond pessoa
     }
 
     @Transactional
-    def update(Pessoa pessoaInstance) {
-        if (pessoaInstance == null) {
+    def update(Pessoa pessoa) {
+        if (pessoa == null) {
             notFound()
             return
         }
 
-        if (pessoaInstance.hasErrors()) {
-            respond pessoaInstance.errors, view:'edit'
+        if (pessoa.hasErrors()) {
+            respond pessoa.errors, view:'edit'
             return
         }
 
-        pessoaInstance.save flush:true
+        pessoa.save flush:true
 
         request.withFormat {
             form multipartForm {
-                flash.message = message(code: 'default.updated.message', args: [message(code: 'Pessoa.label', default: 'Pessoa'), pessoaInstance.id])
-                redirect pessoaInstance
+                flash.message = message(code: 'default.updated.message', args: [message(code: 'Pessoa.label', default: 'Pessoa'), pessoa.id])
+                redirect pessoa
             }
-            '*'{ respond pessoaInstance, [status: OK] }
+            '*'{ respond pessoa, [status: OK] }
         }
     }
 
     @Transactional
-    def delete(Pessoa pessoaInstance) {
+    def delete(Pessoa pessoa) {
 
-        if (pessoaInstance == null) {
+        if (pessoa == null) {
             notFound()
             return
         }
 
-        pessoaInstance.delete flush:true
+        pessoa.delete flush:true
 
         request.withFormat {
             form multipartForm {
-                flash.message = message(code: 'default.deleted.message', args: [message(code: 'Pessoa.label', default: 'Pessoa'), pessoaInstance.id])
+                flash.message = message(code: 'default.deleted.message', args: [message(code: 'Pessoa.label', default: 'Pessoa'), pessoa.id])
                 redirect action:"index", method:"GET"
             }
             '*'{ render status: NO_CONTENT }

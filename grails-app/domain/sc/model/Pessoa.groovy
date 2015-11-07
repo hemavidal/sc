@@ -23,14 +23,16 @@ class Pessoa {
 	Procedencia procedencia
 	Profissao profissao
 	Sangue sangue
-	//List telefones
+	List telefones
 	String email
 	GrupoCaseiro grupoCaseiro
 	Usuario usuario 
 
 	Endereco endereco
 
-	static embedded = ['endereco']
+	static embedded = ['endereco', 'telefones']
+
+	static hasMany = [telefones:String]
     
     static constraints = {
 		nome nullable:false, blank:false
@@ -44,6 +46,7 @@ class Pessoa {
 		sangue nullable:true, blank:true
 		usuario nullable:true, blank:true
 		endereco nullable:true, blank:true
+		telefones nullable:true, blank:true
     }
 
     public String toString() {

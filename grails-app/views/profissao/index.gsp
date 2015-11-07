@@ -8,35 +8,29 @@
 		<title><g:message code="default.list.label" args="[entityName]" /></title>
 	</head>
 	<body>
-		<a href="#list-profissao" class="skip" tabindex="-1"><g:message code="default.link.skip.label" default="Skip to content&hellip;"/></a>
-		<div class="nav" role="navigation">
-			<ul>
-				<li><a class="home" href="${createLink(uri: '/')}"><g:message code="default.home.label"/></a></li>
-				<li><g:link class="create" action="create"><g:message code="default.new.label" args="[entityName]" /></g:link></li>
-			</ul>
-		</div>
-		<div id="list-profissao" class="content scaffold-list" role="main">
-			<h1><g:message code="default.list.label" args="[entityName]" /></h1>
-			<g:if test="${flash.message}">
-				<div class="message" role="status">${flash.message}</div>
-			</g:if>
-			<table>
-			<thead>
-					<tr>
-					
-					</tr>
-				</thead>
-				<tbody>
-				<g:each in="${profissaoInstanceList}" status="i" var="profissaoInstance">
-					<tr class="${(i % 2) == 0 ? 'even' : 'odd'}">
-					
-					</tr>
-				</g:each>
-				</tbody>
-			</table>
-			<div class="pagination">
-				<g:paginate total="${profissaoInstanceCount ?: 0}" />
-			</div>
+		<h2>${Profissao.count()}</h2>
+		<div class="panel-body">
+                <div class="dataTable_wrapper">
+                    <table class="table table-striped table-bordered table-hover" id="dataTables-example">
+                        <thead>
+                            <tr>
+                                <th>${message(code: 'pessoa.nome.label', default: 'Nome')}</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            
+                            <g:each in="${profissaoList}" status="i" var="profissao">
+                                <tr class="odd gradeX  ${(i % 2) == 0 ? 'even' : 'odd'}">
+                                
+                                    <td><g:link action="show" id="${profissao.id}">${fieldValue(bean: profissao, field: "nome")}</g:link></td>
+                                
+                                </tr>
+                            </g:each>
+                        </tbody>
+                    </table>
+                </div>
+                <!-- /.table-responsive -->
+            </div>
 		</div>
 	</body>
 </html>

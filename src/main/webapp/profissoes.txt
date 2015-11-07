@@ -1,0 +1,149 @@
+Açogueiro
+Administrador de Empresa
+Advogado
+Agente de Saúde
+Agente de Trânsito
+Ajudante do Lar
+Analista de Sistemas
+Analista Químico
+Anfitrião Administrativo
+Aposentado
+Arquiteto
+Artesã
+Assistente Administrativo
+Assistente Social
+Atendente
+Auditor
+Autônomo
+Auxiliar Administrativo
+Auxiliar de Almoxarife
+Auxiliar de Aquivo
+Auxiliar de Cozinha
+Auxiliar de Depósito
+Auxiliar de Escritório
+Auxiliar de Limpeza
+Auxiliar de Odontologia
+Auxiliar de Processamento
+Auxiliar de Produção
+Auxiliar em Contabilidade
+Balconista
+Bancário
+Biólogo
+Bioquímico
+Cabeleleira
+Cabeleleiro
+Caixa
+Carpinteiro
+Carteiro
+Cirurgião Dentista
+Cobrador
+Comerciário
+Conferente
+Contador
+Contínuo
+Copeira Dietista
+Corretor de Seguros
+Costureira
+Cozinheiro
+Dentista
+Desenhista Técnico
+Design
+Despachante
+Digitador
+Dona de Casa
+Economiário
+Educador Físico
+Eletricista
+Eletrotécnico
+Empregada Doméstica
+Empresário
+Encanador
+Enfermeiro
+Engenheiro
+Engenheiro Agrônomo
+Engenheiro Químico
+Estetcista
+Estofador de Moveis
+Estudante
+Farmaceutico
+Fisioterapeuta
+Frentista
+Funcionário Civil
+Funcionário Publico
+Garçon
+Gesseiro
+Gestor de Recursos Humanos
+Higienização
+Industriário
+Interprete de Libras
+Jornalista
+Laminador
+Locutor
+Maitre
+Manicure
+Marceneiro
+Mecânico e Eletricista de Auto
+Mecânico Industrial
+Médico
+Médico Veterinário
+Mestre de Obras
+Metalúrgico
+Metereologista
+Militar
+Motorista
+Museólogo
+Nutricionista
+Office Boy
+Operador de Caixa
+Operador de Máquina
+Operador de Processo
+Operador de Produção
+Operador de Rádio
+Operador de Sistema
+Operador de Telemarketing
+Padeiro
+Pastor
+Pedagogo
+Pedreiro
+Pintor
+Pintor de auto
+Policial Civil
+Policial Militar
+Porteiro
+Professor
+Programador
+Promotor de Vendas
+Publicitário
+Químico
+Recepcionista
+Representante Comercial
+Rodoviário
+Secretária
+Segurança
+Serralheiro
+Serviços Gerais
+Servidor Público
+Soldador
+Taxista
+Técnico em Patologia Clínica
+Técnico de Segurança
+Técnico em Contabilidade
+Técnico em Desenho
+Técnico em Eletrônica
+Técnico em Eletrônica
+Técnico em Enfermagem
+Técnico em Informática
+Técnico em Instrumentação
+Técnico em Laboratório
+Técnico em Manutenção
+Técnico em Mapa
+Técnico em Química
+Técnico em Radiologia
+Técnico em Refrigeração
+Telefonista
+Telemarketing
+Terapeuta Ocupacional
+Vendedor
+Vereador Urbano
+Vidraceiro
+Vigilante

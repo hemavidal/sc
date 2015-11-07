@@ -28,8 +28,7 @@
                         <tbody>
                             
                             <g:each in="${grupoCaseiro.pessoas}" status="i" var="pessoa">
-                                <tr class="odd gradeX  ${(i % 2) == 0 ? 'even' : 'odd'}">
-                                
+                                <tr>
                                     <td><g:link controller="pessoa" action="show" id="${pessoa.id}">${fieldValue(bean: pessoa, field: "nome")}</g:link></td>
                                 
                                     <td>${fieldValue(bean: pessoa, field: "apelido")}</td>
@@ -41,6 +40,10 @@
                         </tbody>
                     </table>
                 </div>
+                <fieldset class="buttons">
+                    <g:link class="edit btn btn-warning" action="edit" resource="${grupoCaseiro}"><g:message code="default.button.edit.label" default="Edit" /></g:link>
+                    <g:actionSubmit class="delete btn btn-danger" action="delete" value="${message(code: 'default.button.delete.label', default: 'Delete')}" onclick="return confirm('${message(code: 'default.button.delete.confirm.message', default: 'Are you sure?')}');" />
+                </fieldset>
 		</div>
 	</body>
 </html>

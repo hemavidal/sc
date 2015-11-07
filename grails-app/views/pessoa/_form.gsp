@@ -78,7 +78,7 @@
 		</g:else>
 			<option value="" >Nenhum</option>
 			<g:each in="${sc.model.Pessoa?.list()}">
-				<option value="${it.id}" >${it.nome}</option>
+				<option value="${it.id}" ${pessoa.companheiro?.id == it?.id ? 'selected' : ''}>${it.nome}</option>
 			</g:each>
 
 		</select>
@@ -100,7 +100,7 @@
 		</g:else>		
 			<option value="" >Nenhum</option>
 			<g:each in="${sc.model.Pessoa?.list()}">
-				<option value="${it.id}" >${it.nome}</option>
+				<option value="${it.id}" ${pessoa.discipulador?.id == it?.id ? 'selected' : ''}>${it.nome}</option>
 			</g:each>
 
 		</select>
@@ -202,7 +202,20 @@
 		<g:message code="pessoa.profissao.label" default="Profissao" />
 	</label>
 	<div class="col-sm-10">
-		<g:select class="form-control" id="profissao" name="profissao.id" from="${sc.model.Profissao.list()}" optionKey="id" value="${pessoa?.profissao?.id}" class="many-to-one" disabled="${'show'.equals(actionName)}"/>
+		<g:if test="${'show'.equals(actionName)}">
+			<select class="many-to-one form-control" id="profissao" name="profissao.id" disabled>
+		</g:if>
+		<g:else>
+			<select class="many-to-one form-control" id="profissao" name="profissao.id">
+		</g:else>
+			<option value="" >Desempregado</option>
+			<g:each in="${sc.model.Profissao?.list()}">
+				<option value="${it.id}" >${it.nome}</option>
+			</g:each>
+
+		</select>
+
+		
 	</div>
 
 </div>

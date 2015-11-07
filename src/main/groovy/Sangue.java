@@ -19,4 +19,13 @@ public enum Sangue {
 	public String getNome() {
 		return nome;
 	}
+
+	public static Sangue getSanguePeloNome(String nome) {
+		for (int i = 0; i < values().length; i++) {
+			if (values()[i].getNome().equalsIgnoreCase(nome)) {
+				return values()[i];
+			}
+		}
+		return values()[values().length - 1];
+	}
 }

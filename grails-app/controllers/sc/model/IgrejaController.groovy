@@ -9,11 +9,8 @@ import grails.transaction.Transactional
 class IgrejaController {
 
     static allowedMethods = [save: "POST", update: "PUT", delete: "DELETE"]
-    def importCSVService
 
     def index(Integer max) {
-        def contextPath = request.getSession().getServletContext().getRealPath("")
-        importCSVService.importCampinaGrande(contextPath)
         params.max = Math.min(max ?: 10, 100)
         respond Igreja.list(params), model:[igrejaInstanceCount: Igreja.count()]
     }

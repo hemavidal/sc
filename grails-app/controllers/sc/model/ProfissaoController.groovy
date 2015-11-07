@@ -11,12 +11,11 @@ class ProfissaoController {
     static allowedMethods = [save: "POST", update: "PUT", delete: "DELETE"]
 
     def index(Integer max) {
-        params.max = Math.min(max ?: 10, 100)
-        respond Profissao.list(params), model:[profissaoInstanceCount: Profissao.count()]
+        respond Profissao.list(), model:[profissaoCount: Profissao.count()]
     }
 
-    def show(Profissao profissaoInstance) {
-        respond profissaoInstance
+    def show(Profissao profissao) {
+        respond profissao
     }
 
     def create() {
@@ -24,68 +23,68 @@ class ProfissaoController {
     }
 
     @Transactional
-    def save(Profissao profissaoInstance) {
-        if (profissaoInstance == null) {
+    def save(Profissao profissao) {
+        if (profissao == null) {
             notFound()
             return
         }
 
-        if (profissaoInstance.hasErrors()) {
-            respond profissaoInstance.errors, view:'create'
+        if (profissao.hasErrors()) {
+            respond profissao.errors, view:'create'
             return
         }
 
-        profissaoInstance.save flush:true
+        profissao.save flush:true
 
         request.withFormat {
             form multipartForm {
-                flash.message = message(code: 'default.created.message', args: [message(code: 'profissao.label', default: 'Profissao'), profissaoInstance.id])
-                redirect profissaoInstance
+                flash.message = message(code: 'default.created.message', args: [message(code: 'profissao.label', default: 'Profissao'), profissao.id])
+                redirect profissao
             }
-            '*' { respond profissaoInstance, [status: CREATED] }
+            '*' { respond profissao, [status: CREATED] }
         }
     }
 
-    def edit(Profissao profissaoInstance) {
-        respond profissaoInstance
+    def edit(Profissao profissao) {
+        respond profissao
     }
 
     @Transactional
-    def update(Profissao profissaoInstance) {
-        if (profissaoInstance == null) {
+    def update(Profissao profissao) {
+        if (profissao == null) {
             notFound()
             return
         }
 
-        if (profissaoInstance.hasErrors()) {
-            respond profissaoInstance.errors, view:'edit'
+        if (profissao.hasErrors()) {
+            respond profissao.errors, view:'edit'
             return
         }
 
-        profissaoInstance.save flush:true
+        profissao.save flush:true
 
         request.withFormat {
             form multipartForm {
-                flash.message = message(code: 'default.updated.message', args: [message(code: 'Profissao.label', default: 'Profissao'), profissaoInstance.id])
-                redirect profissaoInstance
+                flash.message = message(code: 'default.updated.message', args: [message(code: 'Profissao.label', default: 'Profissao'), profissao.id])
+                redirect profissao
             }
-            '*'{ respond profissaoInstance, [status: OK] }
+            '*'{ respond profissao, [status: OK] }
         }
     }
 
     @Transactional
-    def delete(Profissao profissaoInstance) {
+    def delete(Profissao profissao) {
 
-        if (profissaoInstance == null) {
+        if (profissao == null) {
             notFound()
             return
         }
 
-        profissaoInstance.delete flush:true
+        profissao.delete flush:true
 
         request.withFormat {
             form multipartForm {
-                flash.message = message(code: 'default.deleted.message', args: [message(code: 'Profissao.label', default: 'Profissao'), profissaoInstance.id])
+                flash.message = message(code: 'default.deleted.message', args: [message(code: 'Profissao.label', default: 'Profissao'), profissao.id])
                 redirect action:"index", method:"GET"
             }
             '*'{ render status: NO_CONTENT }

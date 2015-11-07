@@ -45,9 +45,28 @@ class ImportCSVService {
     	}
 
     	def pessoaMap = [:]
+    	println "importing Profissoes..."
+    	try {
+			File file2 = new File(contextPath + File.separator + "profissoes.txt")
+			FileReader fileReader2 = new FileReader(file2);
+			BufferedReader bufferedReader2 = new BufferedReader(new InputStreamReader(new FileInputStream(file2), Charset.forName("UTF-8")));
+			StringBuffer stringBuffer2 = new StringBuffer();
+			String line2;
 
+			while ((line2 = bufferedReader2.readLine()) != null) {
+				def lineString = line2.trim()
+				if (lineString && !lineString.isEmpty()) {
+					new Profissao(nome:lineString).save(flush:true)
+				}
+			}
+			fileReader2.close();
+		}
+		catch(Exception e) {
+			e.printStackTrace()
+		}
+		println "importing Profissoes - FINISHED"
 
-
+		println "importing Pessoas..."
 		File file = new File(contextPath + File.separator + "CampinaGrande.tsv")
 		try {
 			FileReader fileReader = new FileReader(file);
@@ -104,30 +123,95 @@ class ImportCSVService {
 				    	nivelDeCrescimento = NivelDeCrescimento.NOVO_EM_FUNDAMENTOS
 				    }
 
+				    def procedencia = Procedencia.getProcedenciaPeloNome(lineArray[13].trim())
+				    if (!procedencia) {
+				    	procedencia = Procedencia.OUTRAS
+				    }
+
 				    if (!Pessoa.findByNome(nome)) {
 				    	
+				    	String endereco = lineArray[17].trim()
+				    	String bairro = lineArray[18].trim()
+				    	String fone = ""
+				    	String email = ""
+				    	def fones = []
+				    	if(lineArray.length > 19) {
+					    	fone = lineArray[19].trim()
+					    	fones << fone
+					    	if(lineArray.length > 20) {
+					    		email = lineArray[20].trim()
+					    	}
+					    }
+
+					    def profissao = Profissao.findByNome(lineArray[15].trim())
+					    def sangue = sc.Sangue.getSanguePeloNome(lineArray[16].trim())
+
 						def pessoa = new Pessoa(nome:nome,
 												nivelDeCrescimento:nivelDeCrescimento, 
 												estadoCivil: EstadoCivil.SOLTEIRO, 
 												sexo: sexo,
-												procedencia: Procedencia.CONVERTEU_SE_EM_NOSSO_MEIO,
+												procedencia: procedencia,
 												grupoCaseiro:grupoCaseiro,
 												integracao:integracao,
 												nascimento:nascimento,
-												apelido:apelido
+												apelido:apelido,
+												endereco: new Endereco(rua:endereco),
+												bairro:bairro,
+												telefones:fones,
+												email:email,
+												profissao:profissao,
+												sangue:sangue,
+
 											   ).save(failOnError:true)
 
-						pessoaMap[lineArray[0]] = pessoa.id
+						try {
+							Integer cod = Integer.parseInt(lineArray[0].trim())
+							Integer codConjuge = Integer.parseInt(lineArray[5].trim())
+
+							pessoaMap[cod] = [pessoaObj:pessoa, nomeComp:lineArray[3].trim(), nomeDiscipulador:lineArray[2], codConjuge:codConjuge]
+						}
+						catch(Exception e) {
+							
+						}
+						
+						
+						
 				    }
 
 					
 				}
 			}
-			println "end"
 			fileReader.close();
+			println "importing Pessoas - FINISHED"
 		} catch (e) {
 			println e.printStackTrace()
 		}
+		println "linking relations between Pessoas..."
+		def pessoaCount = pessoaMap.size()
+		def i = 0
+		def pessoaLinked = 0
+		for(Integer pessoaTVS_ID_1 : pessoaMap.keySet()) {
+			for(Integer pessoaTVS_ID_2 : pessoaMap.keySet()) {
+				if (pessoaMap[pessoaTVS_ID_1].codConjuge == pessoaTVS_ID_2) {
+					pessoaMap[pessoaTVS_ID_1].pessoaObj.conjuge = pessoaMap[pessoaTVS_ID_2].pessoaObj
+					pessoaMap[pessoaTVS_ID_1].pessoaObj.save(flush:true)
+					break
+				}
+			}
+			pessoaMap[pessoaTVS_ID_1].pessoaObj.companheiro = Pessoa.findByNomeIlike("%" + pessoaMap[pessoaTVS_ID_1].nomeComp + "%")
+			pessoaMap[pessoaTVS_ID_1].pessoaObj.discipulador = Pessoa.findByNomeIlike("%" + pessoaMap[pessoaTVS_ID_1].nomeDiscipulador + "%")
+			pessoaMap[pessoaTVS_ID_1].pessoaObj.save(flush:true)
+			pessoaLinked++
+			i++
+			if(pessoaLinked == 9) {
+				pessoaLinked = 0
+				def percent = (i/pessoaCount) * 100
+				println "Completed: ${percent}%"
+			}
+		}
+
+		println "linking relations between Pessoas - FINISHED"
+
     }
     def columns = ["cod":0,
 			    	"Nome":1,

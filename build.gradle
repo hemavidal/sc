@@ -75,6 +75,8 @@ dependencyManagement {
 }
 
 dependencies {
+    runtime 'mysql:mysql-connector-java:5.1.29'
+    
     compile "org.springframework.boot:spring-boot-starter-logging"
     compile "org.springframework.boot:spring-boot-starter-actuator"
     compile "org.springframework.boot:spring-boot-autoconfigure"
