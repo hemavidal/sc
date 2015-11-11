@@ -80,4 +80,26 @@
 		</div>
 
 	</div>
+
+	<div class="dataTable_wrapper">
+                <table class="table table-striped table-bordered table-hover" id="dataTables-example">
+                    <thead>
+                        <tr>
+                            <th>${message(code: 'usuarios.label', default: 'Usuarios')}</th>
+                            
+                        </tr>
+                    </thead>
+                    <tbody>
+                        
+                        <g:each in="${igreja.usuarios}" status="i" var="usuario">
+                            <tr class="odd gradeX  ${(i % 2) == 0 ? 'even' : 'odd'}">
+                            
+                                <td><g:link controller="usuario" action="show" id="${usuario.id}">${fieldValue(bean: usuario, field: "login")}</g:link></td>
+                            
+                            </tr>
+                        </g:each>
+                    </tbody>
+                </table>
+            </div>
+            <!-- /.table-responsive -->
 </g:if>

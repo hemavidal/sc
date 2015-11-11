@@ -1,4 +1,5 @@
 package sc.model
+import sc.acesso.Usuario
 
 class Igreja {
 
@@ -6,7 +7,7 @@ class Igreja {
 	String estado
 	String pais
 	
-	static hasMany = [setores:Setor]
+	static hasMany = [setores:Setor, usuarios:Usuario]
 	
     static constraints = {
 		cidade(nullable:false, blank: false)

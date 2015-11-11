@@ -42,14 +42,9 @@
         <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
     <![endif]-->
 
-    <r:layoutResources/>
-
 </head>
 
 <body>
-<r:script>
-              alert("ok");
-        </r:script>
     <div id="wrapper">
 
         <!-- Navigation -->
@@ -290,15 +285,12 @@
             searchPessoa();
         });
 
-        $(".igrejaSelect").click(function () {
-            console.log($(this).attr("data-igreja-id"));
-        });
-
-
     });
     </script>
     
-    <r:layoutResources/>
+    <g:if test="${'usuario'.equals(controllerName) && actionName in ['edit', 'create']}">
+        <asset:javascript src="edit_create_user.js"/>
+    </g:if>
 </body>
 
 </html>

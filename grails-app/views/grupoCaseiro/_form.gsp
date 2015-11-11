@@ -63,18 +63,19 @@
 
 	</div>
 </g:if>
-<g:if test="${!'create'.equals(actionName)}">
-	<div class="form-group fieldcontain ${hasErrors(bean: grupoCaseiro, field: 'setor', 'error')} required">
-		<label for="setor" class="col-sm-2 control-label">
-			<g:message code="grupoCaseiro.setor.label" default="Setor" />
-			<span class="required-indicator">*</span>
-		</label>
-		<div class="col-sm-10">
-			<g:select class="form-control" id="setor" name="setor.id" from="${sc.model.Setor.list()}" optionKey="id" required="" value="${grupoCaseiro?.setor?.id}" class="many-to-one" disabled="${'show'.equals(actionName)}"/>
-		</div>
 
+
+<div class="form-group fieldcontain ${hasErrors(bean: grupoCaseiro, field: 'setor', 'error')} required">
+	<label for="setor" class="col-sm-2 control-label">
+		<g:message code="grupoCaseiro.setor.label" default="Setor" />
+		<span class="required-indicator">*</span>
+	</label>
+	<div class="col-sm-10">
+		<select class="form-control" id="" name="setor" ${'show'.equals(actionName) ? 'disabled' : ''}>
+			<g:each in="${sc.model.Setor.list()}">
+				<option value="${it.id}" data-igreja="${it.igreja.id}" ${it.id == grupoCaseiro.setor.id ? 'selected' : ''}>${it.nome}</option>
+			</g:each>
+		</select>
 	</div>
-</g:if>
-<g:else>
-	<g:select class="form-control" id="setor" name="setor.id" from="${sc.model.Setor.list()}" optionKey="id" required="" value="${grupoCaseiro?.setor?.id}" class="many-to-one" hidden=""/>
-</g:else>
+
+</div>

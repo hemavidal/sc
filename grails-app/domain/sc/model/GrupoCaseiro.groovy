@@ -1,10 +1,11 @@
 package sc.model
+import sc.acesso.Usuario
 
 class GrupoCaseiro {
 
 	String nome
 	
-	static hasMany = [pessoas:Pessoa]
+	static hasMany = [pessoas:Pessoa, usuarios:Usuario]
 	static belongsTo = [setor:Setor]
 	
     static constraints = {
