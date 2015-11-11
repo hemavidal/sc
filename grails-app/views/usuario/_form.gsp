@@ -18,7 +18,12 @@
 			<span class="required-indicator">*</span>
 		</label>
 		<div class="col-sm-10">
-			<g:passwordField class="form-control" name="senha" required="" value="${usuario?.senha}" disabled="${'show'.equals(actionName)}"/>
+			<g:if test="${'create'.equals(actionName)}">
+				<g:passwordField class="form-control" name="senha" required="" value=""/>
+			</g:if>
+			<g:else>
+				<g:passwordField class="form-control" name="senha" value=""/>
+			</g:else>
 		</div>
 
 	</div>
@@ -30,12 +35,7 @@
 		<span class="required-indicator">*</span>
 	</label>
 	<div class="col-sm-10">
-		<g:if test="${'show'.equals(actionName)}">
-			<select class="form-control" id="tipo" name="tipo" disabled>
-		</g:if>
-		<g:else>
-			<select class="form-control" id="tipo" name="tipo">
-		</g:else>
+		<select class="form-control" id="tipo" name="tipo" ${'show'.equals(actionName) ? 'disabled' : ''}>
 			<g:each in="${["admin", "igreja", "setor", "grupoCaseiro", "pessoa"]}">
 				<option value="${it}">${it.capitalize()}</option>
 			</g:each>
@@ -43,25 +43,22 @@
 	</div>
 </div>
 
-<div class="form-group fieldcontain ${hasErrors(bean: usuario, field: 'pessoa', 'error')} ">
-	<label for="pessoa" class="col-sm-2 control-label">
-		<g:message code="usuario.pessoa.label" default="Pessoa" />
-		
-	</label>
-	<div class="col-sm-10">
-		<g:if test="${'show'.equals(actionName)}">
-			<select class="many-to-one form-control" id="pessoa" name="pessoa.id" disabled>
-		</g:if>
-		<g:else>
-			<select class="many-to-one form-control" id="pessoa" name="pessoa.id">
-		</g:else>
-			<option value="">Nenhum</option>
-			<g:each in="${sc.model.Pessoa?.list()}">
-				<option value="${it.id}" >${it.nome}</option>
-			</g:each>
+<g:if test="session.user.tipo == 'admin'">
 
-		</select>
+	<div class="form-group fieldcontain ${hasErrors(bean: usuario, field: 'pessoa', 'error')} ">
+		<label for="pessoa" class="col-sm-2 control-label">
+			<g:message code="usuario.pessoa.label" default="Pessoa" />
+			
+		</label>
+		<div class="col-sm-10">
+			<select class="many-to-one form-control" id="pessoa" name="pessoa.id" ${'show'.equals(actionName) ? 'disabled' : ''}>
+				<option value="">Nenhum</option>
+				<g:each in="${sc.model.Pessoa?.list()}">
+					<option value="${it.id}" ${it.id == usuario?.pessoa?.id ? 'selected' : ''}>${it.nome}</option>
+				</g:each>
+
+			</select>
+		</div>
+
 	</div>
-
-</div>
-
+</g:if>

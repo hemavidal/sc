@@ -35,8 +35,8 @@ class PessoaController {
             return
         }
 
-        pessoa.usuario = session.user
         if (pessoa.hasErrors()) {
+            flash.type = "alert-danger"
             respond pessoa.errors, view:'create'
             return
         }
@@ -45,7 +45,8 @@ class PessoaController {
 
         request.withFormat {
             form multipartForm {
-                flash.message = message(code: 'default.created.message', args: [message(code: 'pessoa.label', default: 'Pessoa'), pessoa.id])
+                flash.type = "alert-success"
+                flash.message = message(code: 'default.created.message', args: [message(code: 'pessoa.label', default: 'Pessoa'), pessoa])
                 redirect pessoa
             }
             '*' { respond pessoa, [status: CREATED] }
@@ -64,6 +65,7 @@ class PessoaController {
         }
 
         if (pessoa.hasErrors()) {
+            flash.type = "alert-danger"
             respond pessoa.errors, view:'edit'
             return
         }
@@ -72,7 +74,8 @@ class PessoaController {
 
         request.withFormat {
             form multipartForm {
-                flash.message = message(code: 'default.updated.message', args: [message(code: 'Pessoa.label', default: 'Pessoa'), pessoa.id])
+                flash.type = "alert-success"
+                flash.message = message(code: 'default.updated.message', args: [message(code: 'Pessoa.label', default: 'Pessoa'), pessoa])
                 redirect pessoa
             }
             '*'{ respond pessoa, [status: OK] }
@@ -91,7 +94,8 @@ class PessoaController {
 
         request.withFormat {
             form multipartForm {
-                flash.message = message(code: 'default.deleted.message', args: [message(code: 'Pessoa.label', default: 'Pessoa'), pessoa.id])
+                flash.type = "alert-success"
+                flash.message = message(code: 'default.deleted.message', args: [message(code: 'Pessoa.label', default: 'Pessoa'), pessoa])
                 redirect action:"index", method:"GET"
             }
             '*'{ render status: NO_CONTENT }
@@ -101,6 +105,7 @@ class PessoaController {
     protected void notFound() {
         request.withFormat {
             form multipartForm {
+                flash.type = "alert-danger"
                 flash.message = message(code: 'default.not.found.message', args: [message(code: 'pessoa.label', default: 'Pessoa'), params.id])
                 redirect action: "index", method: "GET"
             }

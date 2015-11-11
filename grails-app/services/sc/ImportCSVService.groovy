@@ -3,10 +3,13 @@ package sc
 import grails.transaction.Transactional
 import java.nio.charset.*
 import sc.model.*
+import sc.acesso.*
 import java.text.*
+import java.util.Random
 
 @Transactional
 class ImportCSVService {
+	Random randomGenerator = new Random()
     def importCampinaGrande(contextPath) {
     	
 
@@ -145,7 +148,7 @@ class ImportCSVService {
 
 					    def profissao = Profissao.findByNome(lineArray[15].trim())
 					    def sangue = sc.Sangue.getSanguePeloNome(lineArray[16].trim())
-
+					    
 						def pessoa = new Pessoa(nome:nome,
 												nivelDeCrescimento:nivelDeCrescimento, 
 												estadoCivil: EstadoCivil.SOLTEIRO, 
@@ -161,9 +164,19 @@ class ImportCSVService {
 												email:email,
 												profissao:profissao,
 												sangue:sangue,
+												situacao:Situacao.ATIVO
+											   ).save(failOnError:true, flush:true)
+						//Generating user
+				      	def userLogin = email
+				      	if (userLogin?.isEmpty() || !userLogin) {
+				      		userLogin = nome.split(' ')[0].toLowerCase() + '_' + randomGenerator.nextInt(5000);
+				      	}
+				      	def senha = 'sc' + '_' + randomGenerator.nextInt(5000);
+					    def usuario = new Usuario(login:userLogin, senha:senha, tipo:'pessoa', pessoa:pessoa).save(flush:true)
+					    pessoa.usuario = usuario
+					    pessoa.save(flush:true)
 
-											   ).save(failOnError:true)
-
+					    //-------------------------------
 						try {
 							Integer cod = Integer.parseInt(lineArray[0].trim())
 							Integer codConjuge = Integer.parseInt(lineArray[5].trim())
@@ -211,6 +224,14 @@ class ImportCSVService {
 		}
 
 		println "linking relations between Pessoas - FINISHED"
+		println "<<<<<<<<<<< -- FINISHED SCRIPT -- >>>>>>>>>>>>"
+		println "Igrejas: ${Igreja.count()}"
+		println "Setores: ${Setor.count()}"
+		println "Grupos Caseiros: ${GrupoCaseiro.count()}"
+		println "Pessoas: ${Pessoa.count()}"
+		println "Usuarios: ${Usuario.count()}"
+		println "Profissao: ${Profissao.count()}"
+		println "<<<<<<<<<<< -- --------------- -- >>>>>>>>>>>>"
 
     }
     def columns = ["cod":0,

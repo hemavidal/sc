@@ -1,7 +1,5 @@
 <%@ page import="sc.model.Pessoa" %>
 
-
-
 <div class="form-group ${hasErrors(bean: pessoa, field: 'nome', 'error')} required">
 	<label for="nome" class="col-sm-2 control-label">
 		<g:message code="pessoa.nome.label" default="Nome" />
@@ -19,17 +17,6 @@
 	<div class="col-sm-10">
 		<g:textField class="form-control" name="apelido" value="${pessoa?.apelido}" disabled="${'show'.equals(actionName)}"/>
 	</div>
-</div>
-
-<div class="form-group fieldcontain ${hasErrors(bean: pessoa, field: 'nivelDeCrescimento', 'error')} required">
-	<label for="nivelDeCrescimento" class="col-sm-2 control-label">
-		<g:message code="pessoa.nivelDeCrescimento.label" default="Nivel De Crescimento" />
-		<span class="required-indicator">*</span>
-	</label>
-	<div class="col-sm-10">
-		<g:select class="form-control" name="nivelDeCrescimento" from="${sc.NivelDeCrescimento?.values()}" keys="${sc.NivelDeCrescimento.values()*.name()}" required="" value="${pessoa?.nivelDeCrescimento?.name()}"  disabled="${'show'.equals(actionName)}"/>
-	</div>
-
 </div>
 
 <div class="form-group fieldcontain ${hasErrors(bean: pessoa, field: 'estadoCivil', 'error')} required">
@@ -50,60 +37,6 @@
 	</label>
 	<div class="col-sm-10">
 		<g:select class="form-control" name="sexo" from="${sc.Sexo?.values()}" keys="${sc.Sexo.values()*.name()}" required="" value="${pessoa?.sexo?.name()}"  disabled="${'show'.equals(actionName)}"/>
-	</div>
-
-</div>
-
-<div class="form-group fieldcontain ${hasErrors(bean: pessoa, field: 'procedencia', 'error')} required">
-	<label for="procedencia" class="col-sm-2 control-label">
-		<g:message code="pessoa.procedencia.label" default="Procedencia" />
-		<span class="required-indicator">*</span>
-	</label>
-	<div class="col-sm-10">
-		<g:select class="form-control" name="procedencia" from="${sc.Procedencia?.values()}" keys="${sc.Procedencia.values()*.name()}" required="" value="${pessoa?.procedencia?.name()}"  disabled="${'show'.equals(actionName)}"/>
-	</div>
-
-</div>
-
-<div class="form-group fieldcontain ${hasErrors(bean: pessoa, field: 'companheiro', 'error')}">
-	<label for="companheiro" class="col-sm-2 control-label">
-		<g:message code="pessoa.companheiro.label" default="Companheiro" />		
-	</label>
-	<div class="col-sm-10">
-		<g:if test="${'show'.equals(actionName)}">
-			<select class="many-to-one form-control" id="companheiro" name="companheiro.id" disabled>
-		</g:if>
-		<g:else>
-			<select class="many-to-one form-control" id="companheiro" name="companheiro.id">
-		</g:else>
-			<option value="" >Nenhum</option>
-			<g:each in="${sc.model.Pessoa?.list()}">
-				<option value="${it.id}" ${pessoa.companheiro?.id == it?.id ? 'selected' : ''}>${it.nome}</option>
-			</g:each>
-
-		</select>
-
-	</div>
-
-</div>
-
-<div class="form-group fieldcontain ${hasErrors(bean: pessoa, field: 'discipulador', 'error')}">
-	<label for="discipulador" class="col-sm-2 control-label">
-		<g:message code="pessoa.discipulador.label" default="Discipulador" />
-	</label>
-	<div class="col-sm-10">
-		<g:if test="${'show'.equals(actionName)}">
-			<select class="many-to-one form-control" id="discipulador" name="discipulador.id" disabled>
-		</g:if>
-		<g:else>
-			<select class="many-to-one form-control" id="discipulador" name="discipulador.id">
-		</g:else>		
-			<option value="" >Nenhum</option>
-			<g:each in="${sc.model.Pessoa?.list()}">
-				<option value="${it.id}" ${pessoa.discipulador?.id == it?.id ? 'selected' : ''}>${it.nome}</option>
-			</g:each>
-
-		</select>
 	</div>
 
 </div>
@@ -202,13 +135,8 @@
 		<g:message code="pessoa.profissao.label" default="Profissao" />
 	</label>
 	<div class="col-sm-10">
-		<g:if test="${'show'.equals(actionName)}">
-			<select class="many-to-one form-control" id="profissao" name="profissao.id" disabled>
-		</g:if>
-		<g:else>
-			<select class="many-to-one form-control" id="profissao" name="profissao.id">
-		</g:else>
-			<option value="" >Desempregado</option>
+		<select class="many-to-one form-control" id="profissao" name="profissao.id" ${'show'.equals(actionName) ? 'disabled' : ''}>
+			<option value="" >Nenhuma</option>
 			<g:each in="${sc.model.Profissao?.list()}">
 				<option value="${it.id}" ${pessoa.profissao?.id == it?.id ? 'selected' : ''}>${it.nome}</option>
 			</g:each>
@@ -225,38 +153,117 @@
 		<g:message code="pessoa.sangue.label" default="Sangue" />
 	</label>
 	<div class="col-sm-10">
-		<g:if test="${'show'.equals(actionName)}">
-			<select class="form-control" id="sangue" name="sangue" disabled>
-		</g:if>
-		<g:else>
-			<select class="form-control" id="sangue" name="sangue">
-		</g:else>
+		<select class="form-control" id="sangue" name="sangue" ${'show'.equals(actionName) ? 'disabled' : ''}>
 			<option value=""></option>
 			<g:each in="${sc.Sangue?.values()}">
-				<option value="${it.name()}">${it.getNome()}</option>
+				<option value="${it.name()}" ${pessoa.sangue == it ? 'selected' : ''}>${it.getNome()}</option>
 			</g:each>
 		</select>
 	</div>
 
 </div>
 
-<div class="form-group fieldcontain ${hasErrors(bean: pessoa, field: 'grupoCaseiro', 'error')}">
-	<label for="grupoCaseiro" class="col-sm-2 control-label">
-		<g:message code="pessoa.grupoCaseiro.label" default="Grupo Caseiro" />
-	</label>
-	<div class="col-sm-10">
-		<g:if test="${'show'.equals(actionName)}">
-			<select class="one-to-one form-control" id="grupoCaseiro" name="grupoCaseiro.id" disabled>
-		</g:if>
-		<g:else>
-			<select class="one-to-one form-control" id="grupoCaseiro" name="grupoCaseiro.id">
-		</g:else>
-			<g:each in="${sc.model.GrupoCaseiro?.list()}">
-				<option value="${it.id}" ${pessoa.grupoCaseiro.id == it?.id ? 'selected' : ''}>${it.nome}</option>
-			</g:each>
+<g:if test="${session.user.tipo == 'admin'}">
+	<fieldset class="embedded"><legend><g:message code="outrasOpcoes.label" default="Outras Opções" /></legend>
+		<div class="form-group fieldcontain ${hasErrors(bean: pessoa, field: 'grupoCaseiro', 'error')}">
+			<label for="grupoCaseiro" class="col-sm-2 control-label">
+				<g:message code="pessoa.grupoCaseiro.label" default="Grupo Caseiro" />
+			</label>
+			<div class="col-sm-10">
+				<g:if test="${'show'.equals(actionName)}">
+					<select class="one-to-one form-control" id="grupoCaseiro" name="grupoCaseiro.id" disabled>
+				</g:if>
+				<g:else>
+					<select class="one-to-one form-control" id="grupoCaseiro" name="grupoCaseiro.id">
+				</g:else>
+					<g:each in="${sc.model.GrupoCaseiro?.list()}">
+						<option value="${it.id}" ${pessoa?.grupoCaseiro?.id == it?.id ? 'selected' : ''}>${it.nome}</option>
+					</g:each>
 
-		</select>
+				</select>
 
-	</div>
+			</div>
 
-</div>
+		</div>
+	
+		<div class="form-group fieldcontain ${hasErrors(bean: pessoa, field: 'companheiro', 'error')}">
+			<label for="companheiro" class="col-sm-2 control-label">
+				<g:message code="pessoa.companheiro.label" default="Companheiro" />		
+			</label>
+			<div class="col-sm-10">
+				<select class="many-to-one form-control" id="companheiro" name="companheiro.id" ${'show'.equals(actionName) ? 'disabled' : ''}>
+					<option value="" >Nenhum</option>
+					<g:each in="${sc.model.Pessoa?.list()}">
+						<option value="${it.id}" ${pessoa.companheiro?.id == it?.id ? 'selected' : ''}>${it.nome}</option>
+					</g:each>
+
+				</select>
+			</div>
+		</div>
+
+		<div class="form-group fieldcontain ${hasErrors(bean: pessoa, field: 'discipulador', 'error')}">
+			<label for="discipulador" class="col-sm-2 control-label">
+				<g:message code="pessoa.discipulador.label" default="Discipulador" />
+			</label>
+			<div class="col-sm-10">
+				<select class="many-to-one form-control" id="discipulador" name="discipulador.id" ${'show'.equals(actionName) ? 'disabled' : ''}>
+					<option value="" >Nenhum</option>
+					<g:each in="${sc.model.Pessoa?.list()}">
+						<option value="${it.id}" ${pessoa.discipulador?.id == it?.id ? 'selected' : ''}>${it.nome}</option>
+					</g:each>
+
+				</select>
+			</div>
+		</div>
+
+		<div class="form-group fieldcontain ${hasErrors(bean: pessoa, field: 'nivelDeCrescimento', 'error')} required">
+			<label for="nivelDeCrescimento" class="col-sm-2 control-label">
+				<g:message code="pessoa.nivelDeCrescimento.label" default="Nivel De Crescimento" />
+				<span class="required-indicator">*</span>
+			</label>
+			<div class="col-sm-10">
+				<g:select class="form-control" name="nivelDeCrescimento" from="${sc.NivelDeCrescimento?.values()}" keys="${sc.NivelDeCrescimento.values()*.name()}" required="" value="${pessoa?.nivelDeCrescimento?.name()}"  disabled="${'show'.equals(actionName)}"/>
+			</div>
+
+		</div>
+
+		<div class="form-group fieldcontain ${hasErrors(bean: pessoa, field: 'procedencia', 'error')} required">
+			<label for="procedencia" class="col-sm-2 control-label">
+				<g:message code="pessoa.procedencia.label" default="Procedencia" />
+				<span class="required-indicator">*</span>
+			</label>
+			<div class="col-sm-10">
+				<g:select class="form-control" name="procedencia" from="${sc.Procedencia?.values()}" keys="${sc.Procedencia.values()*.name()}" required="" value="${pessoa?.procedencia?.name()}"  disabled="${'show'.equals(actionName)}"/>
+			</div>
+
+		</div>
+
+		<div class="form-group fieldcontain ${hasErrors(bean: pessoa, field: 'batizado', 'error')}">
+			<label for="batizado" class="col-sm-2 control-label">
+				<g:message code="pessoa.batizado.label" default="Batizado" />
+			</label>
+			<div class="col-sm-10">
+				<div class="checkbox">
+					<label>
+						<g:checkBox name="batizado" value="${pessoa?.batizado}" disabled="${'show'.equals(actionName)}"/>
+					</label>
+				</div>
+
+			</div>
+
+		</div>
+
+		<div class="form-group fieldcontain ${hasErrors(bean: pessoa, field: 'situacao', 'error')} required">
+			<label for="situacao" class="col-sm-2 control-label">
+				<g:message code="pessoa.situacao.label" default="Situação" />
+			</label>
+			<div class="col-sm-10">
+				<g:select class="form-control" name="situacao" from="${sc.Situacao?.values()}" keys="${sc.Situacao.values()*.name()}" required="" value="${pessoa?.situacao?.name()}"  disabled="${'show'.equals(actionName)}"/>
+			</div>
+
+		</div>
+
+
+	</fieldset>
+</g:if>
+

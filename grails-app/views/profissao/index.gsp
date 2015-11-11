@@ -8,6 +8,9 @@
 		<title><g:message code="default.list.label" args="[entityName]" /></title>
 	</head>
 	<body>
+        <g:if test="${flash.message}">
+            <div class="message ${flash.type}" role="status">${flash.message}</div>
+        </g:if>
 		<h2>${Profissao.count()}</h2>
 		<div class="panel-body">
                 <div class="dataTable_wrapper">

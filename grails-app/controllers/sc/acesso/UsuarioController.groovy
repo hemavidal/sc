@@ -33,12 +33,12 @@ class UsuarioController {
     }
 
     def index(Integer max) {
-        params.max = Math.min(max ?: 10, 100)
-        respond Usuario.list(params), model:[usuarioInstanceCount: Usuario.count()]
+        respond Usuario.list(), model:[usuarioCount: Usuario.count()]
     }
 
-    def show(Usuario usuarioInstance) {
-        respond usuarioInstance
+    def show(Usuario usuario) {
+        usuario.senha = ''
+        respond usuario
     }
 
     def create() {
@@ -46,68 +46,76 @@ class UsuarioController {
     }
 
     @Transactional
-    def save(Usuario usuarioInstance) {
-        if (usuarioInstance == null) {
+    def save(Usuario usuario) {
+        if (usuario == null) {
             notFound()
             return
         }
 
-        if (usuarioInstance.hasErrors()) {
-            respond usuarioInstance.errors, view:'create'
+        if (usuario.hasErrors()) {
+            respond usuario.errors, view:'create'
             return
         }
 
-        usuarioInstance.save flush:true
+        usuario.save flush:true
 
         request.withFormat {
             form multipartForm {
-                flash.message = message(code: 'default.created.message', args: [message(code: 'usuario.label', default: 'Usuario'), usuarioInstance.id])
-                redirect usuarioInstance
+                flash.message = message(code: 'default.created.message', args: [message(code: 'usuario.label', default: 'Usuario'), usuario.id])
+                redirect usuario
             }
-            '*' { respond usuarioInstance, [status: CREATED] }
+            '*' { respond usuario, [status: CREATED] }
         }
     }
 
-    def edit(Usuario usuarioInstance) {
-        respond usuarioInstance
+    def edit(Usuario usuario) {
+        println usuario.senha
+        usuario.senha = ''
+        respond usuario
     }
 
     @Transactional
-    def update(Usuario usuarioInstance) {
-        if (usuarioInstance == null) {
+    def update(Usuario usuario) {
+        if ((usuario.senha && usuario.senha.trim().isEmpty()) || !usuario.senha) {
+            def usuarioDoDB = Usuario.findById(usuario.id)
+            println "${usuarioDoDB.login}: ${usuarioDoDB.senha}"
+            usuario.senha = usuarioDoDB.senha
+        } 
+
+        if (usuario == null) {
             notFound()
             return
         }
 
-        if (usuarioInstance.hasErrors()) {
-            respond usuarioInstance.errors, view:'edit'
+        if (usuario.hasErrors()) {
+            respond usuario.errors, view:'edit'
             return
         }
 
-        usuarioInstance.save flush:true
+        usuario.save flush:true
 
         request.withFormat {
             form multipartForm {
-                flash.message = message(code: 'default.updated.message', args: [message(code: 'Usuario.label', default: 'Usuario'), usuarioInstance.id])
-                redirect usuarioInstance
+                flash.message = message(code: 'default.updated.message', args: [message(code: 'Usuario.label', default: 'Usuario'), usuario.id])
+                redirect usuario
             }
-            '*'{ respond usuarioInstance, [status: OK] }
+            '*'{ respond usuario, [status: OK] }
         }
     }
 
     @Transactional
-    def delete(Usuario usuarioInstance) {
+    def delete(Usuario usuario) {
 
-        if (usuarioInstance == null) {
+        if (usuario == null) {
             notFound()
             return
         }
 
-        usuarioInstance.delete flush:true
+        usuario.delete flush:true
 
         request.withFormat {
             form multipartForm {
-                flash.message = message(code: 'default.deleted.message', args: [message(code: 'Usuario.label', default: 'Usuario'), usuarioInstance.id])
+                flash.message = message(code: 'default.deleted.message', args: [message(code: 'Usuario.label', default: 'Usuario'), usuario.id])
                 redirect action:"index", method:"GET"
             }
             '*'{ render status: NO_CONTENT }

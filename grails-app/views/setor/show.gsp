@@ -12,7 +12,7 @@
 		<div id="show-setor" class="content scaffold-show" role="main">
 			<h1>${setor.nome}</h1>
 			<g:if test="${flash.message}">
-			<div class="message" role="status">${flash.message}</div>
+                <div class="message ${flash.type}" role="status">${flash.message}</div>
 			</g:if>
 			
 			<div class="panel-body">

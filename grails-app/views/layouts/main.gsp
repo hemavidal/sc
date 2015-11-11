@@ -42,12 +42,14 @@
         <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
     <![endif]-->
 
-    <g:layoutHead/>
+    <r:layoutResources/>
 
 </head>
 
 <body>
-
+<r:script>
+              alert("ok");
+        </r:script>
     <div id="wrapper">
 
         <!-- Navigation -->
@@ -267,15 +269,25 @@
                 <g:if test="${params.search}">
                 "oSearch": {"sSearch": "${params.search}"},
                 </g:if>
-                responsive: true
+                responsive: true,
+                "iDisplayLength": 50
         });
 
-        $("#searchButton").click(function (){
+        function searchPessoa() {
             if ($("searchInput").val() != '') {
                 var contextPath='<%=request.getContextPath()%>';
                 window.location.href = contextPath + "/pessoa?search=" + $("#searchInput").val();
-
             }
+        }
+
+        $("#searchInput").keypress(function(e) {
+            if(e.which == 13) {
+                searchPessoa();          
+            }
+        });
+
+        $("#searchButton").click(function (){
+            searchPessoa();
         });
 
         $(".igrejaSelect").click(function () {
@@ -285,7 +297,8 @@
 
     });
     </script>
-
+    
+    <r:layoutResources/>
 </body>
 
 </html>

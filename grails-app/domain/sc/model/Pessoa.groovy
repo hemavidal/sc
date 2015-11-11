@@ -5,6 +5,7 @@ import sc.NivelDeCrescimento
 import sc.Procedencia
 import sc.Sangue
 import sc.Sexo
+import sc.Situacao
 import sc.model.GrupoCaseiro
 import sc.acesso.Usuario
 
@@ -27,6 +28,8 @@ class Pessoa {
 	String email
 	GrupoCaseiro grupoCaseiro
 	Usuario usuario 
+	Situacao situacao
+	boolean batizado = true
 
 	Endereco endereco
 
@@ -47,6 +50,8 @@ class Pessoa {
 		usuario nullable:true, blank:true
 		endereco nullable:true, blank:true
 		telefones nullable:true, blank:true
+
+		situacao nullable:false, blank:false
     }
 
     public String toString() {
