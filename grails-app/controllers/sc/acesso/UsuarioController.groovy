@@ -47,6 +47,8 @@ class UsuarioController {
 
     @Transactional
     def save(Usuario usuario) {
+        println params
+
         if (usuario == null) {
             notFound()
             return
@@ -76,10 +78,11 @@ class UsuarioController {
 
     @Transactional
     def update(Usuario usuario) {
+        println params
         if ((usuario.senha && usuario.senha.trim().isEmpty()) || !usuario.senha) {
             def usuarioDoDB = Usuario.findById(usuario.id)
             println "${usuarioDoDB.login}: ${usuarioDoDB.senha}"
-            usuario.senha = usuarioDoDB.senha
+            usuario.senha = usuarioDoDB.getPersistentValue("senha")
         } 
 
         if (usuario == null) {

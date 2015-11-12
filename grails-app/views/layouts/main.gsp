@@ -277,7 +277,10 @@
 
         $("#searchInput").keypress(function(e) {
             if(e.which == 13) {
-                searchPessoa();          
+                console.log('"' + $(this).val() + '"');
+                if ($(this).val() && $(this).val().trim() !== ''){
+                    searchPessoa();
+                }
             }
         });
 
@@ -287,8 +290,8 @@
 
     });
     </script>
-    
-    <g:if test="${'usuario'.equals(controllerName) && actionName in ['edit', 'create']}">
+
+    <g:if test="${'usuario'.equals(controllerName) && actionName in ['edit', 'create', 'save', 'update']}">
         <asset:javascript src="edit_create_user.js"/>
     </g:if>
 </body>

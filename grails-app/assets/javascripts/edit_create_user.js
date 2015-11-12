@@ -21,12 +21,59 @@ $(document).ready(function(){
 			$("#setores").hide();
 			$("#gruposCaseiros").hide();
 		}
+		//$("#igrejas").change();
+		// $("#setores").change();
+		// $("#gruposCaseiros").change();
 	});
 
 	$("#igrejas").change(function(){
-		$("#setores option[data-igreja!=" + $(this).find('option:selected').attr('data-igreja') + "]").hide();
-		alert("ok");
-
+		var igreja = $(this);
+		var firstOptionToSelect = true;
+		$("#setores").find("option").each(function(){
+			if ($(this).attr("data-igreja") != igreja.find('option:selected').val()) {
+				$(this).hide();
+			} else {
+				if (firstOptionToSelect) {
+					firstOptionToSelect = false;
+					$("#setores").val($(this).val());
+				}
+				$(this).show();
+			}
+		});
+		$("#setores").change();
 	});
+
+	$("#setores").change(function(){
+		var setor = $(this);
+		var firstOptionToSelect = true;
+		$("#gruposCaseiros").find("option").each(function(){
+			if ($(this).attr("data-setor") != setor.find('option:selected').val()) {
+				$(this).hide();
+			} else {
+				if (firstOptionToSelect) {
+					firstOptionToSelect = false;
+					$("#gruposCaseiros").val($(this).val());
+				}
+				$(this).show();
+			}
+		});
+		
+	});
+
+	if ($("#extra-data").attr('data-igreja').trim() != "") {
+		$("#igrejas").val($("#extra-data").attr('data-igreja'));
+	}
+	$("#igrejas").change();
+	if ($("#extra-data").attr('data-setor').trim() != "") {
+		$("#setores").val($("#extra-data").attr('data-setor'));
+	}
+	$("#setores").change();
+	if ($("#extra-data").attr('data-grupoCaseiro').trim() != "") {
+		$("#gruposCaseiros").val($("#extra-data").attr('data-grupoCaseiro'));
+	}
+	$("#gruposCaseiros").change();
+
+	$("#tipo").change();
+
 
 });

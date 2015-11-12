@@ -73,7 +73,7 @@
 	<div class="col-sm-10">
 		<select class="form-control" id="" name="setor" ${'show'.equals(actionName) ? 'disabled' : ''}>
 			<g:each in="${sc.model.Setor.list()}">
-				<option value="${it.id}" data-igreja="${it.igreja.id}" ${it.id == grupoCaseiro.setor.id ? 'selected' : ''}>${it.nome}</option>
+				<option value="${it.id}" data-igreja="${it.igreja.id}" ${it.id == grupoCaseiro?.setor?.id ? 'selected' : ''}>${it.nome}</option>
 			</g:each>
 		</select>
 	</div>
