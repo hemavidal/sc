@@ -59,6 +59,22 @@ class UsuarioController {
             return
         }
 
+        switch(usuario.tipo) {
+            case 'igreja':
+                usuario.setor = null
+                usuario.grupoCaseiro = null
+                break    
+            case 'setor':
+                usuario.igreja = null
+                usuario.grupoCaseiro = null    
+                break
+            case 'grupoCaseiro':
+                usuario.igreja = null
+                usuario.setor = null
+                break
+            break
+        }
+
         usuario.save flush:true
 
         request.withFormat {
@@ -78,12 +94,13 @@ class UsuarioController {
 
     @Transactional
     def update(Usuario usuario) {
-        println params
-        if ((usuario.senha && usuario.senha.trim().isEmpty()) || !usuario.senha) {
-            def usuarioDoDB = Usuario.findById(usuario.id)
-            println "${usuarioDoDB.login}: ${usuarioDoDB.senha}"
-            usuario.senha = usuarioDoDB.getPersistentValue("senha")
-        } 
+        if (!usuario.senha) {
+            println "persistent senha: ${usuario.getPersistentValue("senha")}" 
+            usuario.senha = usuario.getPersistentValue("senha") + ""
+        } else if ( usuario.senha.trim().isEmpty() ) {
+            println "persistent senha: ${usuario.getPersistentValue("senha")}" 
+            usuario.senha = usuarioDoDB.getPersistentValue("senha") + ""
+        }
 
         if (usuario == null) {
             notFound()
@@ -93,6 +110,22 @@ class UsuarioController {
         if (usuario.hasErrors()) {
             respond usuario.errors, view:'edit'
             return
+        }
+
+        switch(usuario.tipo) {
+            case 'igreja':
+                usuario.setor = null
+                usuario.grupoCaseiro = null
+                break    
+            case 'setor':
+                usuario.igreja = null
+                usuario.grupoCaseiro = null    
+                break
+            case 'grupoCaseiro':
+                usuario.igreja = null
+                usuario.setor = null
+                break
+            break
         }
 
         usuario.save flush:true

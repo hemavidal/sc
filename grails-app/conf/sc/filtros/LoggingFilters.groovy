@@ -4,24 +4,27 @@ class LoggingFilters {
 
     def niveisDePermissao = ["admin":5, "igreja":4, "setor":3, "grupoCaseiro":2, "pessoa":1]
 
-/*    def mapaDePermissoes = [ "igreja"       : ["igreja": ["show", "edit", "update"],
+    def mapaDePermissoes = [ "igreja"       : [
+                                               "igreja": ["show", "edit", "update"],
                                                "setor" : ["index", "create", "edit", "show", "delete", "update"],
                                                "grupoCaseiro" : ["index", "create", "edit", "show", "delete", "update"],
                                                "pessoa" : ["index", "create", "edit", "show", "delete", "update"]
                                               ],
-                             "setor"        :  ["setor" : ["index", "create", "edit", "show", "delete", "update"],
+                             "setor"        :  [
+                                                "setor" : ["edit", "show", "update"],
                                                 "grupoCaseiro" : ["index", "create", "edit", "show", "delete", "update"],
                                                 "pessoa" : ["index", "create", "edit", "show", "delete", "update"]
                                                ],
-                             "grupoCaseiro" :  ["grupoCaseiro" : ["index", "create", "edit", "show", "delete", "update"],
+                             "grupoCaseiro" :  [
+                                                "grupoCaseiro" : ["edit", "show", "update"],
                                                 "pessoa" : ["index", "create", "edit", "show", "delete", "update"]
                                                ],
-                             "pessoa" :  ["grupoCaseiro" : ["index", "create", "edit", "show", "delete", "update"],
-                                                "pessoa" : ["index", "create", "edit", "show", "delete", "update"]
+                             "pessoa"       :  [
+                                                "pessoa" : ["edit", "show", "update"]
                                                ]                                               
 
                            ]
-*/
+
     def filters = {
         habilitarAcessoSomenteParaSessaoAberta(controller:'*', action:'*') {
             before = {
@@ -30,7 +33,13 @@ class LoggingFilters {
                       redirect (controller: "usuario", action: "login")
                       return false
                   }
+
+                  if ( session.user.tipo != admin ) {
+                      
+                     
+                  }
                 }
+
             }
         }
 
