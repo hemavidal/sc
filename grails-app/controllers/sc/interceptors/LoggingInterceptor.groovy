@@ -1,8 +1,8 @@
-package sc.filtros
+package sc.interceptors
 
-class LoggingFilters {
 
-    /*def niveisDePermissao = ["admin":5, "igreja":4, "setor":3, "grupoCaseiro":2, "pessoa":1]
+class LoggingInterceptor {
+	/*def niveisDePermissao = ["admin":5, "igreja":4, "setor":3, "grupoCaseiro":2, "pessoa":1]
 
     def mapaDePermissoes = [ "igreja"       : [
                                                "igreja": ["show", "edit", "update"],
@@ -24,19 +24,22 @@ class LoggingFilters {
                                                ]                                               
 
                            ]*/
+    LoggingInterceptor() {
+		matchAll().excludes(controller:"usuario", action:~/(login|autenticar)/)
+		matchAll().excludes(controller:"assets")
+	}
 
-    def filters = {
-        habilitarAcessoSomenteParaSessaoAberta(controller:'*', action:'*') {
-            before = {
-                if (controllerName != "assets") {
-                  if (!session.user && !(actionName in ["login", "autenticar"])) {
-                      redirect (controller: "usuario", action: "login")
-                      return false
-                  }
-                }
-
-            }
+    boolean before() { 
+		if ( !session.user && !(actionName in ['login', 'autenticar'])) {
+			redirect (controller: "usuario", action: "login")
+			return false
         }
+    	return true 
+    }
 
+    boolean after() { true }
+
+    void afterView() {
+        // no-op
     }
 }
