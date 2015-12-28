@@ -33,11 +33,6 @@ class LoggingFilters {
                       redirect (controller: "usuario", action: "login")
                       return false
                   }
-
-                  if ( session.user.tipo != admin ) {
-                      
-                     
-                  }
                 }
 
             }
