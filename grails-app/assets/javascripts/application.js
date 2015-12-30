@@ -8,6 +8,7 @@
 //= require jquery-2.1.3.js
 //= require_self
 //= require bootstrap-all
+//= require responsive-sidebar-navigation-all
 
 
 

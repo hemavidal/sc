@@ -13,7 +13,7 @@
 			<g:if test="${flash.message}">
 				<div class="message ${flash.type}" role="status">${flash.message}</div>
 			</g:if>
-			<div class="panel-body">
+			
                 <div class="dataTable_wrapper">
                     <table class="table table-striped table-bordered table-hover" id="dataTables-example">
                         <thead>
@@ -35,7 +35,7 @@
                     </table>
                 </div>
                 <!-- /.table-responsive -->
-            </div>
+            
 			
 			<g:link class="btn btn-success new" action="create" >${message(code: 'default.button.create.label', default: 'Create')}</g:link>
 			

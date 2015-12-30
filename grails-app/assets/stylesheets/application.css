@@ -10,4 +10,5 @@
 *= require mobile
 *= require_self
 *= require bootstrap-all
+*= require responsive-sidebar-navigation-all
 */
