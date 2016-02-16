@@ -288,6 +288,15 @@
             searchPessoa();
         });
 
+
+        $("a.editInline").css("display","none");
+
+        $('li').on('mouseover mouseout',function(){
+             $(this).find('.editInline').toggle();
+             //find the closest li and find its children with class editInLine and 
+             //toggle its display using 'toggle()'
+        });
+
     });
     </script>
 

@@ -14,7 +14,19 @@
 			<g:if test="${flash.message}">
 				<div class="message ${flash.type}" role="status">${flash.message}</div>
 			</g:if>
-			
+			<div id="list-setor" class="content scaffold-list" role="main">
+                <div class="row">
+                  <g:each in="${igreja.setores}" status="i" var="setor">
+                    <div class="col-xs-6 col-md-3">
+                        <g:link class="thumbnail" style="text-align: center;" action="show" id="${setor.id}">
+                            <asset:image width="50px"src="setor-icon-2.png"/>
+                            ${fieldValue(bean: setor, field: "nome")}
+                        </g:link>
+                    </div>
+                  </g:each>
+                </div>
+            </div>
+            <!--
 			<div class="panel-body">
                 <div class="dataTable_wrapper">
                     <table class="table table-striped table-bordered table-hover" id="dataTables-example">
@@ -36,8 +48,9 @@
                         </tbody>
                     </table>
                 </div>
-                <!-- /.table-responsive -->
-            </div>
+                 /.table-responsive 
+            </div>-->
+
             <fieldset class="buttons">
                 <g:link class="edit btn btn-warning" action="edit" resource="${igreja}"><g:message code="default.button.edit.label" default="Edit" /></g:link>
                 <g:actionSubmit class="delete btn btn-danger" action="delete" value="${message(code: 'default.button.delete.label', default: 'Delete')}" onclick="return confirm('${message(code: 'default.button.delete.confirm.message', default: 'Are you sure?')}');" />
