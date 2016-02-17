@@ -10,7 +10,7 @@
 	<body>
         <div id="list-igreja" class="content scaffold-list" role="main">
             <h1><g:message code="default.list.label" args="[entityName]" /></h1>
-            <div class="row">
+            <div class="row" style="align-items: center;">
               <g:each in="${igrejaList}" status="i" var="igreja">
                 <div class="col-xs-6 col-md-3">
                     <g:link class="thumbnail" style="text-align: center;" action="show" id="${igreja.id}">

@@ -20,187 +20,51 @@
 
     <title>Sistema de Cadastro</title>
 
-    <!-- MetisMenu CSS -->
-    <link href="${resource(dir: 'bootstrap-theme/bower_components/metisMenu/dist/', file: 'metisMenu.min.css')}" rel="stylesheet">
+    <asset:stylesheet src="application.css"/>
 
-    <!-- DataTables CSS -->
-    <link href="${resource(dir: 'bootstrap-theme/bower_components/datatables-plugins/integration/bootstrap/3/', file: 'dataTables.bootstrap.css')}" rel="stylesheet">
+    <link rel="stylesheet" href="assets/demo.css">
+    <link rel="stylesheet" href="assets/sidebar-left.css">
 
-    <!-- DataTables Responsive CSS -->
-    <link href="${resource(dir: 'bootstrap-theme/bower_components/datatables-responsive/css/', file: 'dataTables.responsive.css')}" rel="stylesheet">
-
-    <!-- Custom CSS -->
-    <link href="${resource(dir: 'bootstrap-theme/dist/css/', file: 'sb-admin-2.css')}" rel="stylesheet">
-
-    <!-- Custom Fonts -->
-    <link href="${resource(dir: 'bootstrap-theme/bower_components/font-awesome/css/', file: 'font-awesome.min.css')}" rel="stylesheet">    
-
-    <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
-    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
-    <!--[if lt IE 9]>
-        <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
-        <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
-    <![endif]-->
+    <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css">
+    <link href='http://fonts.googleapis.com/css?family=Cookie' rel='stylesheet' type='text/css'>
 
 </head>
 
 <body>
-    <div id="wrapper">
+    
+    <aside class="sidebar-left">
 
-        <!-- Navigation -->
-        <nav class="navbar navbar-default navbar-static-top" role="navigation" style="margin-bottom: 0">
-            <div class="navbar-header">
-                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
-                    <span class="sr-only">Toggle navigation</span>
-                    <span class="icon-bar"></span>
-                    <span class="icon-bar"></span>
-                    <span class="icon-bar"></span>
-                </button>
-                <a class="navbar-brand" href="/sc">Sistema de Cadastro</a>
-            </div>
-            <!-- /.navbar-header -->
+        <a class="company-logo" href="#">Logo</a>
+
+        <div class="sidebar-links">
+            <a class="link-blue" href="/sc/igreja"><i class="fa fa-picture-o"></i>Igrejas</a>
+            <a class="link-red" href="/sc/setor"><i class="fa fa-heart-o"></i>Setores</a>
+            <a class="link-yellow selected" href="/sc/grupoCaseiro"><i class="fa fa-keyboard-o"></i>Grupos Caseiros</a>
+            <a class="link-green" href="#"><i class="fa fa-map-marker"></i>Usuários</a>
+        </div>
+
+    </aside>
+
+    <div class="main-content">
+
+        <div class="menu">
+
             <g:if test="${session.user}">
-            <ul class="nav navbar-top-links navbar-right">
-                <!-- /.dropdown -->
-                <li class="dropdown">
-                    <a class="dropdown-toggle" data-toggle="dropdown" href="#">
-                        <i class="fa fa-user fa-fw"></i>  <i class="fa fa-caret-down"></i>
-                    </a>
-                    <ul class="dropdown-menu dropdown-user">
-                        <li><a href="/sc/usuario"><i class="fa fa-user fa-fw"></i> Usuários</a>
-                        </li>
-                        <li><a href="#"><i class="fa fa-gear fa-fw"></i> Configurações</a>
-                        </li>
-                        <li class="divider"></li>
-                        <li>
-                            <g:link controller="usuario" action="logout">
-                                <i class="fa fa-sign-out fa-fw"></i> 
-                                Sair
-                            </g:link>
-                        </li>
-                    </ul>
-                    <!-- /.dropdown-user -->
-                </li>
-                <!-- /.dropdown -->
-            </ul>
-            <!-- /.navbar-top-links -->
-
-            <div class="navbar-default sidebar" role="navigation">
-                <div class="sidebar-nav navbar-collapse">
-                    <ul class="nav" id="side-menu">
-                        <li class="sidebar-search">
-                            <div class="input-group custom-search-form">
-                                <input id="searchInput" type="text" class="form-control" placeholder="Pesquise...">
-                                <span class="input-group-btn">
-                                <button id="searchButton"class="btn btn-default" type="button">
-                                    <i class="fa fa-search"></i>
-                                </button>
-                            </span>
-                            </div>
-                            <!-- /input-group -->
-                        </li>
-                        <li>
-                            <a href="#">
-                                <i class="fa fa-fw">
-                                    <asset:image width="20px"src="igreja-icon-3.png"/>
-                                </i> Igrejas
-                                <span class="fa arrow"></span></a>
-                            <ul class="nav nav-second-level">
-                                <g:each in="${Igreja.list()}" status="i" var="igreja">
-                                    <li>
-                                        <g:link controller="igreja" action="show" id="${igreja.id}">${igreja.cidade} <span style="visibility:hidden;"class="badge"><i class="glyphicon glyphicon-edit"></i></span></g:link>
-
-                                    </li>
-                                </g:each>
-                                <li>
-                                    <g:link controller="igreja" action="create" style="color:green;">
-                                        <i class="glyphicon glyphicon-plus"></i> 
-                                        Nova Igreja
-                                    </g:link>
-                                </li>
-                            </ul>
-                        </li>
-                        <li>
-                            <a href="#">
-                                <i class="fa fa-fw">
-                                    <asset:image width="20px"src="setor-icon-2.png"/>
-                                </i> Setores
-                                <span class="fa arrow"></span>
-                            </a>
-                            <ul class="nav nav-second-level">
-                                <g:each in="${Setor.list()}" status="i" var="setor">
-                                    <li>
-                                        <g:link controller="setor" action="show" id="${setor.id}">${setor.nome}</g:link>
-                                    </li>
-                                </g:each>
-                                <li>
-
-                                    <g:link controller="setor" action="create" style="color:green;">
-                                        <i class="glyphicon glyphicon-plus"></i> 
-                                        Novo Setor
-                                    </g:link>
-                                </li>
-                            </ul>
-                            <!-- /.nav-second-level -->
-                        </li>
-                        <li>
-                            <a href="#">
-                                <i class="fa fa-fw">
-                                    <asset:image width="20px"src="home-icon-3.png"/>
-                                </i> Grupos Caseiros
-                                <span class="fa arrow"></span>
-                            </a>
-                            <ul class="nav nav-second-level">
-                                <g:each in="${GrupoCaseiro.list()}" status="i" var="grupoCaseiro">
-                                    <li>
-                                        <g:link controller="grupoCaseiro" action="show" id="${grupoCaseiro.id}">${grupoCaseiro.nome}</g:link>
-                                    </li>
-                                </g:each>
-                                <li>
-                                    <g:link controller="grupoCaseiro" action="create" style="color:green;">
-                                        <i class="glyphicon glyphicon-plus"></i> 
-                                        Novo Grupo Caseiro
-                                    </g:link>
-                                </li>
-                            </ul>
-                            <!-- /.nav-second-level -->
-                        </li>
-                        
-                        <li>
-                            <g:link controller="pessoa" action="create" style="color:green;">
-                                <i class="">
-                                    <asset:image width="20px"src="add-user-1.png"/>
-                                </i> 
-                                Nova Pessoa
-                            </g:link>
-
-                            
-                        </li>
-                        <li>
-                            <ul class="nav">
-                                <button type="button" class="btn btn-outline btn-success">Nova Pessoa</button>
-                            </ul>
-                        </li>
-                    </ul>
-                </div>
-                <!-- /.sidebar-collapse -->
-            </div>
+                
+                    <g:layoutBody/>
+                
             </g:if>
-            <!-- /.navbar-static-side -->
-        </nav>
-
-        <g:if test="${session.user}">
-            <div id="page-wrapper">
+            <g:else>
                 <g:layoutBody/>
-            </div>
-        </g:if>
-        <g:else>
-            <g:layoutBody/>
-        </g:else>
+            </g:else>
+
+        </div>
+
+    </div>
+        
 
         <!-- /#page-wrapper -->
 
-    </div>
     <!-- /#wrapper -->
 
     <!-- jQuery -->
@@ -220,22 +84,20 @@
     <!--<script src="../dist/js/sb-admin-2.js"></script>-->
 
     <asset:javascript src="application.js"/>
-
-    <script src="${resource(dir: 'bootstrap-theme/bower_components/metisMenu/dist/', file: 'metisMenu.min.js')}"></script>
-
-    <script src="${resource(dir: 'bootstrap-theme/bower_components/datatables/media/js/', file: 'jquery.dataTables.min.js')}"></script>
-
-    <script src="${resource(dir: 'bootstrap-theme/bower_components/datatables-plugins/integration/bootstrap/3/', file: 'dataTables.bootstrap.min.js')}"></script>
-
-    <!-- Morris Charts JavaScript -->
-    <!--<script src="${resource(dir: 'bootstrap-theme/bower_components/raphael/', file: 'raphael-min.js')}"></script>-->
-    <!--<script src="${resource(dir: 'bootstrap-theme/bower_components/morrisjs/', file: 'morris.min.js')}"></script>-->
-    <!--<script src="${resource(dir: 'bootstrap-theme/js/', file: 'morris-data.js')}"></script>-->
-    <script src="${resource(dir: 'bootstrap-theme/dist/js/', file: 'sb-admin-2.js')}"></script>
-
-    <!-- Page-Level Demo Scripts - Tables - Use for reference -->
+    <script src="http://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
     
     <script>
+    $(function () {
+        var links = $('.sidebar-links > a');
+
+        links.on('click', function () {
+
+            links.removeClass('selected');
+            $(this).addClass('selected');
+
+        })
+    });
+
     $(document).ready(function() {
         $('#dataTables-example').DataTable({
                 "language": {
