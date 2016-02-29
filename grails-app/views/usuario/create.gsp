@@ -4,6 +4,7 @@
 		<meta name="layout" content="main">
 		<g:set var="entityName" value="${message(code: 'usuario.label', default: 'Usuario')}" />
 		<title><g:message code="default.create.label" args="[entityName]" /></title>
+
 	</head>
 	<body>
 		<div id="create-usuario" class="content scaffold-create" role="main">
@@ -28,5 +29,6 @@
 				</fieldset>
 			</g:form>
 		</div>
+		<g:render template="init_dropbox_dependencies"/>
 	</body>
 </html>

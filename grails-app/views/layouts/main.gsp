@@ -290,10 +290,7 @@
 
     });
     </script>
-
-    <g:if test="${'usuario'.equals(controllerName) && actionName in ['edit', 'create', 'save', 'update']}">
-        <asset:javascript src="edit_create_user.js"/>
-    </g:if>
+    <asset:deferredScripts/>
 </body>
 
 </html>

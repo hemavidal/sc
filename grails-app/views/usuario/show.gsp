@@ -24,4 +24,5 @@
 			</g:form>
 		</div>
 	</body>
+	<g:render template="init_dropbox_dependencies"/>
 </html>

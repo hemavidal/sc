@@ -30,5 +30,6 @@
 				</fieldset>
 			</g:form>
 		</div>
+		<g:render template="init_dropbox_dependencies"/>
 	</body>
 </html>
