@@ -10,4 +10,35 @@
 *= require mobile
 *= require_self
 *= require bootstrap-all
+*= require component
+*= require demo
+*= require icons
+*= require normalize
 */
+body {
+	background-color: #486784 !important;
+}
+
+fieldset {
+	border: 0px !important;
+}
+
+input {
+	font-size: 16px !important;
+	font-weight: bold !important;
+}
+select {
+	font-weight: bold !important;
+}
+
+select > option {
+	font-weight: bold !important;
+}
+
+legend {
+	color: white !important;
+}
+
+fieldset > embedded {
+
+}
