@@ -27,7 +27,6 @@ class Pessoa {
 	List telefones
 	String email
 	GrupoCaseiro grupoCaseiro
-	Usuario usuario 
 	Situacao situacao
 	boolean batizado = true
 
@@ -47,10 +46,8 @@ class Pessoa {
 		email nullable:true, blank:true
 		profissao nullable:true, blank:true
 		sangue nullable:true, blank:true
-		usuario nullable:true, blank:true
 		endereco nullable:true, blank:true
 		telefones nullable:true, blank:true
-
 		situacao nullable:false, blank:false
     }
 

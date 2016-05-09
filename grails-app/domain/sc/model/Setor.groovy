@@ -4,7 +4,7 @@ import sc.acesso.Usuario
 class Setor {
 
     String nome
-	static hasMany = [gruposCaseiros:GrupoCaseiro, usuarios:Usuario]
+	static hasMany = [gruposCaseiros:GrupoCaseiro]
 	static belongsTo = [igreja:Igreja]
 	
     static constraints = {

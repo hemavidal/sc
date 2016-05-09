@@ -9,20 +9,23 @@
 		<title><g:message code="default.show.label" args="[entityName]" /></title>
 	</head>
 	<body>
+        <header class="codrops-header">
+            <h1>${grupoCaseiro.nome}</h1>
+        </header>
 		<div id="show-grupoCaseiro" class="content scaffold-show" role="main">
-			<h1>${grupoCaseiro.nome}</h1>
 			<g:if test="${flash.message}">
 			<div class="message ${flash.type}" role="status">${flash.message}</div>
 			</g:if>
 						
 			<div class="panel-body">
                 <div class="dataTable_wrapper">
-                    <table class="table table-striped table-bordered table-hover" id="dataTables-example">
+                    <table class="table table-bordered" id="dataTables-example">
                         <thead>
                             <tr>
                                 <th>${message(code: 'pessoa.nome.label', default: 'Nome')}</th>
-                                <th>${message(code: 'pessoa.apelido.label', default: 'Apelido')}</th>
-                                <th>${message(code: 'pessoa.nivelDeCrescimento.label', default: 'Nivel De Crescimento')}</th>
+                                <th>${message(code: 'pessoa.telefones.label', default: 'Telefones')}</th>
+                                <th>${message(code: 'pessoa.discipulador.label', default: 'Discipulador')}</th>
+                                <th>${message(code: 'pessoa.companheiro.label', default: 'Companheiro')}</th>
                             </tr>
                         </thead>
                         <tbody>
@@ -31,9 +34,11 @@
                                 <tr>
                                     <td><g:link controller="pessoa" action="show" id="${pessoa.id}">${fieldValue(bean: pessoa, field: "nome")}</g:link></td>
                                 
-                                    <td>${fieldValue(bean: pessoa, field: "apelido")}</td>
+                                    <td>${fieldValue(bean: pessoa, field: "telefones").replace("[","").replace("]","")}</td>
                                 
-                                    <td>${fieldValue(bean: pessoa, field: "nivelDeCrescimento")}</td>
+                                    <td>${fieldValue(bean: pessoa, field: "discipulador")}</td>
+
+                                    <td>${fieldValue(bean: pessoa, field: "companheiro")}</td>
                                 
                                 </tr>
                             </g:each>

@@ -14,31 +14,40 @@
 *= require demo
 *= require icons
 *= require normalize
+*= require jquery.dataTables.min
 */
 body {
-	background-color: #486784 !important;
+	background-color: white !important;
 }
 
 fieldset {
 	border: 0px !important;
+	text-align: center !important;
 }
 
 input {
 	font-size: 16px !important;
-	font-weight: bold !important;
 }
 select {
-	font-weight: bold !important;
 }
 
 select > option {
 	font-weight: bold !important;
 }
 
-legend {
-	color: white !important;
+.glyphicon-edit, .glyphicon-plus {
+	color:white !important;
 }
 
-fieldset > embedded {
+.glyphicon-edit:hover {
+	color:#a6a6a6 !important;
+}
 
+.glyphicon-plus {
+	font-size: 18px;
+	vertical-align: middle;
+}
+
+.glyphicon-plus:hover {
+	color:#84e184 !important;
 }

@@ -172,8 +172,8 @@ class ImportCSVService {
 				      		userLogin = nome.split(' ')[0].toLowerCase() + '_' + randomGenerator.nextInt(5000);
 				      	}
 				      	def senha = 'sc' + '_' + randomGenerator.nextInt(5000);
-					    def usuario = new Usuario(login:userLogin, senha:senha, tipo:'pessoa', pessoa:pessoa).save(flush:true)
-					    pessoa.usuario = usuario
+					    def usuario = new Usuario(login:userLogin, senha:senha).save(flush:true)
+					    usuario.associarPermissao(pessoa)
 					    pessoa.save(flush:true)
 
 					    //-------------------------------
@@ -211,8 +211,8 @@ class ImportCSVService {
 					break
 				}
 			}
-			pessoaMap[pessoaTVS_ID_1].pessoaObj.companheiro = Pessoa.findByNomeIlike("%" + pessoaMap[pessoaTVS_ID_1].nomeComp + "%")
-			pessoaMap[pessoaTVS_ID_1].pessoaObj.discipulador = Pessoa.findByNomeIlike("%" + pessoaMap[pessoaTVS_ID_1].nomeDiscipulador + "%")
+			pessoaMap[pessoaTVS_ID_1].pessoaObj.companheiro = Pessoa.findByNomeIlikeAndGrupoCaseiro("%" + pessoaMap[pessoaTVS_ID_1].nomeComp + "%", pessoaMap[pessoaTVS_ID_1].pessoaObj.grupoCaseiro)
+			pessoaMap[pessoaTVS_ID_1].pessoaObj.discipulador = Pessoa.findByNomeIlikeAndGrupoCaseiro("%" + pessoaMap[pessoaTVS_ID_1].nomeDiscipulador + "%", pessoaMap[pessoaTVS_ID_1].pessoaObj.grupoCaseiro)
 			pessoaMap[pessoaTVS_ID_1].pessoaObj.save(flush:true)
 			pessoaLinked++
 			i++

@@ -59,22 +59,6 @@ class UsuarioController {
             return
         }
 
-        switch(usuario.tipo) {
-            case 'igreja':
-                usuario.setor = null
-                usuario.grupoCaseiro = null
-                break    
-            case 'setor':
-                usuario.igreja = null
-                usuario.grupoCaseiro = null    
-                break
-            case 'grupoCaseiro':
-                usuario.igreja = null
-                usuario.setor = null
-                break
-            break
-        }
-
         usuario.save flush:true
 
         request.withFormat {
@@ -110,22 +94,6 @@ class UsuarioController {
         if (usuario.hasErrors()) {
             respond usuario.errors, view:'edit'
             return
-        }
-
-        switch(usuario.tipo) {
-            case 'igreja':
-                usuario.setor = null
-                usuario.grupoCaseiro = null
-                break    
-            case 'setor':
-                usuario.igreja = null
-                usuario.grupoCaseiro = null    
-                break
-            case 'grupoCaseiro':
-                usuario.igreja = null
-                usuario.setor = null
-                break
-            break
         }
 
         usuario.save flush:true

@@ -15,7 +15,7 @@ class ProfissaoController {
     }
 
     def show(Profissao profissao) {
-        respond profissao
+        respond profissao, model : [pessoas:Pessoa.findAllByProfissao(profissao)]
     }
 
     def create() {
@@ -38,7 +38,8 @@ class ProfissaoController {
 
         request.withFormat {
             form multipartForm {
-                flash.message = message(code: 'default.created.message', args: [message(code: 'profissao.label', default: 'Profissao'), profissao.id])
+                flash.type = "alert-success"
+                flash.message = message(code: 'default.created.message', args: [message(code: 'profissao.label', default: 'Profissao'), profissao.nome])
                 redirect profissao
             }
             '*' { respond profissao, [status: CREATED] }
@@ -65,7 +66,8 @@ class ProfissaoController {
 
         request.withFormat {
             form multipartForm {
-                flash.message = message(code: 'default.updated.message', args: [message(code: 'Profissao.label', default: 'Profissao'), profissao.id])
+                flash.type = "alert-success"
+                flash.message = message(code: 'default.updated.message', args: [message(code: 'Profissao.label', default: 'Profissao'), profissao.nome])
                 redirect profissao
             }
             '*'{ respond profissao, [status: OK] }
@@ -80,11 +82,19 @@ class ProfissaoController {
             return
         }
 
+        if (Pessoa.findByProfissao(profissao)) {
+            flash.type = "alert-warning"
+            flash.message = "A profissão está sendo usada por alguma pessoa!\nVocê não pode deletar essa profissão!"
+            redirect profissao
+            return 
+        }
+
         profissao.delete flush:true
 
         request.withFormat {
             form multipartForm {
-                flash.message = message(code: 'default.deleted.message', args: [message(code: 'Profissao.label', default: 'Profissao'), profissao.id])
+                flash.type = "alert-warning"
+                flash.message = message(code: 'default.deleted.message', args: [message(code: 'Profissao.label', default: 'Profissao'), profissao.nome])
                 redirect action:"index", method:"GET"
             }
             '*'{ render status: NO_CONTENT }
@@ -94,6 +104,7 @@ class ProfissaoController {
     protected void notFound() {
         request.withFormat {
             form multipartForm {
+                flash.type = "alert-danger"
                 flash.message = message(code: 'default.not.found.message', args: [message(code: 'profissao.label', default: 'Profissao'), params.id])
                 redirect action: "index", method: "GET"
             }

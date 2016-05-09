@@ -8,14 +8,16 @@
 		<title><g:message code="default.list.label" args="[entityName]" /></title>
 	</head>
 	<body>
+        <header class="codrops-header">
+           <h1><g:message code="default.list.label" args="[entityName]" /></h1>
+        </header>
 		<div id="list-igreja" class="content scaffold-list" role="main">
-			<h1><g:message code="default.list.label" args="[entityName]" /></h1>
 			<g:if test="${flash.message}">
 				<div class="message ${flash.type}" role="status">${flash.message}</div>
 			</g:if>
 			<div class="panel-body">
                 <div class="dataTable_wrapper">
-                    <table class="table table-striped table-bordered table-hover" id="dataTables-example">
+                    <table class="table  table-bordered" id="dataTables-example">
                         <thead>
                             <tr>
                                 <th>${message(code: 'igreja.cidade.label', default: 'Cidade')}</th>

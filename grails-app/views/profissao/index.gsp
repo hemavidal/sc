@@ -8,10 +8,12 @@
 		<title><g:message code="default.list.label" args="[entityName]" /></title>
 	</head>
 	<body>
+        <header class="codrops-header">
+            <h1><g:message code="default.list.label" args="[entityName]" /></h1>
+        </header>
         <g:if test="${flash.message}">
-            <div class="message ${flash.type}" role="status">${flash.message}</div>
+            <div class="message alert ${flash.type}" role="status">${flash.message}</div>
         </g:if>
-		<h2>${Profissao.count()}</h2>
 		<div class="panel-body">
                 <div class="dataTable_wrapper">
                     <table class="table table-striped table-bordered table-hover" id="dataTables-example">

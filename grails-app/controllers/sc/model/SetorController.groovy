@@ -39,7 +39,8 @@ class SetorController {
 
         request.withFormat {
             form multipartForm {
-                flash.message = message(code: 'default.created.message', args: [message(code: 'setor.label', default: 'Setor'), setorInstance.id])
+                flash.type = "alert-success"
+                flash.message = message(code: 'default.created.message', args: [message(code: 'setor.label', default: 'Setor'), setorInstance.nome])
                 if (params['forwardURL']) {
                     redirect (uri:params['forwardURL'])
                 } else {
@@ -71,7 +72,8 @@ class SetorController {
 
         request.withFormat {
             form multipartForm {
-                flash.message = message(code: 'default.updated.message', args: [message(code: 'Setor.label', default: 'Setor'), setorInstance.id])
+                flash.type = "alert-success"
+                flash.message = message(code: 'default.updated.message', args: [message(code: 'Setor.label', default: 'Setor'), setorInstance.nome])
                 redirect setorInstance
             }
             '*'{ respond setorInstance, [status: OK] }
@@ -90,7 +92,8 @@ class SetorController {
 
         request.withFormat {
             form multipartForm {
-                flash.message = message(code: 'default.deleted.message', args: [message(code: 'Setor.label', default: 'Setor'), setorInstance.id])
+                flash.type = "alert-warning"
+                flash.message = message(code: 'default.deleted.message', args: [message(code: 'Setor.label', default: 'Setor'), setorInstance.nome])
                 redirect action:"index", method:"GET"
             }
             '*'{ render status: NO_CONTENT }

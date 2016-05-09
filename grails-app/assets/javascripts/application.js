@@ -11,6 +11,7 @@
 //= require classie
 //= require mlpushmenu
 //= require modernizr.custom
+//= require jquery.dataTables.min
 
 
 
@@ -23,3 +24,23 @@ if (typeof jQuery !== 'undefined') {
         });
     })(jQuery);
 }
+
+$(document).ready(function() {
+	$(".editable, .creatable").find(".glyphicon-plus, .glyphicon-edit").click(function(){
+		window.location = $(this).attr("data-href");
+		return false;
+	});
+
+	$(".editable, .creatable").hover(
+		function() {
+			$(this).find(".glyphicon-plus, .glyphicon-edit").show();
+			return false;
+		},
+		function() {
+			$(this).find(".glyphicon-plus, .glyphicon-edit").hide();
+			return false;
+		}
+	);
+});
+
+ 

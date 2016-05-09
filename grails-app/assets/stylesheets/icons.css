@@ -196,3 +196,6 @@
 .icon-world:before {
 	content: "\e02f";
 }
+.icon-config:before {
+	.glyphicon-cog;
+}

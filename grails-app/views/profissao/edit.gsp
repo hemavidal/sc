@@ -7,10 +7,12 @@
 		<title><g:message code="default.edit.label" args="[entityName]" /></title>
 	</head>
 	<body>
+		<header class="codrops-header">
+            <h1><g:message code="default.edit.label" args="[entityName]" /></h1>
+        </header>
 		<div id="edit-profissao" class="content scaffold-edit" role="main">
-			<h1><g:message code="default.edit.label" args="[entityName]" /></h1>
 			<g:if test="${flash.message}">
-			<div class="message ${flash.type}" role="status">${flash.message}</div>
+			<div class="message alert ${flash.type}" role="status">${flash.message}</div>
 			</g:if>
 			<g:hasErrors bean="${profissao}">
 			<ul class="errors" role="alert">
@@ -21,11 +23,11 @@
 			</g:hasErrors>
 			<g:form url="[resource:profissao, action:'update']" method="PUT" >
 				<g:hiddenField name="version" value="${profissao?.version}" />
-				<fieldset class="form">
+				<fieldset class="form form-horizontal">
 					<g:render template="form"/>
 				</fieldset>
 				<fieldset class="buttons">
-					<g:actionSubmit class="save" action="update" value="${message(code: 'default.button.update.label', default: 'Update')}" />
+					<g:actionSubmit class="save btn btn-success" action="update" value="${message(code: 'default.button.update.label', default: 'Update')}" />
 				</fieldset>
 			</g:form>
 		</div>

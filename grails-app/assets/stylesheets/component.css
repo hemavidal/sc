@@ -22,7 +22,6 @@ html, body, .container, .scroller {
 .container {
 	position: relative;
 	overflow: hidden;
-	background: #34495e;
 }
 
 .menu-trigger {
@@ -95,6 +94,17 @@ html, body, .container, .scroller {
 
 .mp-level::after {
 	z-index: -1;
+}
+
+.mp-level a {
+	text-decoration: none;
+	color: #f7f7f7;
+	outline: none;
+}
+
+.mp-level a:hover, a:focus {
+	color: #fff;
+	outline: none;
 }
 
 .mp-pusher.mp-pushed::after,

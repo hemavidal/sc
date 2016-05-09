@@ -7,14 +7,13 @@ class Igreja {
 	String estado
 	String pais
 	
-	static hasMany = [setores:Setor, usuarios:Usuario]
+	static hasMany = [setores:Setor]
 	
     static constraints = {
 		cidade(nullable:false, blank: false)
 		estado(nullable:false, blank: false)
 		pais(nullable:false, blank: false)
 		setores(nullable:true)
-		
     }
 
     public String toString() {

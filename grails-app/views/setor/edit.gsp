@@ -7,10 +7,12 @@
 		<title><g:message code="default.edit.label" args="[entityName]" /></title>
 	</head>
 	<body>
+		<header class="codrops-header">
+            <h1><g:message code="default.edit.label" args="[entityName]" /></h1>
+        </header>
 		<div id="edit-setor" class="content scaffold-edit" role="main">
-			<h1><g:message code="default.edit.label" args="[entityName]" /></h1>
 			<g:if test="${flash.message}">
-				<div class="message ${flash.type}" role="status">${flash.message}</div>
+				<div class="message alert ${flash.type}" role="status">${flash.message}</div>
 			</g:if>
 			<g:hasErrors bean="${setor}">
 			<ul class="errors" role="alert">
