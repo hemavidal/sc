@@ -36,6 +36,7 @@
 							</li>-->
 							<li><a class="icon creatable" href="/sc/usuario">Usuários<span style=" float:right;cursor:pointer" class="glyphicon glyphicon-plus" hidden data-href="/sc/usuario/create/"></span></a></li>
 							<li><a class="icon creatable" href="/sc/profissao">Profissões<span style=" float:right;cursor:pointer" class="glyphicon glyphicon-plus" hidden data-href="/sc/profissao/create/"></span></a></li>
+							<li><a class="icon creatable" href="/sc/permissao">Permissões<span style=" float:right;cursor:pointer" class="glyphicon glyphicon-plus" hidden data-href="/sc/permissao/create/"></span></a></li>
 						
 						</ul>
 					</div>

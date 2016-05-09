@@ -31,10 +31,3 @@
 
 	</div>
 </g:if>
-
-
-
-<g:if test="session.user.isAdmin">
-
-	
-</g:if>

@@ -4,20 +4,22 @@
 			$("#setores").hide();
 			$("#gruposCaseiros").hide();
 
-			$("#tipo").change(function(){
-				if($(this).val() == "igreja") {
+			$("#tipo").change(function() {
+				alert($(this).val());
+				if($(this).val().toLowerCase() == "igreja") {
 					$("#igrejas").show();
 					$("#setores").hide();
 					$("#gruposCaseiros").hide();
-				} else if ($(this).val() == "setor") {
+				} else if ($(this).val().toLowerCase() == "setor") {
 					$("#igrejas").show();
 					$("#setores").show();
 					$("#gruposCaseiros").hide();
-				} else if ($(this).val() == "grupoCaseiro") {
+				} else if ($(this).val().toLowerCase() == "grupoCaseiro") {
 					$("#igrejas").show();
 					$("#setores").show();
 					$("#gruposCaseiros").show();
-				} else if ($(this).val() == "pessoa" || $(this).val() == "admin") {
+					console.log($("#gruposCaseiros"));
+				} else if ($(this).val().toLowerCase() == "pessoa" || $(this).val().toLowerCase() == "admin") {
 					$("#igrejas").hide();
 					$("#setores").hide();
 					$("#gruposCaseiros").hide();
@@ -61,15 +63,15 @@
 				
 			});
 
-			if ($("#extra-data").attr('data-igreja').trim() != "") {
+			if ($("#extra-data").attr('data-igreja') != "") {
 				$("#igrejas").val($("#extra-data").attr('data-igreja'));
 			}
 			$("#igrejas").change();
-			if ($("#extra-data").attr('data-setor').trim() != "") {
+			if ($("#extra-data").attr('data-setor') != "") {
 				$("#setores").val($("#extra-data").attr('data-setor'));
 			}
 			$("#setores").change();
-			if ($("#extra-data").attr('data-grupoCaseiro').trim() != "") {
+			if ($("#extra-data").attr('data-grupoCaseiro') != "") {
 				$("#gruposCaseiros").val($("#extra-data").attr('data-grupoCaseiro'));
 			}
 			$("#gruposCaseiros").change();
