@@ -22,8 +22,6 @@
                         <thead>
                             <tr>
                                 <th>${message(code: 'usuario.login.label', default: 'Login')}</th>
-                                <th>${message(code: 'usuario.tipo.label', default: 'Tipo')}</th>
-                                
                             </tr>
                         </thead>
                         <tbody>
@@ -32,7 +30,6 @@
                                 <tr class="odd gradeX  ${(i % 2) == 0 ? 'even' : 'odd'}">
                                 
                                     <td><g:link action="show" id="${usuario.id}">${fieldValue(bean: usuario, field: "login")}</g:link></td>
-                                    <td><g:link action="show" id="${usuario.id}">${fieldValue(bean: usuario, field: "tipo")}</g:link></td>
                                 
                                 </tr>
                             </g:each>

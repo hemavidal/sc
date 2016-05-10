@@ -5,9 +5,9 @@ class BootStrap {
 	def importCSVService
 
     def init = { servletContext ->
-        //importCSVService.importCampinaGrande(servletContext.getRealPath(""))
+		//importCSVService.importCampinaGrande(servletContext.getRealPath(""))
     	
-    	//new Usuario(login: "admin", senha: "126366", isAdmin:true).save(flush:true)
+    	// new Usuario(login: "admin", senha: "126366", isAdmin:true).save(flush:true)
 
     	// def igreja1 = new Igreja(cidade:"Campina Grande", estado:"Paraiba", pais:"Brasil").save()
 	    // 	def setor1 = new Setor(nome:"Campina Grande - Setor 1", igreja:igreja1).save()

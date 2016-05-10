@@ -8,7 +8,8 @@
 	</head>
 	<body>
 		<header class="codrops-header">
-            <h1><g:message code="default.edit.label" args="[entityName]" /></h1>
+            <h1 style="display:inline"><g:message code="default.show.label" args="[entityName]" /></h1>
+            <a class="btn btn-primary btn-lg" style="display:inline;float:right" href="/sc/grupoCaseiro/create?setor=${setor.id}">Novo Grupo Caseiro</a>
         </header>
 		<div id="edit-setor" class="content scaffold-edit" role="main">
 			<g:if test="${flash.message}">

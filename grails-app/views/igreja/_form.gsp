@@ -45,7 +45,7 @@
 
 		<div class="col-sm-10">	
 			
-				<table class="table table-bordered">
+				<table id="dataTables-example" class="table table-bordered">
 					<thead>
 						<tr>
 						
@@ -66,40 +66,7 @@
 				<div class="pagination">
 					<g:paginate total="${igreja?.setores?.size() ?: 0}" />
 				</div>
-
-				
-				<g:if test="${!'show'.equals(actionName)}">
-					<div class="col-sm-10">
-						<li class="add">
-							<g:link class="btn btn-default" controller="setor" action="create" params="['igreja.id': igreja?.id]">${message(code: 'default.add.label', args: [message(code: 'setor.label', default: 'Setor')])}
-							</g:link>
-						</li>
-					</div>
-				</g:if>
-			
 		</div>
 
 	</div>
-
-	<div class="dataTable_wrapper">
-                <table class="table table-striped table-bordered table-hover" id="dataTables-example">
-                    <thead>
-                        <tr>
-                            <th>${message(code: 'usuarios.label', default: 'Usuarios')}</th>
-                            
-                        </tr>
-                    </thead>
-                    <tbody>
-                        
-                        <g:each in="${igreja.usuarios}" status="i" var="usuario">
-                            <tr class="odd gradeX  ${(i % 2) == 0 ? 'even' : 'odd'}">
-                            
-                                <td><g:link controller="usuario" action="show" id="${usuario.id}">${fieldValue(bean: usuario, field: "login")}</g:link></td>
-                            
-                            </tr>
-                        </g:each>
-                    </tbody>
-                </table>
-            </div>
-            <!-- /.table-responsive -->
 </g:if>

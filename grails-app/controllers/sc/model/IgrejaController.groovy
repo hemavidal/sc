@@ -82,7 +82,6 @@ class IgrejaController {
         }
 
         if (Pessoa.findByIgreja(igrejaInstance)) {
-            println "Delete $igrejaInstance cannot!"
             flash.type = "alert-danger"
             flash.message = "Existem pessoas nesta igreja!\n Mova elas para outra igreja antes de remover a igreja $igrejaInstance!"
             redirect igrejaInstance

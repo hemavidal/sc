@@ -8,6 +8,7 @@
 
 html, body, .container, .scroller {
 	height: 100%;
+	overflow: all;
 }
 
 .scroller {
@@ -17,11 +18,12 @@ html, body, .container, .scroller {
 .scroller,
 .scroller-inner {
 	position: relative;
+	overflow: all;
 }
 
 .container {
 	position: relative;
-	overflow: hidden;
+	overflow: all;
 }
 
 .menu-trigger {
@@ -45,6 +47,7 @@ html, body, .container, .scroller {
 	position: relative;
 	left: 0;
 	height: 100%;
+	padding: 0px 0px 10px 0px;
 }
 
 .mp-menu {
@@ -57,6 +60,7 @@ html, body, .container, .scroller {
 	-webkit-transform: translate3d(-100%, 0, 0);
 	-moz-transform: translate3d(-100%, 0, 0);
 	transform: translate3d(-100%, 0, 0);
+	overflow: all;
 }
 
 .mp-level {

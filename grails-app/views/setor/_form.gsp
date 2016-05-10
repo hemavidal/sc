@@ -22,37 +22,27 @@
 		
 		<div class="col-sm-10">	
 			
-				<table class="table table-bordered">
-					<thead>
-						<tr>
-						
-							<g:sortableColumn property="nome" title="${message(code: 'grupocaseiro.nome.label', default: 'Grupo Caseiro')}" />
-						
-						</tr>
-					</thead>
-					<tbody>
-					<g:each in="${setor.gruposCaseiros}" status="i" var="grupoCaseiro">
-						<tr class="${(i % 2) == 0 ? 'even' : 'odd'}">
-						
-							<td><g:link controller="grupoCaseiro" action="show" id="${grupoCaseiro.id}">${fieldValue(bean: grupoCaseiro, field: "nome")}</g:link></td>
-						
-						</tr>
-					</g:each>
-					</tbody>
-				</table>
-				<div class="pagination">
-					<g:paginate total="${setor.gruposCaseiros?.size() ?: 0}" />
-				</div>
-
-				
-				<g:if test="${!'show'.equals(actionName)}">
-					<div class="col-sm-10">
-						<li class="add">
-							<g:link class="btn btn-default" controller="grupoCaseiro" action="create" params="['setor.id': setor?.id]">${message(code: 'default.add.label', args: [message(code: 'grupocaseiro.label', default: 'Grupo Caseiro')])}
-							</g:link>
-						</li>
-					</div>
-				</g:if>
+			<table id="dataTables-example" class="table table-bordered">
+				<thead>
+					<tr>
+					
+						<g:sortableColumn property="nome" title="${message(code: 'grupocaseiro.nome.label', default: 'Grupo Caseiro')}" />
+					
+					</tr>
+				</thead>
+				<tbody>
+				<g:each in="${setor.gruposCaseiros}" status="i" var="grupoCaseiro">
+					<tr class="${(i % 2) == 0 ? 'even' : 'odd'}">
+					
+						<td><g:link controller="grupoCaseiro" action="show" id="${grupoCaseiro.id}">${fieldValue(bean: grupoCaseiro, field: "nome")}</g:link></td>
+					
+					</tr>
+				</g:each>
+				</tbody>
+			</table>
+			<div class="pagination">
+				<g:paginate total="${setor.gruposCaseiros?.size() ?: 0}" />
+			</div>
 			
 		</div>
 
@@ -65,8 +55,6 @@
 			<g:message code="setor.igreja.label" default="Igreja" />
 			<span class="required-indicator">*</span>
 		</label>
-
-		
 			<div class="col-sm-10">
 				<g:if test="${'show'.equals(actionName)}">
 					<select class="form-control" id="igreja" name="igreja.id" disabled>

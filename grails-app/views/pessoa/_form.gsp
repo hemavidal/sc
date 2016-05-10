@@ -163,7 +163,7 @@
 
 </div>
 
-<g:if test="${session.user.tipo == 'admin'}">
+<g:if test="${session.user.isAdmin}">
 	<fieldset class="embedded"><legend><g:message code="outrasOpcoes.label" default="Outras Opções" /></legend>
 		<div class="form-group fieldcontain ${hasErrors(bean: pessoa, field: 'grupoCaseiro', 'error')}">
 			<label for="grupoCaseiro" class="col-sm-2 control-label">

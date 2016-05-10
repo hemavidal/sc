@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en" class="no-js">
+<html lang="en" class="">
 	<head>
 		<meta charset="UTF-8" />
 		<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1"> 
@@ -13,7 +13,7 @@
 		
 	</head>
 	<body>
-		<div style="height: auto;">
+		<div id="main-div">
 			<!-- Push Wrapper -->
 			<div class="mp-pusher" id="mp-pusher">
 				<!-- mp-menu -->
@@ -24,14 +24,12 @@
 					<g:elseif test="${sc.acesso.Permissao.findByClasseAndUsuario("Setor", session.user)}">
 						<g:render template="/layouts/usuario_setor"/>
 					</g:elseif>
-					
 				</nav>
 				<!-- /mp-menu -->
 
 				<span id="trigger" style="font-size:30px;cursor:pointer;padding:10px" class="glyphicon glyphicon-menu-hamburger dropdown"></span>
 				
-
-				<div class="container" style="height: 100%;">
+				<div class="container">
 					<g:layoutBody/>
 				</div>
 
@@ -74,9 +72,7 @@
 				            "sSortDescending": ": Ordenar colunas de forma descendente"
 				        }
 				    },
-				    <g:if test="${params.search}">
-				    "oSearch": {"sSearch": "${params.search}"},
-				    </g:if>
+				    "oSearch": {"sSearch": "${params.search ? params.search : ''}"},
 				    "responsive": true,
 				    "iDisplayLength": 50
 				});

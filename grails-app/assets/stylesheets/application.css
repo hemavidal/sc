@@ -18,11 +18,11 @@
 */
 body {
 	background-color: white !important;
+	height: 100% !important;
 }
 
 fieldset {
 	border: 0px !important;
-	text-align: center !important;
 }
 
 input {
@@ -50,4 +50,10 @@ select > option {
 
 .glyphicon-plus:hover {
 	color:#84e184 !important;
+}
+
+#main-div {
+	height: 100% !important;
+    right: 0;
+    top: 0;
 }
