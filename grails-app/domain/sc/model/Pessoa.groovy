@@ -29,7 +29,7 @@ class Pessoa {
 	GrupoCaseiro grupoCaseiro
 	Situacao situacao
 	boolean batizado = true
-
+	Usuario usuario
 	Endereco endereco
 
 	static embedded = ['endereco', 'telefones']
@@ -49,6 +49,7 @@ class Pessoa {
 		endereco nullable:true, blank:true
 		telefones nullable:true, blank:true
 		situacao nullable:false, blank:false
+		usuario nullable:true
     }
 
     public String toString() {

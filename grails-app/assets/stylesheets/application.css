@@ -57,3 +57,12 @@ select > option {
     right: 0;
     top: 0;
 }
+
+a:active {
+	color:#99bbff !important;
+}
+
+input[type="checkbox"]{
+  width: 20px; /*Desired width*/
+  height: 20px; /*Desired height*/
+}

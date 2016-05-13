@@ -37,7 +37,7 @@ class UsuarioController {
     }
 
     def show(Usuario usuario) {
-        usuario.senha = ''
+        // usuario.senha = ''
         respond usuario
     }
 
@@ -47,19 +47,34 @@ class UsuarioController {
 
     @Transactional
     def save(Usuario usuario) {
-        println params
-
         if (usuario == null) {
             notFound()
             return
         }
 
-        if (usuario.hasErrors()) {
-            respond usuario.errors, view:'create'
+        if (!usuario.login) {
+            flash.type = "alert-danger"
+            flash.message = "Login não pode ser vazio"
+            redirect action:"create"
             return
         }
 
+        if (!usuario.senha) {
+            flash.type = "alert-danger"
+            flash.message = "Senha não pode ser vazia"
+            redirect action:"create"
+            return
+        }
+
+        if (!usuario.pessoa) {
+            flash.type = "alert-danger"
+            flash.message = "Pessoa não pode ser vazio"
+            redirect action:"create"
+            return
+        }
         usuario.save flush:true
+        usuario.pessoa.usuario = usuario
+        usuario.pessoa.save flush:true
 
         request.withFormat {
             form multipartForm {
@@ -71,7 +86,6 @@ class UsuarioController {
     }
 
     def edit(Usuario usuario) {
-        println usuario.senha
         usuario.senha = ''
         respond usuario
     }
@@ -79,24 +93,19 @@ class UsuarioController {
     @Transactional
     def update(Usuario usuario) {
         if (!usuario.senha) {
-            println "persistent senha: ${usuario.getPersistentValue("senha")}" 
             usuario.senha = usuario.getPersistentValue("senha") + ""
         } else if ( usuario.senha.trim().isEmpty() ) {
-            println "persistent senha: ${usuario.getPersistentValue("senha")}" 
             usuario.senha = usuarioDoDB.getPersistentValue("senha") + ""
         }
 
-        if (usuario == null) {
+        if (usuario == null) { 
             notFound()
             return
         }
-
-        if (usuario.hasErrors()) {
-            respond usuario.errors, view:'edit'
-            return
-        }
-
+        
         usuario.save flush:true
+        usuario.pessoa.usuario = usuario
+        usuario.pessoa.save flush:true
 
         request.withFormat {
             form multipartForm {

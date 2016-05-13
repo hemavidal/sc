@@ -23,12 +23,42 @@ class PermissaoController {
 
     @Transactional
     def save(Permissao permissao) {
+        println params
         if (permissao == null) {
             transactionStatus.setRollbackOnly()
             notFound()
             return
         }
 
+        permissao.classe = params.tipo
+        switch(permissao.classe) {
+            case "Igreja":
+                permissao.classeId = params.igreja
+                break
+            case "Setor":
+                permissao.classeId = params.setor
+                break
+            case "GrupoCaseiro":
+                permissao.classeId = params.grupoCaseiro
+                break
+            case "Pessoa":
+                permissao.classeId = params.pessoa
+                break
+            default:
+                break
+        }
+
+        if (!permissao.classeId) {
+            flash.type = "alert-danger"
+            flash.message = "Erro ao selecionar tipo!"
+            retirect (action:"create", params:params)
+            return
+        }
+
+        // permissao.usuario
+        // if (permissaoExistente) {
+        //     permissaoExistente.
+        // }
         if (permissao.hasErrors()) {
             transactionStatus.setRollbackOnly()
             respond permissao.errors, view:'create'

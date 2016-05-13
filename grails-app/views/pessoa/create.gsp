@@ -7,7 +7,11 @@
 	</head>
 	<body>
 		<header class="codrops-header">
-            <h1><g:message code="default.create.label" args="[entityName]" /></h1>
+            <h1 style="display:inline"><g:message code="default.create.label" args="[entityName]" /></h1>
+            <g:if test="${params.grupoCaseiro}">
+            	<a class="btn btn-default btn-lg" style="display:inline;float:right" href="/sc/grupoCaseiro/show/${sc.model.GrupoCaseiro.findById(params.grupoCaseiro).id}">Voltar para ${sc.model.GrupoCaseiro.findById(params.grupoCaseiro)}</a>
+           	</g:if>
+
         </header>
 		<div id="create-pessoa" class="content scaffold-create" role="main">
 			<g:if test="${flash.message}">

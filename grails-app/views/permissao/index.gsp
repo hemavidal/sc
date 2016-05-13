@@ -7,7 +7,8 @@
     </head>
     <body>
         <header class="codrops-header">
-            <h1><g:message code="default.list.label" args="[entityName]" /></h1>
+            <h1 style="display:inline"><g:message code="default.list.label" args="[entityName]" /></h1>
+            <a class="btn btn-primary btn-lg" style="display:inline;float:right" href="/sc/permissao/create">Nova ${entityName}</a>
         </header>
         <div id="list-permissao" class="content scaffold-list" role="main">
             <g:if test="${flash.message}">

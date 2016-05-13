@@ -44,18 +44,18 @@
 	</div>
 </div>
 
-<g:if test="session.user.tipo == 'admin'">
+<g:if test="${session.user.isAdmin}">
 
-	<div class="form-group fieldcontain ${hasErrors(bean: usuario, field: 'pessoa', 'error')} ">
+	<div class="form-group fieldcontain ${hasErrors(bean: permissao, field: 'usuario', 'error')} ">
 		<label for="pessoa" class="col-sm-2 control-label">
-			<g:message code="usuario.pessoa.label" default="Pessoa" />
+			<g:message code="usuario.label" default="Usuario" />
 			
 		</label>
 		<div class="col-sm-10">
-			<select class="many-to-one form-control" id="pessoa" name="pessoa.id" ${'show'.equals(actionName) ? 'disabled' : ''}>
+			<select class="many-to-one form-control" id="usuario" name="usuario" ${'show'.equals(actionName) ? 'disabled' : ''}>
 				<option value="">Nenhum</option>
-				<g:each in="${sc.model.Pessoa?.list()}">
-					<option value="${it.id}" ${it.id == usuario?.pessoa?.id ? 'selected' : ''}>${it.nome}</option>
+				<g:each in="${sc.acesso.Usuario.list()}">
+					<option value="${it.id}" ${it.id == usuario?.id ? 'selected' : ''}>${it.login}</option>
 				</g:each>
 
 			</select>

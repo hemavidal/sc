@@ -7,12 +7,14 @@ class Usuario {
 	String login
 	String senha
     boolean isAdmin = false
+    static hasOne = [pessoa: Pessoa]
 
     static hasManny = [permissoes:Permissao]
 
     static constraints = {
         login  nullable :false, blank:false, unique:true
         senha  nullable :false, blank:false
+        pessoa nullable :true
     }
 
     def boolean temPermissaoPara(objeto) {

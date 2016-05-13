@@ -9,7 +9,8 @@
 	</head>
 	<body>
 		<header class="codrops-header">
-            <h1><g:message code="default.show.label" args="[entityName]" /></h1>
+            <h1 style="display:inline"><g:message code="default.show.label" args="[entityName]" /></h1>
+            <a class="btn btn-default btn-lg" style="display:inline;float:right" href="/sc/grupoCaseiro/show/${pessoa.grupoCaseiro.id}">Voltar para ${pessoa.grupoCaseiro.nome}</a>
         </header>
 		<div id="show-pessoa" class="content scaffold-show" role="main">
 			<g:if test="${flash.message}">

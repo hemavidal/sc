@@ -5,7 +5,6 @@
 			$("#gruposCaseiros").hide();
 
 			$("#tipo").change(function() {
-				alert($(this).val());
 				if($(this).val().toLowerCase() == "igreja") {
 					$("#igrejas").show();
 					$("#setores").hide();
@@ -14,11 +13,10 @@
 					$("#igrejas").show();
 					$("#setores").show();
 					$("#gruposCaseiros").hide();
-				} else if ($(this).val().toLowerCase() == "grupoCaseiro") {
+				} else if ($(this).val().toLowerCase() == "grupocaseiro") {
 					$("#igrejas").show();
 					$("#setores").show();
 					$("#gruposCaseiros").show();
-					console.log($("#gruposCaseiros"));
 				} else if ($(this).val().toLowerCase() == "pessoa" || $(this).val().toLowerCase() == "admin") {
 					$("#igrejas").hide();
 					$("#setores").hide();

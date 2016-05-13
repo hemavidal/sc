@@ -149,6 +149,13 @@ class ImportCSVService {
 					    def profissao = Profissao.findByNome(lineArray[15].trim())
 					    def sangue = sc.Sangue.getSanguePeloNome(lineArray[16].trim())
 					    
+					    def userLogin = email
+				      	if (userLogin?.isEmpty() || !userLogin) {
+				      		userLogin = nome.split(' ')[0].toLowerCase() + '_' + randomGenerator.nextInt(5000);
+				      	}
+				      	def senha = 'sc' + '_' + randomGenerator.nextInt(5000);
+					    def usuario = new Usuario(login:userLogin, senha:senha).save(flush:true)
+					    
 						def pessoa = new Pessoa(nome:nome,
 												nivelDeCrescimento:nivelDeCrescimento, 
 												estadoCivil: EstadoCivil.SOLTEIRO, 
@@ -164,16 +171,10 @@ class ImportCSVService {
 												email:email,
 												profissao:profissao,
 												sangue:sangue,
-												situacao:Situacao.ATIVO
+												situacao:Situacao.ATIVO,
+												usuario: usuario
 											   ).save(failOnError:true, flush:true)
 						//Generating user
-				      	def userLogin = email
-				      	if (userLogin?.isEmpty() || !userLogin) {
-				      		userLogin = nome.split(' ')[0].toLowerCase() + '_' + randomGenerator.nextInt(5000);
-				      	}
-				      	def senha = 'sc' + '_' + randomGenerator.nextInt(5000);
-					    def usuario = new Usuario(login:userLogin, senha:senha).save(flush:true)
-					    usuario.associarPermissao(pessoa)
 					    pessoa.save(flush:true)
 
 					    //-------------------------------
