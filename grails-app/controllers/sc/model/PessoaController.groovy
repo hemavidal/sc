@@ -1,12 +1,13 @@
 package sc.model
 
-
-
+import sc.acesso.Usuario
 import static org.springframework.http.HttpStatus.*
 import grails.transaction.Transactional
+import java.util.Random
 
 @Transactional(readOnly = true)
 class PessoaController {
+    Random randomGenerator = new Random()
 
     static allowedMethods = [save: "POST", update: "PUT", delete: "DELETE"]
 
@@ -40,7 +41,13 @@ class PessoaController {
             respond pessoa.errors, view:'create'
             return
         }
-        
+        def usuario = null
+        if (pessoa.email) {
+            usuario = new Usuario(login:pessoa.email, senha:"sc_" + randomGenerator.nextInt(5000)).save(flush:true)
+        } else {
+            usuario = new Usuario(login:pessoa.nome.trim().split(' ')[0].toLowerCase()+randomGenerator.nextInt(5000), senha:"sCadastroIgreja2016").save(flush:true) 
+        }
+        pessoa.usuario = usuario
         pessoa.save flush:true
 
         request.withFormat {
@@ -89,8 +96,9 @@ class PessoaController {
             notFound()
             return
         }
-
+        pessoa.usuario.delete flush:true
         pessoa.delete flush:true
+
 
         request.withFormat {
             form multipartForm {
