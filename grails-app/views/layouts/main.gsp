@@ -46,36 +46,84 @@
 			} );
 
 			$(document).ready(function(){
-				$(".menu-")
+				$('[id=dataTables-example] tfoot th').each( function () {
+			        var title = $(this).text();
+			        $(this).html( '<input class="form-control" style="min-width:60px" type="text"/>' );
+			    } );
 
-				$('#dataTables-example').DataTable({
-				    "language": {
-				        "sEmptyTable": "Nenhum registro encontrado",
-				        "sInfo": "Mostrando de _START_ até _END_ de _TOTAL_ registros",
-				        "sInfoEmpty": "Mostrando 0 até 0 de 0 registros",
-				        "sInfoFiltered": "(Filtrados de _MAX_ registros)",
-				        "sInfoPostFix": "",
-				        "sInfoThousands": ".",
-				        "sLengthMenu": "_MENU_ resultados por página",
-				        "sLoadingRecords": "Carregando...",
-				        "sProcessing": "Processando...",
-				        "sZeroRecords": "Nenhum registro encontrado",
-				        "sSearch": "Pesquisar",
-				        "oPaginate": {
-				            "sNext": "Próximo",
-				            "sPrevious": "Anterior",
-				            "sFirst": "Primeiro",
-				            "sLast": "Último"
-				        },
-				        "oAria": {
-				            "sSortAscending": ": Ordenar colunas de forma ascendente",
-				            "sSortDescending": ": Ordenar colunas de forma descendente"
-				        }
-				    },
-				    "oSearch": {"sSearch": "${params.search ? params.search : ''}"},
-				    "responsive": true,
-				    "iDisplayLength": 50
+				//DataTables definition ---------------------------- BEGIN
+				var dataTables = [];
+				$('[id=dataTables-example]').each( function() {
+					var table = $(this).DataTable({
+							"dom": "Bfrtip",
+					        "buttons": [
+					        	"pageLength",
+					        	{
+					                'extend': 'pdfHtml5',
+					                'orientation': 'landscape',
+					               ' pageSize': 'LEGAL'
+					            },
+					            "excel",
+					            "copy"
+					        ],
+					        
+						    "language": {
+						        "sEmptyTable": "Nenhum registro encontrado",
+						        "sInfo": "Mostrando de _START_ até _END_ de _TOTAL_ registros",
+						        "sInfoEmpty": "Mostrando 0 até 0 de 0 registros",
+						        "sInfoFiltered": "(Filtrados de _MAX_ registros)",
+						        "sInfoPostFix": "",
+						        "sInfoThousands": ".",
+						        "sLengthMenu": "_MENU_ resultados por página",
+						        "sLoadingRecords": "Carregando...",
+						        "sProcessing": "Processando...",
+						        "sZeroRecords": "Nenhum registro encontrado",
+						        "sSearch": "Pesquisar",
+						        "oPaginate": {
+						            "sNext": "Próximo",
+						            "sPrevious": "Anterior",
+						            "sFirst": "Primeiro",
+						            "sLast": "Último"
+						        },
+						        "oAria": {
+						            "sSortAscending": ": Ordenar colunas de forma ascendente",
+						            "sSortDescending": ": Ordenar colunas de forma descendente"
+						        }
+						    },
+						    "oSearch": {"sSearch": "${params.search ? params.search : ''}"},
+						    "responsive": true,
+						    "iDisplayLength": 50
+						});
+					dataTables.push(table);
 				});
+				//DataTables definition ---------------------------- END
+				console.log(dataTables);
+				//Apply the search by column
+			    $(dataTables).each(function() {
+			    	   //pay attention to capital D, which is mandatory to retrieve "api" datatables' object, as @Lionel said
+				    this.columns().every( function () {
+				        var that = this;
+				 
+				        $(this).parent().find('dataTables_filter input').on( 'keyup change', function () {
+				        	console.log(this);
+				            if ( that.search() !== this.value ) {
+				                that.search( this.value ).draw();
+				            }
+				        } );
+				    } );
+			    } );
+			    
+
+			    // Remove accented character from search input as well
+		        /*$('input[type=search]').keyup( function () {
+		          	var newString = jQuery.fn.DataTable.ext.type.search.string( this.value );
+		          	console.log(newString);
+		          	$(this).closest('.dataTables_filter').parent().find('table').DataTable()
+		          	.search(
+		              newString
+		            )
+		            .draw()
+		        } );*/
 			});
 		</script>
 		<asset:deferredScripts/>

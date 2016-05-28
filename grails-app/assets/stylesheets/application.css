@@ -15,6 +15,7 @@
 *= require icons
 *= require normalize
 *= require jquery.dataTables.min
+*= require buttons.dataTables.min
 */
 body {
 	background-color: white !important;
@@ -65,4 +66,14 @@ a:active {
 input[type="checkbox"]{
   width: 20px; /*Desired width*/
   height: 20px; /*Desired height*/
+}
+
+input[type="search"] { 
+	
+}
+tfoot {
+    display: table-header-group;
+}
+table {
+	border-collapse: collapse;
 }

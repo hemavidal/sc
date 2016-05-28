@@ -12,7 +12,15 @@
 //= require mlpushmenu
 //= require modernizr.custom
 //= require jquery.dataTables.min
-
+//= require jquery.tabletoCSV
+//= require dataTables.buttons.min
+//= require buttons.flash.min
+//= require jszip.min
+//= require pdfmake.min
+//= require vfs_fonts
+//= require buttons.html5.min
+//= require buttons.print.min
+//= require accent-neutralise
 
 
 if (typeof jQuery !== 'undefined') {
